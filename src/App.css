@@ -2,7 +2,7 @@
   text-align: center;
   background-color: #121212;
   width: 100vw;
-  height: 100vh;
+  /* height: 100vh; */
   /* display: flex; */
   color: white;
 }
@@ -42,7 +42,6 @@ nav h1 {
   border: 1px solid black;
   display: flex;
   flex-direction: column;
-  margin-left:250px
 }
 
 .row {
@@ -81,8 +80,6 @@ nav h1 {
   width: 700px;
   height: 300px;
   margin-top: 60px;
-  margin-left:130px
-
 }
 
 .line1 {
