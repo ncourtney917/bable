@@ -3,19 +3,26 @@ import Board from "./components/Board";
 import Keyboard from './components/Keyboard';
 import GameOver from './components/GameOver';
 import { createContext, useState } from 'react';
-import { boardDefault } from './Words';
+import Words from './components/Words';
 
 export const AppContext = createContext();
 
 function App() {
-  const [board, setBoard] = useState(boardDefault);
+  const correctWord = "NICHOLAS"
+  const letterCount = correctWord.length
+
+  /* Set the width of the board based on the number of letters in the game */
+  let root = document.documentElement;
+  let width = (98 * letterCount).toString();
+  root.style.setProperty("--screen-width", width + "px");
+
+  const [board, setBoard] = useState(Words(letterCount));
   const [currAttempt, setCurrAttempt] = useState({ attempt: 0, letterPos: 0 });
   const [disabledLetters, setDisabledLetters] = useState([]);
   const [gameOver, setGameOver] = useState({ gameOver: false, guessWord: false })
-  const correctWord = "HENRY"
 
-  const onSelectLetter = (keyVal) => {
-    if (currAttempt.letterPos > 4) return;
+  const onSelectLetter = (keyVal, letterCount) => {
+    if (currAttempt.letterPos > letterCount - 1) return;
     const newBoard = [...board]
     newBoard[currAttempt.attempt][currAttempt.letterPos] = keyVal
     setBoard(newBoard)
@@ -34,8 +41,8 @@ function App() {
     });
   };
 
-  const onEnter = () => {
-    if (currAttempt.letterPos !== 5) return;
+  const onEnter = (letterCount) => {
+    if (currAttempt.letterPos !== letterCount) return;
 
     var guess = board[currAttempt.attempt].join("")
     setCurrAttempt({ attempt: currAttempt.attempt + 1, letterPos: 0 })
@@ -57,7 +64,7 @@ function App() {
       <nav>
         <h1>Bable</h1>
       </nav>
-      <AppContext.Provider value={{ board, setBoard, currAttempt, setCurrAttempt, onDelete, onEnter, onSelectLetter, correctWord, disabledLetters, setDisabledLetters, gameOver, setGameOver }}>
+      <AppContext.Provider value={{ board, setBoard, currAttempt, setCurrAttempt, onDelete, onEnter, onSelectLetter, correctWord, disabledLetters, setDisabledLetters, gameOver, setGameOver, letterCount }}>
         <div className="game">
           <Board />
           {gameOver.gameOver ? <GameOver /> : <Keyboard />}

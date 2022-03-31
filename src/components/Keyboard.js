@@ -3,7 +3,7 @@ import Key from "./Key"
 import { AppContext } from "../App";
 
 function Keyboard() {
-    const { onEnter, onDelete, onSelectLetter, disabledLetters } = useContext(AppContext);
+    const { onEnter, onDelete, onSelectLetter, disabledLetters, letterCount } = useContext(AppContext);
 
     const keys1 = ["Q", "W", "E", "R", "T", "Y", "U", "I", "O", "P"];
     const keys2 = ["A", "S", "D", "F", "G", "H", "J", "K", "L"];
@@ -11,23 +11,23 @@ function Keyboard() {
 
     const handleKeyboard = useCallback((event) => {
         if (event.key === "Enter") {
-            onEnter();
+            onEnter(letterCount);
         } else if (event.key === "Backspace") {
             onDelete();
         } else {
             keys1.forEach((key) => {
                 if (event.key.toLowerCase() === key.toLowerCase()) {
-                    onSelectLetter(key);
+                    onSelectLetter(key, letterCount);
                 }
             });
             keys2.forEach((key) => {
                 if (event.key.toLowerCase() === key.toLowerCase()) {
-                    onSelectLetter(key);
+                    onSelectLetter(key, letterCount);
                 }
             });
             keys3.forEach((key) => {
                 if (event.key.toLowerCase() === key.toLowerCase()) {
-                    onSelectLetter(key);
+                    onSelectLetter(key, letterCount);
                 }
             });
         }

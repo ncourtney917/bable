@@ -1,3 +1,7 @@
+:root {
+  --screen-width: 600px;
+}
+
 .App {
   text-align: center;
   background-color: #121212;
@@ -29,11 +33,11 @@ nav h1 {
 }
 
 h1 {
-  font-size : 40px;
+  font-size: 40px;
 }
 
 h2 {
-  font-size : 30px;
+  font-size: 30px;
 }
 
 .game {
@@ -46,7 +50,7 @@ h2 {
 }
 
 .board {
-  width: 450px;
+  width: var(--screen-width);
   height: 550px;
   border: 1px solid black;
   display: flex;
@@ -99,6 +103,7 @@ h2 {
   justify-content: center;
   margin: 5px;
 }
+
 .line2 {
   flex: 33%;
   display: flex;
@@ -106,6 +111,7 @@ h2 {
   justify-content: center;
   margin: 5px;
 }
+
 .line3 {
   flex: 33%;
   display: flex;
@@ -131,6 +137,7 @@ h2 {
 #big {
   width: 100px;
 }
+
 #disabled {
   background-color: #3a393c;
 }
