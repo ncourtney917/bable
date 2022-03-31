@@ -5,10 +5,11 @@ import GameOver from './components/GameOver';
 import { createContext, useState } from 'react';
 import Words from './components/Words';
 
+// User input to enter the word to be guessed
 export const AppContext = createContext();
+const correctWord = prompt("Please enter the baby's name!").toUpperCase()
 
 function App() {
-  const correctWord = "NICHOLAS"
   const letterCount = correctWord.length
 
   /* Set the width of the board based on the number of letters in the game */
