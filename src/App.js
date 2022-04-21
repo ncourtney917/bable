@@ -11,9 +11,9 @@ function App() {
   return (
     <Router>
       <Routes>
-        <Route exact path='/' element={<Home />} />
+        <Route exact path='/' element={<Game />} />
         <Route path='/create' element={<CreateGame />} />
-        <Route path='/game' element={<Game />} />
+        <Route path='/home' element={<Home />} />
       </Routes>
     </Router>
   );
