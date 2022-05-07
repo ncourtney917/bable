@@ -43,7 +43,7 @@ const Create = () => {
     return (
         <div className="App">
             <nav>
-                <h1>Bable</h1>
+                <h1>Babble</h1>
             </nav>
             <NameForm />
             <h3 id="formOutput"></h3>

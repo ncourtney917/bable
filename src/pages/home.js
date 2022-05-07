@@ -5,7 +5,7 @@ const Home = () => {
     return (
         <div className="App">
             <nav>
-                <h1>Bable</h1>
+                <h1>Babble</h1>
                 <h4>Wordle for Baby Names!</h4>
             </nav>
             <h3>Select a mode:</h3>

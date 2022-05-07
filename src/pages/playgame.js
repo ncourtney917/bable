@@ -2,9 +2,30 @@ import '../App.css';
 import Board from "../components/Board";
 import Keyboard from '../components/Keyboard';
 import GameOver from '../components/GameOver';
-import { createContext, useState } from 'react';
+import { createContext, useState, useEffect } from 'react';
 import Words from '../components/Words';
-
+import { Prompt } from 'react-st-modal';
+// https://reactjsexample.com/a-simple-and-flexible-modal-dialog-component-for-react-js/
+function NewGamePrompt() {
+  return (
+    <div>
+      <button
+        onClick={async () => {
+          const result = await Prompt('Сonfirmation text', 
+            'Сonfirmation title');
+          
+          if (result) {
+            // Сonfirmation confirmed
+          } else {
+            // Сonfirmation not confirmed
+          }
+        }}
+      >
+          Show prompt
+      </button>
+    </div>
+  );
+}
 // User input to enter the word to be guessed
 export const AppContext = createContext();
 const correctWord = prompt("Please enter the baby's name!").toUpperCase()
@@ -21,6 +42,13 @@ function Game() {
     const [currAttempt, setCurrAttempt] = useState({ attempt: 0, letterPos: 0 });
     const [disabledLetters, setDisabledLetters] = useState([]);
     const [gameOver, setGameOver] = useState({ gameOver: false, guessWord: false })
+
+    useEffect(() => {
+        let ignore = false;
+        
+        if (!ignore)  NewGamePrompt()
+        return () => { ignore = true; }
+    },[]);
 
     const onSelectLetter = (keyVal, letterCount) => {
         if (currAttempt.letterPos > letterCount - 1) return;
@@ -63,7 +91,7 @@ function Game() {
     return (
         <div className="App">
             <nav>
-                <h1>Bable</h1>
+                <h1>Babble</h1>
             </nav>
             <AppContext.Provider value={{ board, setBoard, currAttempt, setCurrAttempt, onDelete, onEnter, onSelectLetter, correctWord, disabledLetters, setDisabledLetters, gameOver, setGameOver, letterCount }}>
                 <div className="game">
