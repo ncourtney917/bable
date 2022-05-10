@@ -1,2 +1,2 @@
-# babydle
+# babble
 Wordle for Baby Names
