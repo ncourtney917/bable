@@ -1,5 +1,4 @@
-import React, { useState } from "react";
-
+import React from "react";
 class NameForm extends React.Component {
     constructor(props) {
         super(props);
@@ -18,8 +17,14 @@ class NameForm extends React.Component {
         var formOutput = document.getElementById('formOutput')
         formOutput.innerHTML = "Game created for: " + this.state.value
         var accessCode = document.getElementById('accessCode')
-        const code = Math.random().toString(36).substring(2, 10);
-        accessCode.innerHTML = "Your game is accessible with this access code: " + code
+        const gameId = Math.random().toString(36).substring(2, 15);
+        var newGameLink = document.getElementById('newGameLink')
+        // newGameLink.to = "/game/" + gameId
+        newGameLink.setAttribute("href", "/game/" + gameId)
+        accessCode.innerHTML = "Link to the new game:"
+        newGameLink.innerHTML = "https://localhost:3000/game/" + gameId
+        localStorage.setItem(gameId, this.state.value.toUpperCase());
+        console.log(localStorage)
     }
 
     render() {
@@ -48,6 +53,7 @@ const Create = () => {
             <NameForm />
             <h3 id="formOutput"></h3>
             <h3 id="accessCode"></h3>
+            <a id="newGameLink" class="hyperLink"></a>
         </div>
     );
 };

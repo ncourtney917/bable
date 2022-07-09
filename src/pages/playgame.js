@@ -4,6 +4,8 @@ import Keyboard from '../components/Keyboard';
 import GameOver from '../components/GameOver';
 import { createContext, useState, useEffect } from 'react';
 import Words from '../components/Words';
+import {useParams} from 'react-router-dom';
+
 import { Prompt } from 'react-st-modal';
 // https://reactjsexample.com/a-simple-and-flexible-modal-dialog-component-for-react-js/
 function NewGamePrompt() {
@@ -26,12 +28,18 @@ function NewGamePrompt() {
     </div>
   );
 }
+
 // User input to enter the word to be guessed
 export const AppContext = createContext();
-const correctWord = prompt("Please enter the baby's name!").toUpperCase()
+// const correctWord = prompt("Please enter the baby's name!").toUpperCase()
+
 
 function Game() {
+    const { gameId } = useParams();
+    const correctWord = localStorage.getItem(gameId);
+    // const correctWord = nameStorage.get(gameId)
     const letterCount = correctWord.length
+
 
     /* Set the width of the board based on the number of letters in the game */
     let root = document.documentElement;

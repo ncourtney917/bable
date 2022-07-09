@@ -152,3 +152,7 @@ h2 {
 #disabled {
   background-color: #3a393c;
 }
+
+.hyperLink {
+  color: white;
+}
