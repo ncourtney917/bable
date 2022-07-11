@@ -12,7 +12,7 @@ function App() {
     <Router>
       <Routes>
         <Route exact path='/game/:gameId' element={<Game />} />
-        <Route path='/' element={<CreateGame />} />
+        <Route path='/create' element={<CreateGame />} />
       </Routes>
     </Router>
   );
