@@ -1,7 +1,7 @@
 import React from 'react';
 import './App.css';
 //import Navbar from './components/Navbar';
-import { StaticRouter as Router, Routes, Route }
+import { BrowserRouter as Router, Routes, Route }
   from 'react-router-dom';
 import Game from './pages/playgame';
 import CreateGame from './pages/creategame';
