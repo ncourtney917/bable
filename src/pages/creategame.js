@@ -1,4 +1,6 @@
 import React from "react";
+import axios from 'axios';
+
 class NameForm extends React.Component {
     constructor(props) {
         super(props);
@@ -12,19 +14,33 @@ class NameForm extends React.Component {
         this.setState({ value: event.target.value });
     }
 
-    handleSubmit(event) {
+    async handleSubmit(event) {
         event.preventDefault();
         var formOutput = document.getElementById('formOutput')
         formOutput.innerHTML = "Game created for: " + this.state.value
+        const babyName = this.state.value.toUpperCase()
         var accessCode = document.getElementById('accessCode')
         const gameId = Math.random().toString(36).substring(2, 15);
         var newGameLink = document.getElementById('newGameLink')
-        // newGameLink.to = "/game/" + gameId
+
         newGameLink.setAttribute("href", "/game/" + gameId)
         accessCode.innerHTML = "Link to the new game:"
-        newGameLink.innerHTML = "https://localhost:3000/game/" + gameId
-        localStorage.setItem(gameId, this.state.value.toUpperCase());
-        console.log(localStorage)
+        newGameLink.innerHTML = "https://www.babblepuzzle/game/" + gameId
+
+        const response = await axios.post(
+            'https://data.mongodb-api.com/app/data-loapv/endpoint/data/v1/action/insertOne',
+            {"collection":"gameentries",
+            "database":"babblegames",
+            "dataSource":"gamelog",
+            "document": {"gameId": gameId, "name":babyName}},
+            { headers: { 'Content-Type': 'application/json',
+                         'api-key': '62ccb116d694a13c4a1fa328'} 
+            } 
+          )
+        console.log(response.data)
+
+        // localStorage.setItem(gameId, this.state.value.toUpperCase());
+        // console.log(localStorage)
     }
 
     render() {
