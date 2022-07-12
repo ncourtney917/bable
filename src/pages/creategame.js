@@ -28,7 +28,7 @@ class NameForm extends React.Component {
         newGameLink.innerHTML = "https://www.babblepuzzle/game/" + gameId
 
         const response = await axios.get(
-            'api/MongoPost',
+            'http://babble-api.eastus.azurecontainer.io/add',
             {params: {"gameId":gameId,"name":babyName}}
           )
         console.log(response.data)

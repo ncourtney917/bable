@@ -25,7 +25,7 @@ function Game() {
     useEffect(()=>{
         // Lookup the name that corresponds with the gameID passed in the URL
         // gameId and names are stored in MongoDB, accessed from custom API
-        axios.get('app/MongoLookup',{params: {"gameId":gameId}}).then(response => {
+        axios.get('http://babble-api.eastus.azurecontainer.io/read',{params: {"gameId":gameId}}).then(response => {
           setLoading("success");
           // Get name that corresponds with the gameId passed in the URL
           const name = response.data.name
