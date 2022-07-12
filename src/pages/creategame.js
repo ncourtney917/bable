@@ -27,15 +27,9 @@ class NameForm extends React.Component {
         accessCode.innerHTML = "Link to the new game:"
         newGameLink.innerHTML = "https://www.babblepuzzle/game/" + gameId
 
-        const response = await axios.post(
-            'https://data.mongodb-api.com/app/data-loapv/endpoint/data/v1/action/insertOne',
-            {"collection":"gameentries",
-            "database":"babblegames",
-            "dataSource":"gamelog",
-            "document": {"gameId": gameId, "name":babyName}},
-            { headers: { 'Content-Type': 'application/json',
-                         'api-key': '62ccb116d694a13c4a1fa328'} 
-            } 
+        const response = await axios.get(
+            'http://127.0.0.1:5000/add',
+            {params: {"gameId":gameId,"name":babyName}}
           )
         console.log(response.data)
 
@@ -69,7 +63,7 @@ const Create = () => {
             <NameForm />
             <h3 id="formOutput"></h3>
             <h3 id="accessCode"></h3>
-            <a id="newGameLink" class="hyperLink"></a>
+            <a id="newGameLink" className="hyperLink"></a>
         </div>
     );
 };

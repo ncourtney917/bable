@@ -5,58 +5,49 @@ import GameOver from '../components/GameOver';
 import { createContext, useState, useEffect } from 'react';
 import Words from '../components/Words';
 import {useParams} from 'react-router-dom';
+import axios from 'axios';
 
-import { Prompt } from 'react-st-modal';
-// https://reactjsexample.com/a-simple-and-flexible-modal-dialog-component-for-react-js/
-function NewGamePrompt() {
-  return (
-    <div>
-      <button
-        onClick={async () => {
-          const result = await Prompt('Сonfirmation text', 
-            'Сonfirmation title');
-          
-          if (result) {
-            // Сonfirmation confirmed
-          } else {
-            // Сonfirmation not confirmed
-          }
-        }}
-      >
-          Show prompt
-      </button>
-    </div>
-  );
-}
 
 // User input to enter the word to be guessed
 export const AppContext = createContext();
 // const correctWord = prompt("Please enter the baby's name!").toUpperCase()
 
-
 function Game() {
     const { gameId } = useParams();
-    const correctWord = localStorage.getItem(gameId);
-    // const correctWord = nameStorage.get(gameId)
-    const letterCount = correctWord.length
+    const [isLoading, setLoading] = useState("loading");
+    const [currAttempt, setCurrAttempt] = useState({ attempt: 0, letterPos: 0 });
+    const [correctWord, setWord] = useState()
+    const [letterCount, setCount] = useState(0)
+    const [board, setBoard] = useState(Words(5));
+    const [disabledLetters, setDisabledLetters] = useState([]);
+    const [gameOver, setGameOver] = useState({ gameOver: false, guessWord: false })
 
+    useEffect(()=>{
+        // Lookup the name that corresponds with the gameID passed in the URL
+        // gameId and names are stored in MongoDB, accessed from custom API
+        axios.get('http://127.0.0.1:5000/read',{params: {"gameId":gameId}}).then(response => {
+          setLoading("success");
+          // Get name that corresponds with the gameId passed in the URL
+          const name = response.data.name
+          setWord(name)
+          setCount(name.length)
+        })
+        .catch((e) => {
+          setLoading("failure")
+        });
+    },[]);
+ 
+    // Return loading screen until API response
+    if (isLoading === "loading") {
+        return <div className="App loading-text">Loading Babble game...</div>;
+    } else if (isLoading === "failure") {
+        return <div className="App loading-text">This game link is not valid. Please check the URL and try again.</div>;
+    }
 
     /* Set the width of the board based on the number of letters in the game */
     let root = document.documentElement;
     let width = (98 * letterCount).toString();
     root.style.setProperty("--screen-width", width + "px");
-
-    const [board, setBoard] = useState(Words(letterCount));
-    const [currAttempt, setCurrAttempt] = useState({ attempt: 0, letterPos: 0 });
-    const [disabledLetters, setDisabledLetters] = useState([]);
-    const [gameOver, setGameOver] = useState({ gameOver: false, guessWord: false })
-
-    useEffect(() => {
-        let ignore = false;
-        
-        if (!ignore)  NewGamePrompt()
-        return () => { ignore = true; }
-    },[]);
 
     const onSelectLetter = (keyVal, letterCount) => {
         if (currAttempt.letterPos > letterCount - 1) return;
