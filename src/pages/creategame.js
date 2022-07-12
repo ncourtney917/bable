@@ -1,5 +1,7 @@
 import React from "react";
-import axios from 'axios';
+import {key} from "../App";
+
+var CryptoJS = require("crypto-js");
 
 class NameForm extends React.Component {
     constructor(props) {
@@ -20,19 +22,14 @@ class NameForm extends React.Component {
         formOutput.innerHTML = "Game created for: " + this.state.value
         const babyName = this.state.value.toUpperCase()
         var accessCode = document.getElementById('accessCode')
-        const gameId = Math.random().toString(36).substring(2, 15);
+        // Encrypt gameId and replace special characters
+        var gameIdStr = CryptoJS.AES.encrypt(JSON.stringify(babyName), key).toString();
+        const gameId = gameIdStr.replace(/\+/g,'gobills').replace(/\//g,'joshallen').replace(/=/g,'babble');
         var newGameLink = document.getElementById('newGameLink')
 
         newGameLink.setAttribute("href", "/game/" + gameId)
         accessCode.innerHTML = "Link to the new game:"
         newGameLink.innerHTML = "https://www.babblepuzzle/game/" + gameId
-
-        const response = await axios.get(
-            'http://babble-api.eastus.azurecontainer.io/add',
-            {params: {"gameId":gameId,"name":babyName}}
-          )
-        console.log(response.data)
-
     }
 
     render() {

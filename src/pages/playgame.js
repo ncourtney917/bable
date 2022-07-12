@@ -5,8 +5,9 @@ import GameOver from '../components/GameOver';
 import { createContext, useState, useEffect } from 'react';
 import Words from '../components/Words';
 import {useParams} from 'react-router-dom';
-import axios from 'axios';
+import {key} from "../App";
 
+var CryptoJS = require("crypto-js");
 
 // User input to enter the word to be guessed
 export const AppContext = createContext();
@@ -22,19 +23,23 @@ function Game() {
     const [disabledLetters, setDisabledLetters] = useState([]);
     const [gameOver, setGameOver] = useState({ gameOver: false, guessWord: false })
 
+    // Decrpyt gameId
     useEffect(()=>{
-        // Lookup the name that corresponds with the gameID passed in the URL
-        // gameId and names are stored in MongoDB, accessed from custom API
-        axios.get('http://babble-api.eastus.azurecontainer.io/read',{params: {"gameId":gameId}}).then(response => {
-          setLoading("success");
-          // Get name that corresponds with the gameId passed in the URL
-          const name = response.data.name
-          setWord(name)
-          setCount(name.length)
-        })
-        .catch((e) => {
-          setLoading("failure")
-        });
+        var originalGameId = gameId.replace(/gobills/g, '+' ).replace(/joshallen/g, '/').replace(/babble/g, '=');
+        console.log(gameId)
+        console.log(originalGameId)
+        var bytes = CryptoJS.AES.decrypt(originalGameId, key);
+        try {
+            var name = JSON.parse(bytes.toString(CryptoJS.enc.Utf8));
+            setWord(name);
+            setCount(name.length);
+            setLoading("success");
+            console.log(name)
+            console.log(isLoading)
+        }catch(e) {
+            console.log(e)
+            setLoading("failure")
+        }
     },[]);
  
     // Return loading screen until API response
@@ -43,7 +48,6 @@ function Game() {
     } else if (isLoading === "failure") {
         return <div className="App loading-text">This game link is not valid. Please check the URL and try again.</div>;
     }
-
     /* Set the width of the board based on the number of letters in the game */
     let root = document.documentElement;
     let width = (98 * letterCount).toString();

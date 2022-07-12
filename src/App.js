@@ -6,7 +6,6 @@ import { BrowserRouter as Router, Routes, Route }
 import Game from './pages/playgame';
 import CreateGame from './pages/creategame';
 
-
 function App() {
   return (
     <Router>
@@ -19,3 +18,4 @@ function App() {
 }
 
 export default App;
+export const key = 'LetsGoBills';
