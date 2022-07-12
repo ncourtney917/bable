@@ -49,11 +49,11 @@ class NameForm extends React.Component {
                 <h2>Mommy Mode</h2>
                 <h3>Create a name for your friends to guess</h3>
                 <label>
-                    Enter a baby name:
+                    Enter a baby name:  
                 </label>
                 <input type="text" value={this.state.value} onChange={this.handleChange} />
                 <br></br>
-                <input type="submit" value="Submit" />
+                <input className="submit" type="submit" value="Submit" />
             </form>
         );
     }

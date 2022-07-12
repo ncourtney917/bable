@@ -156,3 +156,11 @@ h2 {
 .hyperLink {
   color: white;
 }
+
+.submit {
+  background-color: #00a2b2;
+  color: #ffffff;
+  margin: 20px;
+  padding: 10px 30px 10px 30px;
+  border-radius: 15px 15px 15px 15px;
+}
