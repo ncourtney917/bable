@@ -11,6 +11,11 @@
   color: white;
 }
 
+.loading-text {
+  padding-top: 30vh;
+  font-size: 20px;
+}
+
 body {
   padding: 0%;
   margin: 0;
