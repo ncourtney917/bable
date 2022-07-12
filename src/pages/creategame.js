@@ -28,13 +28,11 @@ class NameForm extends React.Component {
         newGameLink.innerHTML = "https://www.babblepuzzle/game/" + gameId
 
         const response = await axios.get(
-            'http://127.0.0.1:5000/add',
+            'api/MongoPost',
             {params: {"gameId":gameId,"name":babyName}}
           )
         console.log(response.data)
 
-        // localStorage.setItem(gameId, this.state.value.toUpperCase());
-        // console.log(localStorage)
     }
 
     render() {

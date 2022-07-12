@@ -26,18 +26,6 @@ def create_record():
 @app.route('/read', methods=["GET"])
 def read_record():
     gameId = request.args.get("gameId")
-    #gameId = 7
-    base_url = "https://data.mongodb-api.com/app/data-loapv/endpoint/data/v1/action/findOne"
-    data = {
-                "collection":"gameentries",
-                "database":"babblegames",
-                "dataSource":"gamelog",
-                "filter": { "gameId": gameId }
-            }
-    headers = { 
-                'Content-Type': 'application/json',
-                'api-key': 'iSemYXLXmSEDWOF1fy1c3IcNXfiatONjeNhCFwKEEQFHfQcJDYyFdc3BcZ9bbDHD'
-    }
     client = pymongo.MongoClient("mongodb+srv://babbleadmin:aBwJTJXWWncF1Kx5@gamelog.qaezs.mongodb.net/?retryWrites=true&w=majority")
     db = client.babblegames
     collection = db.gameentries
