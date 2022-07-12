@@ -5,11 +5,11 @@
       "authLevel": "anonymous",
       "type": "httpTrigger",
       "direction": "in",
-      "name": "req",
+      "name": "MongoPost",
       "methods": [
-        "get",
-        "post"
-      ]
+        "get"
+      ],
+      "route": "MongoPost"
     },
     {
       "type": "http",
