@@ -27,9 +27,9 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
     response.headers.add('Access-Control-Allow-Origin', '*')
 
     if name:
-        return func.HttpResponse(response)
+        return func.HttpResponse(name)
     else:
         return func.HttpResponse(
-             response,
+             name,
              status_code=200
         )
