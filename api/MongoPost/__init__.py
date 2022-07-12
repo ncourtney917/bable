@@ -6,8 +6,8 @@ from flask import Flask, request, jsonify
 import pymongo
 
 def main(req: func.HttpRequest) -> func.HttpResponse:
-    logging.info('Python HTTP trigger function processed a request.')
-
+    logging.info('Triggering MongoPost.')
+    print("Triggering MongoPost")
     name = req.params.get('name')
     gameId = req.params.get('gameId')
     if not name:
