@@ -169,3 +169,7 @@ h2 {
   padding: 10px 30px 10px 30px;
   border-radius: 15px 15px 15px 15px;
 }
+
+.spacing {
+  padding-top: 200px;
+}

@@ -11,7 +11,6 @@ var CryptoJS = require("crypto-js");
 
 // User input to enter the word to be guessed
 export const AppContext = createContext();
-// const correctWord = prompt("Please enter the baby's name!").toUpperCase()
 
 function Game() {
     const { gameId } = useParams();
@@ -26,16 +25,13 @@ function Game() {
     // Decrpyt gameId
     useEffect(()=>{
         var originalGameId = gameId.replace(/gobills/g, '+' ).replace(/joshallen/g, '/').replace(/babble/g, '=');
-        console.log(gameId)
-        console.log(originalGameId)
         var bytes = CryptoJS.AES.decrypt(originalGameId, key);
         try {
-            var name = JSON.parse(bytes.toString(CryptoJS.enc.Utf8));
+            var decodedName = JSON.parse(bytes.toString(CryptoJS.enc.Utf8));
+            var name = decodedName.slice(0,-1);
             setWord(name);
             setCount(name.length);
             setLoading("success");
-            console.log(name)
-            console.log(isLoading)
         }catch(e) {
             console.log(e)
             setLoading("failure")

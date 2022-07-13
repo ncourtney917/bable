@@ -6,10 +6,11 @@ var CryptoJS = require("crypto-js");
 class NameForm extends React.Component {
     constructor(props) {
         super(props);
-        this.state = { value: '' };
+        this.state = { value: '' , gender: ''};
 
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
+        this.onChangeRadio = this.onChangeRadio.bind(this);
     }
 
     handleChange(event) {
@@ -21,15 +22,20 @@ class NameForm extends React.Component {
         var formOutput = document.getElementById('formOutput')
         formOutput.innerHTML = "Game created for: " + this.state.value
         const babyName = this.state.value.toUpperCase()
+        const gender = this.state.gender.slice(0,1)
         var accessCode = document.getElementById('accessCode')
         // Encrypt gameId and replace special characters
-        var gameIdStr = CryptoJS.AES.encrypt(JSON.stringify(babyName), key).toString();
+        var gameIdStr = CryptoJS.AES.encrypt(JSON.stringify(babyName + gender), key).toString();
         const gameId = gameIdStr.replace(/\+/g,'gobills').replace(/\//g,'joshallen').replace(/=/g,'babble');
         var newGameLink = document.getElementById('newGameLink')
 
         newGameLink.setAttribute("href", "/game/" + gameId)
         accessCode.innerHTML = "Link to the new game:"
         newGameLink.innerHTML = "https://www.babblepuzzle/game/" + gameId
+    }
+
+    onChangeRadio(event) {
+        this.setState({ gender: event.target.value });
     }
 
     render() {
@@ -42,6 +48,15 @@ class NameForm extends React.Component {
                 </label>
                 <input type="text" value={this.state.value} onChange={this.handleChange} />
                 <br></br>
+                <br></br>
+                <label className="spacing">
+                    Gender:  
+                </label>
+                <div onChange={this.onChangeRadio}>
+                    <input type="radio" value="Male" name="gender" /> Male
+                    <input type="radio" value="Female" name="gender" /> Female
+                </div>
+                      <br></br>
                 <input className="submit" type="submit" value="Submit" />
             </form>
         );
