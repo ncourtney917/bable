@@ -1,19 +1,7 @@
 :root {
   --screen-width: 600px;
   --keyboard-height: 200px;
-  --header-height: 100px;
-}
-
-.App {
-  text-align: center;
-  width: 100vw;
-  /* display: flex; */
-  color: white;
-}
-
-.loading-text {
-  padding-top: 30vh;
-  font-size: 20px;
+  --header-height: 85px;
 }
 
 body {
@@ -35,13 +23,11 @@ nav {
 nav h1 {
   margin: 10px 0px 0px 0px;
   color: white;
-  font-size: 45px;
-  margin: 5px;
 }
 
 h1 {
   font-size: 40px;
-  margin: 5px;
+  margin: 0px;
 }
 
 h2 {
@@ -51,8 +37,20 @@ h2 {
 
 h3 {
   font-size: 20px;
-  margin: 5px;
+  margin-top: -2px;
   font-weight: 100;
+}
+
+.App {
+  text-align: center;
+  width: 100vw;
+  /* display: flex; */
+  color: white;
+}
+
+.loading-text {
+  padding-top: 30vh;
+  font-size: 20px;
 }
 
 .game {
@@ -66,17 +64,20 @@ h3 {
 
 .board {
   max-width: 370px;
-  height: 450px;
   border: 1px solid black;
   display: flex;
   flex-direction: column;
   flex-grow: 1
 }
 
+.gameArea {
+  height: 100%;
+}
+
 .keyboard {
   width: 370px;
   height: 500px;
-  margin-top: 10px;
+  margin: 10px 5px 5px 0px;
 }
 
 .row {
