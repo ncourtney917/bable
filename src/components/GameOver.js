@@ -41,7 +41,8 @@ function GameOver() {
         return (
             <div className="gameOver">
                 <h2>It's a <b>{gender}</b>!</h2>
-                <h1>The baby's name is: <b>{correctWord}</b></h1>
+                <h2>The baby's name is:</h2>
+                <h1>{correctWord}</h1>
                 {gameOver.guessWord && (<h2> You guessed in {currAttempt.attempt} attempt{currAttempt.attempt !== 1 && "s"}</h2>)}
                 <Confetti width={width} height={height} colors={color}/>
             </div>
@@ -51,7 +52,8 @@ function GameOver() {
         return(
             <div className="gameOver">
                 <h2>Don't worry, we won't tell the baby you lost :)</h2>
-                <h1>The baby's name is: <b>{correctWord}</b></h1>
+                <h2>The baby's name is:</h2>
+                <h1>{correctWord}</h1>
             </div>
         )
     }
