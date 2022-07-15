@@ -1,10 +1,9 @@
 :root {
-  --screen-width: 600px;
+  --screen-width: 1000px;
 }
 
 .App {
   text-align: center;
-  background-color: #121212;
   width: 100vw;
   height: 100vh;
   /* display: flex; */
@@ -19,19 +18,19 @@
 body {
   padding: 0%;
   margin: 0;
+  background-color: #121212;
 }
 
 nav {
-  height: 60px;
   width: 100%;
-  margin: 0;
-  border-bottom: 1px solid grey;
+  margin: 0px;
+  border-bottom: 2px solid grey;
   display: grid;
   place-items: center;
 }
 
 nav h1 {
-  margin: 0;
+  margin: 10px 0px 0px 0px;
   font-family: Helvetica, Arial, sans-serif;
   color: white;
   font-size: 45px;

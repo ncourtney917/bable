@@ -12,10 +12,9 @@ function GameOver() {
     const { gameOver, correctWord, currAttempt } = useContext(AppContext);
     const { gameId } = useParams();
     const [color, setColor] = useState(['#f44336','#e91e63','#9c27b0','#673ab7','#3f51b5','#2196f3','#03a9f4','#FF5722','#795548']	)
+    const [gender, setGender] = useState("baby")
     const height = window.innerHeight
     const width = window.innerWidth
-    const boy = ['#89CFF0']
-    const girl = ['#FF69B4']
 
     // Get gender from url string and set confetti color
     useEffect(()=>{
@@ -26,9 +25,11 @@ function GameOver() {
             var decodedName = JSON.parse(bytes.toString(CryptoJS.enc.Utf8));
             var gender = decodedName.slice(-1)
             if (gender === "M"){
-                setColor(boy)
+                setColor(['#89CFF0'])
+                setGender("Boy")
             }else if (gender === "F"){
-                setColor(girl)
+                setColor(['#FF69B4'])
+                setGender("Girl")
             }
         }catch(e) {
             console.log(e)
@@ -39,8 +40,9 @@ function GameOver() {
     if (gameOver.guessWord) {
         return (
             <div className="gameOver">
-                <h2>You won!</h2>
-                <h1>Correct Answer: {correctWord}</h1>
+                <h2>Congrats, you guessed it!</h2>
+                <h2>It's a <b>{gender}</b>!</h2>
+                <h1>The baby's name is: <b>{correctWord}</b></h1>
                 {gameOver.guessWord && (<h2> You guessed in {currAttempt.attempt} attempt{currAttempt.attempt !== 1 && "s"}</h2>)}
                 <Confetti width={width} height={height} colors={color}/>
             </div>
@@ -49,8 +51,10 @@ function GameOver() {
     else{
         return(
             <div className="gameOver">
-                <h2>Game over, you lost!</h2>
-                <h1>Correct Answer: {correctWord}</h1>
+                <h2>Sorry, you lost!</h2>
+                <h2>Don't worry, we won't tell the baby!</h2>
+                <h2>It's a <b>{gender}</b>!</h2>
+                <h1>The baby's name is: <b>{correctWord}</b></h1>
             </div>
         )
     }

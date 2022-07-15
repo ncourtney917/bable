@@ -69,6 +69,7 @@ const Create = () => {
         <div className="App">
             <nav>
                 <h1>Babble</h1>
+                <h3>Guess the baby name!</h3>
             </nav>
             <NameForm />
             <h3 id="formOutput"></h3>
