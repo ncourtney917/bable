@@ -90,7 +90,7 @@ function Game() {
     return (
         <div className="App">
             <nav>
-                <h1>Babble</h1>
+                <h1>Babbley</h1>
                 <h3>Guess the baby name!</h3>
             </nav>
             <AppContext.Provider value={{ board, setBoard, currAttempt, setCurrAttempt, onDelete, onEnter, onSelectLetter, correctWord, disabledLetters, setDisabledLetters, gameOver, setGameOver, letterCount }}>

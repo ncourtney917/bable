@@ -1,11 +1,13 @@
 :root {
-  --screen-width: 1000px;
+  --screen-width: 600px;
+  --keyboard-height: 200px;
+  --header-height: 50px;
 }
 
 .App {
   text-align: center;
   width: 100vw;
-  height: 100vh;
+  height: 100%;
   /* display: flex; */
   color: white;
 }
