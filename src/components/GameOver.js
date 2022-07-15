@@ -40,7 +40,6 @@ function GameOver() {
     if (gameOver.guessWord) {
         return (
             <div className="gameOver">
-                <h2>Congrats, you guessed it!</h2>
                 <h2>It's a <b>{gender}</b>!</h2>
                 <h1>The baby's name is: <b>{correctWord}</b></h1>
                 {gameOver.guessWord && (<h2> You guessed in {currAttempt.attempt} attempt{currAttempt.attempt !== 1 && "s"}</h2>)}
@@ -51,9 +50,7 @@ function GameOver() {
     else{
         return(
             <div className="gameOver">
-                <h2>Sorry, you lost!</h2>
-                <h2>Don't worry, we won't tell the baby!</h2>
-                <h2>It's a <b>{gender}</b>!</h2>
+                <h2>Don't worry, we won't tell the baby you lost :)</h2>
                 <h1>The baby's name is: <b>{correctWord}</b></h1>
             </div>
         )

@@ -41,17 +41,17 @@ function Keyboard() {
     }, [handleKeyboard]);
     return (
         <div className="keyboard">
-            <div className="line1">
+            <div className="keyboard-line">
                 {keys1.map((key) => {
                     return <Key keyVal={key} disabled={disabledLetters.includes(key)} />;
                 })}
             </div>
-            <div className="line2">
+            <div className="keyboard-line">
                 {keys2.map((key) => {
                     return <Key keyVal={key} disabled={disabledLetters.includes(key)} />;
                 })}
             </div>
-            <div className="line3">
+            <div className="keyboard-line">
                 <Key keyVal={"ENTER"} bigKey />
                 {keys3.map((key) => {
                     return <Key keyVal={key} disabled={disabledLetters.includes(key)} />;
