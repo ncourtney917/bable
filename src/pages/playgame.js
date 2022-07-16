@@ -108,13 +108,16 @@ function Game() {
     };
 
     const onEnter = (letterCount) => {
+        setError(false);
         if (currAttempt.letterPos !== letterCount) return;
 
         var guess = board[currAttempt.attempt].join("")
 
         const validGuess = checkName(guess)
+        console.log(nameList)
+        console.log(guess)
+        console.log(validGuess)
         if (validGuess){
-            setError(false);
             setCurrAttempt({ attempt: currAttempt.attempt + 1, letterPos: 0 })
         }else{
             setError(true);

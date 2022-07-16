@@ -10,6 +10,8 @@
 .App {
   text-align: center;
   color: white;
+  height: 100vh; /* Fallback for browsers that do not support Custom Properties */
+  height: calc(var(--vh, 1vh) * 100);
 }
 
 
@@ -40,7 +42,6 @@ body {
 .keyboard {
   width: 95vw;
   max-width: 500px;
-  height: var(--keyboard-height);
   margin: 10px 5px 25px 10px;
 }
 
@@ -172,6 +173,7 @@ h3 {
 
 .hyperLink {
   color: white;
+  padding-bottom: 15px;
 }
 
 .submit {
@@ -204,6 +206,6 @@ footer {
   color: white;
 }
 
-.padding {
+.margin-top {
   margin-top: 50px;
 }

@@ -66,7 +66,7 @@ function GameOver() {
                         <div className="popup-body">
                             <h3>The baby's name is:</h3>
                             <h1>{correctWord}</h1>
-                            <h3 className="padding">Don't worry, we won't tell the baby you lost :)</h3>
+                            <h3 className="margin-top">Don't worry, we won't tell the baby you lost :)</h3>
                         </div>
                     </div>
                 </Popup>
