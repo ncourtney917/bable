@@ -29,6 +29,7 @@ function Game() {
         axios.get('api/read',{params: {"gameId":gameId}}).then(response => {
             console.log(response)
             setLoading("success")
+            console.log("success")
             setWord(response.name);
             setCount(response.name.length);
         })
