@@ -6,6 +6,7 @@ import { createContext, useState, useEffect } from 'react';
 import Words from '../components/Words';
 import {useParams} from 'react-router-dom';
 import {key} from "../App";
+import axios from 'axios';
 
 var CryptoJS = require("crypto-js");
 
@@ -22,21 +23,37 @@ function Game() {
     const [disabledLetters, setDisabledLetters] = useState([]);
     const [gameOver, setGameOver] = useState({ gameOver: false, guessWord: false })
 
-    // Decrpyt gameId
     useEffect(()=>{
-        var originalGameId = gameId.replace(/gobills/g, '+' ).replace(/joshallen/g, '/').replace(/babble/g, '=');
-        var bytes = CryptoJS.AES.decrypt(originalGameId, key);
-        try {
-            var decodedName = JSON.parse(bytes.toString(CryptoJS.enc.Utf8));
-            var name = decodedName.slice(0,-1);
-            setWord(name);
-            setCount(name.length);
-            setLoading("success");
-        }catch(e) {
-            console.log(e)
-            setLoading("failure")
-        }
+        // Lookup the name that corresponds with the gameID passed in the URL
+        // gameId and names are stored in MongoDB, accessed from custom API
+        axios.get('api/MongoLookup',{params: {"gameId":gameId}}).then(response => {
+            console.log(response)
+            setLoading("success")
+            setWord(response.name);
+            setCount(response.name.length);
+        })
+        .catch((e) => {
+          setLoading("failure")
+          console.log("failure")
+        });
     },[]);
+
+
+    // Decrpyt gameId
+    // useEffect(()=>{
+    //     var originalGameId = gameId.replace(/gobills/g, '+' ).replace(/joshallen/g, '/').replace(/babble/g, '=');
+    //     var bytes = CryptoJS.AES.decrypt(originalGameId, key);
+    //     try {
+    //         var decodedName = JSON.parse(bytes.toString(CryptoJS.enc.Utf8));
+    //         var name = decodedName.slice(0,-1);
+    //         setWord(name);
+    //         setCount(name.length);
+    //         setLoading("success");
+    //     }catch(e) {
+    //         console.log(e)
+    //         setLoading("failure")
+    //     }
+    // },[]);
  
     // Return loading screen until API response
     if (isLoading === "loading") {
