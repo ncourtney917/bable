@@ -19,7 +19,8 @@ export const generateNameList = async () => {
     await fetch(nameBank)
       .then((response) => response.text())
       .then((result) => {
-        const nameArr = result.split("\r\n");
+        // Split on either \n or \n\r
+        const nameArr = result.split(/[(\r)?\n]/);
         nameSet = new Set(nameArr);
       });
     return { nameSet };

@@ -10,8 +10,6 @@
 .App {
   text-align: center;
   color: white;
-  height: 100vh; /* Fallback for browsers that do not support Custom Properties */
-  height: calc(var(--vh, 1vh) * 100);
 }
 
 
@@ -201,8 +199,9 @@ h3 {
 }
 
 footer {
-  position:relative;
-  text-align: right;
+  position:absolute;
+  right: 0;
+  bottom: 0;
   color: white;
 }
 
