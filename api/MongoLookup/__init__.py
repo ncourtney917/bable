@@ -25,11 +25,5 @@ def main(req: func.HttpRequest) -> func.HttpResponse:
     name = record["name"]
     response = jsonify({"name":name})
     response.headers.add('Access-Control-Allow-Origin', '*')
-
-    if name:
-        return func.HttpResponse(name)
-    else:
-        return func.HttpResponse(
-             name,
-             status_code=200
-        )
+    headers = {'Access-Control-Allow-Origin': '*', "Content-Type": "application/json"}
+    return json.dumps({"name":name})
