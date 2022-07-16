@@ -40,15 +40,17 @@ function GameOver() {
     // Create screen for winners and losers
     if (gameOver.guessWord) {
         return (
-            <Popup trigger={<button> Trigger</button>} defaultOpen="true" position="center center">
-                <div className="gameOver">
+            <div>
+            <Popup defaultOpen="true" position="top center">
+                <div className="gameOver popup">
                     <h2>It's a <b>{gender}</b>!</h2>
                     <h2>The baby's name is:</h2>
                     <h1>{correctWord}</h1>
                     {gameOver.guessWord && (<h2> You guessed in {currAttempt.attempt} attempt{currAttempt.attempt !== 1 && "s"}</h2>)}
-                    <Confetti width={width} height={height} colors={color}/>
                 </div>
             </Popup>
+            <Confetti width={width} height={height} colors={color}/>
+            </div>
         )
     }
     else{

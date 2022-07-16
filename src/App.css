@@ -160,3 +160,7 @@ h3 {
 .gameOver {
   margin: 0px 5px 10px 5px;
 }
+
+.popup {
+  background-color: grey;
+}
