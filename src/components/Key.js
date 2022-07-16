@@ -7,7 +7,7 @@ function Key({ keyVal, bigKey, disabled }) {
         if (keyVal === "ENTER") {
             onEnter(letterCount)
         }
-        else if (keyVal === "DELETE") {
+        else if (keyVal === "DEL") {
             onDelete()
         }
         else {

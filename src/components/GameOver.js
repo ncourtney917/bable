@@ -41,27 +41,35 @@ function GameOver() {
     if (gameOver.guessWord) {
         return (
             <div>
-            <Popup trigger={<button className="results-button submit">See results</button>} defaultOpen="true" position="top center" arrow="false" modal="true">
-                <div className="gameOver popup">
-                    <h1>It's a {gender}!</h1>
-                    <hr></hr>
-                    <div className="popup-body">
-                        <h3>The baby's name is:</h3>
-                        <h1>{correctWord}</h1>
-                        {gameOver.guessWord && (<h3 className="padding"> You guessed it correcly in {currAttempt.attempt} attempt{currAttempt.attempt !== 1 && "s"}</h3>)}
+                <Popup trigger={<button className="results-button submit">See results</button>} defaultOpen="true" position="top center" arrow="false" modal="true">
+                    <div className="gameOver popup">
+                        <h1>It's a {gender}!</h1>
+                        <hr></hr>
+                        <div className="popup-body">
+                            <h3>The baby's name is:</h3>
+                            <h1>{correctWord}</h1>
+                            {gameOver.guessWord && (<h3 className="padding"> You guessed it correcly in {currAttempt.attempt} attempt{currAttempt.attempt !== 1 && "s"}</h3>)}
+                        </div>
                     </div>
-                </div>
-            </Popup>
-            <Confetti width={width} height={height} colors={color}/>
+                </Popup>
+                <Confetti width={width} height={height} colors={color}/>
             </div>
         )
     }
     else{
         return(
-            <div className="gameOver">
-                <h2>Don't worry, we won't tell the baby you lost :)</h2>
-                <h2>The baby's name is:</h2>
-                <h1>{correctWord}</h1>
+            <div>
+                <Popup trigger={<button className="results-button submit">See results</button>} defaultOpen="true" position="top center" arrow="false" modal="true">
+                    <div className="gameOver popup">
+                        <h1>It's a {gender}!</h1>
+                        <hr></hr>
+                        <div className="popup-body">
+                            <h3>The baby's name is:</h3>
+                            <h1>{correctWord}</h1>
+                            <h3 className="padding">Don't worry, we won't tell the baby you lost :)</h3>
+                        </div>
+                    </div>
+                </Popup>
             </div>
         )
     }

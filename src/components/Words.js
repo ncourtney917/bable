@@ -1,4 +1,6 @@
-function Words(letterCount) {
+import nameBank from "../names.txt";
+
+export function Words(letterCount) {
     const boardDefault = [
         Array(letterCount).fill(""),
         Array(letterCount).fill(""),
@@ -10,5 +12,15 @@ function Words(letterCount) {
     return (
         boardDefault
     )
-}
-export default Words;
+};
+
+export const generateNameList = async () => {
+    let nameSet;
+    await fetch(nameBank)
+      .then((response) => response.text())
+      .then((result) => {
+        const nameArr = result.split("\r\n");
+        nameSet = new Set(nameArr);
+      });
+    return { nameSet };
+  };

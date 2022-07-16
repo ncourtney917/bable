@@ -2,11 +2,13 @@ import '../App.css';
 import Board from "../components/Board";
 import Keyboard from '../components/Keyboard';
 import GameOver from '../components/GameOver';
+import {ErrorMessage} from '../components/Error';
 import { createContext, useState, useEffect } from 'react';
-import Words from '../components/Words';
+import {Words, generateNameList} from '../components/Words';
 import {useParams} from 'react-router-dom';
 import {key} from "../App";
 import axios from 'axios';
+import Popup from 'reactjs-popup';
 
 var CryptoJS = require("crypto-js");
 
@@ -22,7 +24,23 @@ function Game() {
     const [board, setBoard] = useState(Words(5));
     const [disabledLetters, setDisabledLetters] = useState([]);
     const [gameOver, setGameOver] = useState({ gameOver: false, guessWord: false })
+    const [nameList, setNameList] = useState(new Set());
+    const [error, setError] = useState(false);
 
+    useEffect(() => {
+        generateNameList().then((names) => {
+            setNameList(names.nameSet);
+        });
+      }, []);
+    
+    const checkName = (name) => {
+        // Capitalize name
+        const lower = name.toLowerCase();
+        const upper = name.charAt(0).toUpperCase();
+        const capitalizedName = upper + lower.slice(1);
+        const validName = nameList.has(capitalizedName);
+        return (validName);
+    }
     // useEffect(()=>{
     //     // Lookup the name that corresponds with the gameID passed in the URL
     //     // gameId and names are stored in MongoDB, accessed from custom API
@@ -68,6 +86,7 @@ function Game() {
     }
 
     const onSelectLetter = (keyVal, letterCount) => {
+        setError(false);
         if (currAttempt.letterPos > letterCount - 1) return;
         const newBoard = [...board]
         newBoard[currAttempt.attempt][currAttempt.letterPos] = keyVal
@@ -78,6 +97,7 @@ function Game() {
     };
 
     const onDelete = () => {
+        setError(false);
         if (currAttempt.letterPos === 0) return;
         const newBoard = [...board]
         newBoard[currAttempt.attempt][currAttempt.letterPos - 1] = ""
@@ -91,7 +111,14 @@ function Game() {
         if (currAttempt.letterPos !== letterCount) return;
 
         var guess = board[currAttempt.attempt].join("")
-        setCurrAttempt({ attempt: currAttempt.attempt + 1, letterPos: 0 })
+
+        const validGuess = checkName(guess)
+        if (validGuess){
+            setCurrAttempt({ attempt: currAttempt.attempt + 1, letterPos: 0 })
+        }else{
+            setError(true);
+            console.log("BAD WORD")
+        }
 
         if (guess === correctWord) {
             setGameOver({ gameOver: true, guessWord: true })
@@ -114,6 +141,7 @@ function Game() {
             <AppContext.Provider value={{ board, setBoard, currAttempt, setCurrAttempt, onDelete, onEnter, onSelectLetter, correctWord, disabledLetters, setDisabledLetters, gameOver, setGameOver, letterCount }}>
                 <div className="game">
                     <Board />
+                    {error ? <ErrorMessage /> : <div/>}
                     {gameOver.gameOver ? <GameOver /> : <Keyboard />}
                 </div>
             </AppContext.Provider>
