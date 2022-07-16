@@ -8,12 +8,15 @@ import CreateGame from './pages/creategame';
 
 function App() {
   return (
+    <div>
     <Router>
       <Routes>
         <Route exact path='/game/:gameId' element={<Game />} />
         <Route path='/' element={<CreateGame />} />
       </Routes>
     </Router>
+    <footer>Created by Nick Courtney</footer>
+    </div>
   );
 }
 

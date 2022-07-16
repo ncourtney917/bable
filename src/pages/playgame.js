@@ -23,42 +23,42 @@ function Game() {
     const [disabledLetters, setDisabledLetters] = useState([]);
     const [gameOver, setGameOver] = useState({ gameOver: false, guessWord: false })
 
-    useEffect(()=>{
-        // Lookup the name that corresponds with the gameID passed in the URL
-        // gameId and names are stored in MongoDB, accessed from custom API
-        axios.get('/api/read',{params: {"gameId":gameId}}).then(response => {
-            console.log(response)
-            setLoading("success")
-            console.log("success")
-            setWord(response.name);
-            setCount(response.name.length);
-        })
-        .catch((e) => {
-            setLoading("failure")
-            console.log("failure")
-            axios.get('api/',{params: {"gameId":gameId}}).then(response => {
-                console.log('base api')
-                console.log(response)
-            })
-        });
-    },[]);
+    // useEffect(()=>{
+    //     // Lookup the name that corresponds with the gameID passed in the URL
+    //     // gameId and names are stored in MongoDB, accessed from custom API
+    //     axios.get('/api/read',{params: {"gameId":gameId}}).then(response => {
+    //         console.log(response)
+    //         setLoading("success")
+    //         console.log("success")
+    //         setWord(response.name);
+    //         setCount(response.name.length);
+    //     })
+    //     .catch((e) => {
+    //         setLoading("failure")
+    //         console.log("failure")
+    //         axios.get('api/',{params: {"gameId":gameId}}).then(response => {
+    //             console.log('base api')
+    //             console.log(response)
+    //         })
+    //     });
+    // },[]);
 
 
     //Decrpyt gameId
-    // useEffect(()=>{
-    //     var originalGameId = gameId.replace(/gobills/g, '+' ).replace(/joshallen/g, '/').replace(/babble/g, '=');
-    //     var bytes = CryptoJS.AES.decrypt(originalGameId, key);
-    //     try {
-    //         var decodedName = JSON.parse(bytes.toString(CryptoJS.enc.Utf8));
-    //         var name = decodedName.slice(0,-1);
-    //         setWord(name);
-    //         setCount(name.length);
-    //         setLoading("success");
-    //     }catch(e) {
-    //         console.log(e)
-    //         setLoading("failure")
-    //     }
-    // },[]);
+    useEffect(()=>{
+        var originalGameId = gameId.replace(/gobills/g, '+' ).replace(/joshallen/g, '/').replace(/babble/g, '=');
+        var bytes = CryptoJS.AES.decrypt(originalGameId, key);
+        try {
+            var decodedName = JSON.parse(bytes.toString(CryptoJS.enc.Utf8));
+            var name = decodedName.slice(0,-1);
+            setWord(name);
+            setCount(name.length);
+            setLoading("success");
+        }catch(e) {
+            console.log(e)
+            setLoading("failure")
+        }
+    },[]);
  
     // Return loading screen until API response
     if (isLoading === "loading") {
@@ -66,10 +66,6 @@ function Game() {
     } else if (isLoading === "failure") {
         return <div className="App loading-text">This game link is not valid. Please check the URL and try again.</div>;
     }
-    /* Set the width of the board based on the number of letters in the game */
-    let root = document.documentElement;
-    let width = (98 * letterCount).toString();
-    root.style.setProperty("--screen-width", width + "px");
 
     const onSelectLetter = (keyVal, letterCount) => {
         if (currAttempt.letterPos > letterCount - 1) return;
