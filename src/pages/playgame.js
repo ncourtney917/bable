@@ -26,7 +26,7 @@ function Game() {
     useEffect(()=>{
         // Lookup the name that corresponds with the gameID passed in the URL
         // gameId and names are stored in MongoDB, accessed from custom API
-        axios.get('api/read',{params: {"gameId":gameId}}).then(response => {
+        axios.get('api/ready',{params: {"gameId":gameId}}).then(response => {
             console.log(response)
             setLoading("success")
             console.log("success")
