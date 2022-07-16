@@ -39,7 +39,13 @@ def read_record():
     name = record["name"]
     response = jsonify({"name":name})
     response.headers.add('Access-Control-Allow-Origin', '*')
-    return response
+    res = {
+        "body": {name},
+        headers: {
+            'Content-Type': 'application/json'
+        }
+    }
+    return res
 
 if __name__ == "__main__":
     app.run(host='0.0.0.0', port=81)

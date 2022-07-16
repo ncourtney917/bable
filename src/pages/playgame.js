@@ -34,8 +34,12 @@ function Game() {
             setCount(response.name.length);
         })
         .catch((e) => {
-          setLoading("failure")
-          console.log("failure")
+            setLoading("failure")
+            console.log("failure")
+            axios.get('api/',{params: {"gameId":gameId}}).then(response => {
+                console.log('base api')
+                console.log(response)
+            })
         });
     },[]);
 

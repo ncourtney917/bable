@@ -2,6 +2,7 @@ import json
 import requests
 from flask import Flask, request, jsonify
 import pymongo
+import azure.functions as func
 
 app = Flask(__name__)
 
@@ -39,7 +40,8 @@ def read_record():
     name = record["name"]
     response = jsonify({"name":name})
     response.headers.add('Access-Control-Allow-Origin', '*')
-    return response
+
+    return func.HttpResponse(json.dumps({"name":name}), mimetype="application/json",)
 
 if __name__ == "__main__":
     app.run()
