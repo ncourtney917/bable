@@ -14,7 +14,7 @@ function GameOver() {
     const { gameId } = useParams();
     const [color, setColor] = useState(['#f44336','#e91e63','#9c27b0','#673ab7','#3f51b5','#2196f3','#03a9f4','#FF5722','#795548']	)
     const [gender, setGender] = useState("baby")
-    const height = window.innerHeight
+    const height = window.innerHeight + 200
     const width = window.innerWidth
 
     // Get gender from url string and set confetti color

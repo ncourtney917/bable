@@ -114,10 +114,11 @@ function Game() {
 
         const validGuess = checkName(guess)
         if (validGuess){
+            setError(false);
             setCurrAttempt({ attempt: currAttempt.attempt + 1, letterPos: 0 })
         }else{
             setError(true);
-            console.log("BAD WORD")
+            return;
         }
 
         if (guess === correctWord) {
@@ -145,6 +146,7 @@ function Game() {
                     {gameOver.gameOver ? <GameOver /> : <Keyboard />}
                 </div>
             </AppContext.Provider>
+            <footer>Created by Nick Courtney</footer>
         </div>
     );
 }
