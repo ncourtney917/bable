@@ -5,7 +5,7 @@ import requests
 from flask import Flask, request, jsonify
 import pymongo
 
-def main(req: func.HttpRequest) -> func.HttpResponse:
+def main(req: func.HttpRequest):
     logging.info('Triggering MongoLookup.')
     print("Triggering MongoLookup...")
 
