@@ -2,7 +2,7 @@
   --screen-width: 600px;
   --keyboard-height: 500px;
   --keyboard-width: 350px;
-  --header-height: 85px;
+  --header-height: 65px;
   --primary-color: #393E46;
   --secondary-color: #222831;
 }
@@ -201,7 +201,7 @@ h3 {
 footer {
   position:absolute;
   right: 0;
-  bottom: 0;
+  bottom: -30px;
   color: white;
 }
 

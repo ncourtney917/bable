@@ -14,7 +14,7 @@ function GameOver() {
     const { gameId } = useParams();
     const [color, setColor] = useState(['#f44336','#e91e63','#9c27b0','#673ab7','#3f51b5','#2196f3','#03a9f4','#FF5722','#795548']	)
     const [gender, setGender] = useState("baby")
-    const height = window.innerHeight + 200
+    const height = window.innerHeight + 40
     const width = window.innerWidth
 
     // Get gender from url string and set confetti color
@@ -24,7 +24,8 @@ function GameOver() {
         var bytes = CryptoJS.AES.decrypt(originalGameId, key);
         try {
             var decodedName = JSON.parse(bytes.toString(CryptoJS.enc.Utf8));
-            var gender = decodedName.slice(-1)
+            var babyVars = decodedName.split(".")
+            var gender = babyVars[2];
             if (gender === "M"){
                 setColor(['#89CFF0'])
                 setGender("Boy")
@@ -48,7 +49,7 @@ function GameOver() {
                         <div className="popup-body">
                             <h3>The baby's name is:</h3>
                             <h1>{correctWord}</h1>
-                            {gameOver.guessWord && (<h3 className="padding"> You guessed it correcly in {currAttempt.attempt} attempt{currAttempt.attempt !== 1 && "s"}</h3>)}
+                            {gameOver.guessWord && (<h3 className="margin-top"> You guessed it correcly in {currAttempt.attempt} attempt{currAttempt.attempt !== 1 && "s"}</h3>)}
                         </div>
                     </div>
                 </Popup>

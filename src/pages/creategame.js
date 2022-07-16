@@ -6,22 +6,26 @@ var CryptoJS = require("crypto-js");
 class NameForm extends React.Component {
     constructor(props) {
         super(props);
-        this.state = { value: '' , gender: '', access_code:'', access:false};
+        this.state = { value: '' , gender: '', access_code:'', access:false, parents:''};
 
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.onChangeRadio = this.onChangeRadio.bind(this);
         this.handleAccessChange = this.handleAccessChange.bind(this);
         this.handleAccessSubmit = this.handleAccessSubmit.bind(this);
+        this.handleParentChange = this.handleParentChange.bind(this);
     }
 
     handleChange(event) {
         this.setState({ value: event.target.value });
     }
 
+    handleParentChange(event) {
+        this.setState({ parents: event.target.value });
+    }
+
     handleAccessChange(event) {
         this.setState({ access_code: event.target.value });
-        console.log(this.state.access_code)
     }
 
     async handleSubmit(event) {
@@ -30,9 +34,11 @@ class NameForm extends React.Component {
         formOutput.innerHTML = "Game created for: " + this.state.value
         const babyName = this.state.value.toUpperCase()
         const gender = this.state.gender.slice(0,1)
+        const parents = this.state.parents
         var accessCode = document.getElementById('accessCode')
         // Encrypt gameId and replace special characters
-        var gameIdStr = CryptoJS.AES.encrypt(JSON.stringify(babyName + gender), key).toString();
+        var babyString = `${babyName}.${parents}.${gender}`;
+        var gameIdStr = CryptoJS.AES.encrypt(JSON.stringify(babyString), key).toString();
         const gameId = gameIdStr.replace(/\+/g,'gobills').replace(/\//g,'joshallen').replace(/=/g,'babble');
         var newGameLink = document.getElementById('newGameLink')
 
@@ -85,7 +91,11 @@ class NameForm extends React.Component {
                         <input type="radio" value="Male" name="gender" /> Male
                         <input type="radio" value="Female" name="gender" /> Female
                     </div>
-                        <br></br>
+                    <br></br>
+                    <label>
+                        Enter the parents' names<br></br> (eg. John and Jane Doe):  
+                    </label>
+                    <input type="text" value={this.state.parents} onChange={this.handleParentChange} />
                     <input className="submit" type="submit" value="Submit" />
                 </form>
             );
@@ -99,7 +109,6 @@ const CreateGame = () => {
         <div className="App">
             <nav>
                 <h1>Babble</h1>
-                <h3>Guess the baby name!</h3>
             </nav>
             <NameForm />
             <h3 id="formOutput"></h3>

@@ -20,6 +20,7 @@ function Game() {
     const [isLoading, setLoading] = useState("loading");
     const [currAttempt, setCurrAttempt] = useState({ attempt: 0, letterPos: 0 });
     const [correctWord, setWord] = useState()
+    const [parents, setParents] = useState()
     const [letterCount, setCount] = useState(0)
     const [board, setBoard] = useState(Words(5));
     const [disabledLetters, setDisabledLetters] = useState([]);
@@ -68,8 +69,11 @@ function Game() {
         var bytes = CryptoJS.AES.decrypt(originalGameId, key);
         try {
             var decodedName = JSON.parse(bytes.toString(CryptoJS.enc.Utf8));
-            var name = decodedName.slice(0,-1);
+            var babyVars = decodedName.split(".")
+            var name = babyVars[0];
+            var parents = babyVars[1];
             setWord(name);
+            setParents(parents);
             setCount(name.length);
             setLoading("success");
         }catch(e) {
@@ -114,9 +118,6 @@ function Game() {
         var guess = board[currAttempt.attempt].join("")
 
         const validGuess = checkName(guess)
-        console.log(nameList)
-        console.log(guess)
-        console.log(validGuess)
         if (validGuess){
             setCurrAttempt({ attempt: currAttempt.attempt + 1, letterPos: 0 })
         }else{
@@ -140,10 +141,11 @@ function Game() {
         <div className="App">
             <nav>
                 <h1>Babble</h1>
-                <h3>Guess the baby name!</h3>
             </nav>
             <AppContext.Provider value={{ board, setBoard, currAttempt, setCurrAttempt, onDelete, onEnter, onSelectLetter, correctWord, disabledLetters, setDisabledLetters, gameOver, setGameOver, letterCount }}>
                 <div className="game">
+                    <h3>Proud Parents:<br></br> {parents}</h3>
+                    <h3>Guess our baby's name!</h3>
                     <Board />
                     {error ? <ErrorMessage /> : <div/>}
                     {gameOver.gameOver ? <GameOver /> : <Keyboard />}
