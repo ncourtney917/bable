@@ -2,13 +2,31 @@
   --screen-width: 600px;
   --keyboard-height: 200px;
   --header-height: 85px;
+  --primary-color: #393E46;
+  --secondary-color: #222831;
 }
 
 body {
   padding: 0%;
   margin: 0;
-  background-color: #121212;
+  background-color: var(--primary-color);
   font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+}
+.popup {
+  background-color: var(--secondary-color);
+  color: white;
+  padding: 40px 20px 40px 20px;
+  display: block;
+  text-align: center;
+}
+.form {
+  margin: auto;
+  margin-top: 30px;
+  margin-bottom: 30px;
+  width: 350px;
+  justify-content: center;
+  padding: 50px;
+  background-color: var(--secondary-color);
 }
 
 nav {
@@ -77,7 +95,7 @@ h3 {
 .keyboard {
   width: 370px;
   height: 500px;
-  margin: 10px 5px 5px 10px;
+  margin: 10px 5px 105px 10px;
 }
 
 .row {
@@ -122,11 +140,11 @@ h3 {
 .key {
   width: 50px;
   height: 50px;
-  margin: 4px;
-  border-radius: 4px;
+  margin: 3px;
+  border-radius: 7px;
   display: grid;
   place-items: center;
-  font-size: 14px;
+  font-size: 12px;
   background-color: grey;
   color: white;
   font-family: Arial, Helvetica, sans-serif;
@@ -161,16 +179,8 @@ h3 {
   margin: 0px 5px 10px 5px;
 }
 
-.popup {
-  background-color: #36454F;
-  color: white;
-  padding: 40px;
-  display: block;
-  text-align: center;
-}
-
 .popup-body {
-  padding: 30px 0;
+  padding-top: 20px;
 }
 
 .results-button {
@@ -186,14 +196,4 @@ footer {
 
 .padding {
   margin-top: 50px;
-}
-
-.form {
-  margin: auto;
-  margin-top: 30px;
-  margin-bottom: 30px;
-  width: 350px;
-  justify-content: center;
-  padding: 50px;
-  background-color: #36454F;
 }
