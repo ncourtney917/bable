@@ -12,17 +12,17 @@
   color: white;
 }
 
-
 body {
   padding: 0%;
   margin: 0;
   background-color: var(--primary-color);
-  font-family: Cambria, Cochin, Georgia, Times, 'Times New Roman', serif;
+  font-family: 'Montserrat', sans-serif;
 }
+
 .popup {
   background-color: var(--secondary-color);
   color: white;
-  padding: 40px 20px 3px 20px;
+  padding: 20px 20px 3px 20px;
   display: block;
   text-align: center;
   border-radius: 15px;
@@ -212,4 +212,8 @@ footer {
 .info-text {
   padding-top: 10px;
   font-size: 10pt;
+}
+
+#errorMessage {
+  max-width: 300px;
 }
