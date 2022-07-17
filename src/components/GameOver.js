@@ -51,6 +51,7 @@ function GameOver() {
                             <h1>{correctWord}</h1>
                             {gameOver.guessWord && (<h3 className="margin-top"> You guessed it correcly in {currAttempt.attempt} attempt{currAttempt.attempt !== 1 && "s"}</h3>)}
                         </div>
+                        <p className="info-text">Created by Nick Courtney</p>
                     </div>
                 </Popup>
                 <Confetti width={width} height={height} colors={color}/>
@@ -69,6 +70,7 @@ function GameOver() {
                             <h1>{correctWord}</h1>
                             <h3 className="margin-top">Don't worry, we won't tell the baby you lost :)</h3>
                         </div>
+                        <p className="info-text">Created by Nick Courtney</p>
                     </div>
                 </Popup>
             </div>
