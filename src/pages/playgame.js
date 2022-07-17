@@ -42,45 +42,45 @@ function Game() {
         const validName = nameList.has(capitalizedName);
         return (validName);
     }
-    useEffect(()=>{
-        // Lookup the name that corresponds with the gameID passed in the URL
-        // gameId and names are stored in MongoDB, accessed from custom API
-        axios.get('/api/read',{params: {"gameId":gameId}}).then(response => {
-            console.log(response)
-            setLoading("success")
-            console.log("success")
-            setWord(response.name);
-            setCount(response.name.length);
-        })
-        .catch((e) => {
-            setLoading("failure")
-            console.log("failure")
-            axios.get('api/',{params: {"gameId":gameId}}).then(response => {
-                console.log('base api')
-                console.log(response)
-            })
-        });
-    },[]);
+    // useEffect(()=>{
+    //     // Lookup the name that corresponds with the gameID passed in the URL
+    //     // gameId and names are stored in MongoDB, accessed from custom API
+    //     axios.get('/api/read',{params: {"gameId":gameId}}).then(response => {
+    //         console.log(response)
+    //         setLoading("success")
+    //         console.log("success")
+    //         setWord(response.name);
+    //         setCount(response.name.length);
+    //     })
+    //     .catch((e) => {
+    //         setLoading("failure")
+    //         console.log("failure")
+    //         axios.get('api/',{params: {"gameId":gameId}}).then(response => {
+    //             console.log('base api')
+    //             console.log(response)
+    //         })
+    //     });
+    // },[]);
 
 
     // //Decrpyt gameId
-    // useEffect(()=>{
-    //     var originalGameId = gameId.replace(/gobills/g, '+' ).replace(/joshallen/g, '/').replace(/babble/g, '=');
-    //     var bytes = CryptoJS.AES.decrypt(originalGameId, key);
-    //     try {
-    //         var decodedName = JSON.parse(bytes.toString(CryptoJS.enc.Utf8));
-    //         var babyVars = decodedName.split(".")
-    //         var name = babyVars[0];
-    //         var parents = babyVars[1];
-    //         setWord(name);
-    //         setParents(parents);
-    //         setCount(name.length);
-    //         setLoading("success");
-    //     }catch(e) {
-    //         console.log(e)
-    //         setLoading("failure")
-    //     }
-    // },[]);
+    useEffect(()=>{
+        var originalGameId = gameId.replace(/gobills/g, '+' ).replace(/joshallen/g, '/').replace(/babble/g, '=');
+        var bytes = CryptoJS.AES.decrypt(originalGameId, key);
+        try {
+            var decodedName = JSON.parse(bytes.toString(CryptoJS.enc.Utf8));
+            var babyVars = decodedName.split(".")
+            var name = babyVars[0];
+            var parents = babyVars[1];
+            setWord(name);
+            setParents(parents);
+            setCount(name.length);
+            setLoading("success")
+        }catch(e) {
+            setLoading("failure")
+            console.log(e)
+        }
+    },[]);
  
     // Return loading screen until API response
     if (isLoading === "loading") {
