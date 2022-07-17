@@ -2,7 +2,7 @@ import React, { useContext, useEffect } from "react";
 import { AppContext } from '../pages/playgame';
 
 function Letter({ letterPos, attemptVal }) {
-    const { board, correctWord, currAttempt, setDisabledLetters, letterCount } = useContext(AppContext);
+    const { board, correctWord, currAttempt, setDisabledLetters, setCorrectLetters, setAlmostLetters, letterCount } = useContext(AppContext);
     const letter = board[attemptVal][letterPos];
     const guess = board[attemptVal].slice(0, correctWord.length)
     var correct, almost = false
@@ -47,6 +47,10 @@ function Letter({ letterPos, attemptVal }) {
     useEffect(() => {
         if (letter !== "" && !correct && !almost) {
             setDisabledLetters((prev) => [...prev, letter]);
+        }else if (correct){
+            setCorrectLetters((prev) => [...prev, letter]);
+        }else if (almost){
+            setAlmostLetters((prev) => [...prev, letter]);
         }
     }, [currAttempt.attempt]);
     return (<div className="letter" id={letterState}> {letter}</div>);

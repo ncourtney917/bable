@@ -24,6 +24,8 @@ function Game() {
     const [letterCount, setCount] = useState(0)
     const [board, setBoard] = useState(Words(5));
     const [disabledLetters, setDisabledLetters] = useState([]);
+    const [almostLetters, setAlmostLetters] = useState([]);
+    const [correctLetters, setCorrectLetters] = useState([]);
     const [gameOver, setGameOver] = useState({ gameOver: false, guessWord: false })
     const [nameList, setNameList] = useState(new Set());
     const [error, setError] = useState(false);
@@ -142,13 +144,14 @@ function Game() {
             <nav>
                 <h1>Babble</h1>
             </nav>
-            <AppContext.Provider value={{ board, setBoard, currAttempt, setCurrAttempt, onDelete, onEnter, onSelectLetter, correctWord, disabledLetters, setDisabledLetters, gameOver, setGameOver, letterCount }}>
+            <AppContext.Provider value={{ board, setBoard, currAttempt, setCurrAttempt, onDelete, onEnter, onSelectLetter, correctWord, disabledLetters, setDisabledLetters, correctLetters, setCorrectLetters, almostLetters, setAlmostLetters, gameOver, setGameOver, letterCount }}>
                 <div className="game">
                     <h3>Proud Parents:<br></br> {parents}</h3>
                     <h3>Guess our baby's name!</h3>
                     <Board />
                     {error ? <ErrorMessage /> : <div/>}
-                    {gameOver.gameOver ? <GameOver /> : <Keyboard />}
+                    <Keyboard />
+                    {gameOver.gameOver ? <GameOver /> : <div/>} 
                 </div>
             </AppContext.Provider>
         </div>

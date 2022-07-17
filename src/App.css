@@ -137,7 +137,7 @@ h3 {
 }
 
 #error {
-  background-color: #3a393c;
+  background-color: #2f2d2f;
 }
 
 .keyboard-line {
@@ -166,7 +166,7 @@ h3 {
 }
 
 #disabled {
-  background-color: #3a393c;
+  background-color: #2f2d2f;
 }
 
 .hyperLink {
@@ -195,7 +195,7 @@ h3 {
 }
 
 .results-button {
-  margin-bottom: 200px;
+  margin-bottom: 10px;
 }
 
 footer {

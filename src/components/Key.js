@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { AppContext } from '../pages/playgame';
 
-function Key({ keyVal, bigKey, disabled }) {
+function Key({ keyVal, bigKey, disabled, correct, almost}) {
     const { onDelete, onEnter, onSelectLetter, letterCount } = useContext(AppContext);
     const selectLetter = () => {
         if (keyVal === "ENTER") {
@@ -15,7 +15,7 @@ function Key({ keyVal, bigKey, disabled }) {
         }
     };
     return (
-        <div className="key" id={bigKey ? "big" : disabled && "disabled"} onClick={selectLetter}>
+        <div className="key" id={bigKey ? "big" : correct ? "correct" : almost ? "almost" : disabled ? "disabled" : "regular"} onClick={selectLetter}>
             {keyVal}
         </div>
     )
