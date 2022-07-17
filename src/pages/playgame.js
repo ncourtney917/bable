@@ -142,6 +142,7 @@ function Game() {
     return (
         <div className="App">
             <nav>
+                <img alt="baby" src={require('../images/baby_white.png')} />
                 <h1>Babble</h1>
             </nav>
             <AppContext.Provider value={{ board, setBoard, currAttempt, setCurrAttempt, onDelete, onEnter, onSelectLetter, correctWord, disabledLetters, setDisabledLetters, correctLetters, setCorrectLetters, almostLetters, setAlmostLetters, gameOver, setGameOver, letterCount }}>

@@ -108,6 +108,7 @@ const CreateGame = () => {
     return (
         <div className="App">
             <nav>
+                <img alt="baby" src={require('../images/baby_white.png')} />
                 <h1>Babble</h1>
             </nav>
             <NameForm />
