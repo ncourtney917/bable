@@ -6,7 +6,7 @@ var CryptoJS = require("crypto-js");
 class NameForm extends React.Component {
     constructor(props) {
         super(props);
-        this.state = { value: '' , gender: '', access_code:'', access:false, parents:''};
+        this.state = { value: '' , gender: '', access_code:'', access:true, parents:''};
 
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
