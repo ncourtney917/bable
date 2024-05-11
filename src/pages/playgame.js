@@ -2,7 +2,6 @@ import '../App.css';
 import Board from "../components/Board";
 import Keyboard from '../components/Keyboard';
 import GameOver from '../components/GameOver';
-import {ErrorMessage} from '../components/Error';
 import { createContext, useState, useEffect } from 'react';
 import {Words, generateNameList} from '../components/Words';
 import {useParams} from 'react-router-dom';
@@ -28,7 +27,6 @@ function Game() {
     const [correctLetters, setCorrectLetters] = useState([]);
     const [gameOver, setGameOver] = useState({ gameOver: false, guessWord: false })
     const [nameList, setNameList] = useState(new Set());
-    const [error, setError] = useState(false);
 
     useEffect(() => {
         generateNameList().then((names) => {
@@ -92,7 +90,6 @@ function Game() {
     }
 
     const onSelectLetter = (keyVal, letterCount) => {
-        setError(false);
         if (currAttempt.letterPos > letterCount - 1) return;
         const newBoard = [...board]
         newBoard[currAttempt.attempt][currAttempt.letterPos] = keyVal
@@ -103,7 +100,6 @@ function Game() {
     };
 
     const onDelete = () => {
-        setError(false);
         if (currAttempt.letterPos === 0) return;
         const newBoard = [...board]
         newBoard[currAttempt.attempt][currAttempt.letterPos - 1] = ""
@@ -114,18 +110,10 @@ function Game() {
     };
 
     const onEnter = (letterCount) => {
-        setError(false);
         if (currAttempt.letterPos !== letterCount) return;
 
         var guess = board[currAttempt.attempt].join("")
-
-        const validGuess = checkName(guess)
-        if (validGuess){
-            setCurrAttempt({ attempt: currAttempt.attempt + 1, letterPos: 0 })
-        }else{
-            setError(true);
-            return;
-        }
+        setCurrAttempt({ attempt: currAttempt.attempt + 1, letterPos: 0 })
 
         if (guess === correctWord) {
             setGameOver({ gameOver: true, guessWord: true })
@@ -150,7 +138,6 @@ function Game() {
                     <h3>Proud Parents:<br></br> {parents}</h3>
                     <h3>Guess our baby's name!</h3>
                     <Board />
-                    {error ? <ErrorMessage /> : <div/>}
                     <Keyboard />
                     {gameOver.gameOver ? <GameOver /> : <div/>} 
                 </div>
