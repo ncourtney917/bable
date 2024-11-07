@@ -101,9 +101,9 @@ function Game() {
             var babyVars = decodedName.split(".")
             var name = babyVars[0];
             var parents = babyVars[1];
-            setWord(name);
-            setParents(parents);
-            setCount(name.length);
+            setWord(gameDetails.name);
+            setParents(gameDetails.parents);
+            setCount(gameDetails.name.length);
             setLoading("success")
         }catch(e) {
             setLoading("failure")
