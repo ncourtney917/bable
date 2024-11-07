@@ -28,6 +28,48 @@ class NameForm extends React.Component {
         this.setState({ access_code: event.target.value });
     }
 
+    generateRandomString(length) {
+        const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
+        let result = '';
+        const charactersLength = characters.length;
+        for (let i = 0; i < length; i++) {
+          result += characters.charAt(Math.floor(Math.random() * charactersLength));
+        }
+        return result;
+    }
+
+
+    async create(data) {
+        const gql = `
+            mutation create($item: CreateGameInput!) {
+            createGame(item: $item) {
+                id
+                name
+                gender
+                parents
+                color_id
+                url
+            }
+        }`;
+    
+        const query = {
+            query: gql,
+            variables: {
+            item: data
+            } 
+        };
+        
+        const endpoint = "data-api/graphql";
+        const result = await fetch(endpoint, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(query)
+        });
+
+        const response = await result.json();
+        console.table(response.data.createGame);
+    }
+
     async handleSubmit(event) {
         event.preventDefault();
         var formOutput = document.getElementById('formOutput')
@@ -41,10 +83,21 @@ class NameForm extends React.Component {
         var gameIdStr = CryptoJS.AES.encrypt(JSON.stringify(babyString), key).toString();
         const gameId = gameIdStr.replace(/\+/g,'gobills').replace(/\//g,'joshallen').replace(/=/g,'babble');
         var newGameLink = document.getElementById('newGameLink')
+        const data = {
+            id: this.generateRandomString(10),
+            name: babyName,
+            gender: gender,
+            parents: parents,
+            color_id: '1',
+            url: 'test'
+        }
+        this.create(data)
 
         newGameLink.setAttribute("href", "/game/" + gameId)
         accessCode.innerHTML = "Link to the new game:"
         newGameLink.innerHTML = "https://www.babblepuzzle/game/" + gameId
+
+
     }
 
     async handleAccessSubmit(event) {

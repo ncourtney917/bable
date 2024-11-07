@@ -1,0 +1,13 @@
+
+"""
+Add your CosmosDB NoSQL database schema in this file
+"""
+
+type Game @model {
+  id: ID
+  name: String
+  gender: String
+  parents: String
+  color_id: String
+  url: String
+}
