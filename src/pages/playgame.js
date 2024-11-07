@@ -63,7 +63,7 @@ function Game() {
     const getGameDetailsById = async(id) => {
         const gql = `
             query getById($id: ID!) {
-                game_by_id(id: $id) {
+                gameDetails(id: $id) {
                     id
                     name
                     gender
@@ -86,7 +86,8 @@ function Game() {
             body: JSON.stringify(query),
         });
         const result = await response.json();
-        console.table(result.data.game_by_id);
+        console.log(result.data);
+        return result;
     }
 
     // //Decrpyt gameId
