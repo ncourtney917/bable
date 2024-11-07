@@ -6,8 +6,6 @@ import { createContext, useState, useEffect } from 'react';
 import {Words, generateNameList} from '../components/Words';
 import {useParams} from 'react-router-dom';
 import {key} from "../App";
-import axios from 'axios';
-import Popup from 'reactjs-popup';
 
 var CryptoJS = require("crypto-js");
 
@@ -62,9 +60,40 @@ function Game() {
     //     });
     // },[]);
 
+    const getGameDetailsById = async(id) => {
+        const gql = `
+            query getById($id: ID!) {
+                game_by_id(id: $id) {
+                    id
+                    name
+                    gender
+                    parents
+                    background
+                }
+            }`;
+
+        const query = {
+            query: gql,
+            variables: {
+            id: id,
+            },
+        };
+
+        const endpoint = "/data-api/graphql";
+        const response = await fetch(endpoint, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(query),
+        });
+        const result = await response.json();
+        console.table(result.data.game_by_id);
+    }
 
     // //Decrpyt gameId
     useEffect(()=>{
+        console.log(gameId)
+        var gameDetails = getGameDetailsById(gameId)
+        console.log(gameDetails)
         var originalGameId = gameId.replace(/gobills/g, '+' ).replace(/joshallen/g, '/').replace(/babble/g, '=');
         var bytes = CryptoJS.AES.decrypt(originalGameId, key);
         try {

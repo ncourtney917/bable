@@ -8,6 +8,5 @@ type Game @model {
   name: String
   gender: String
   parents: String
-  color_id: String
-  url: String
+  background: String
 }

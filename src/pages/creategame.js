@@ -10,10 +10,12 @@ class NameForm extends React.Component {
 
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
-        this.onChangeRadio = this.onChangeRadio.bind(this);
+        this.onChangeGenderRadio = this.onChangeGenderRadio.bind(this);
         this.handleAccessChange = this.handleAccessChange.bind(this);
         this.handleAccessSubmit = this.handleAccessSubmit.bind(this);
         this.handleParentChange = this.handleParentChange.bind(this);
+        this.handleBackendChange = this.handleBackendChange.bind(this);
+        this.onChangeColorRadio = this.onChangeColorRadio.bind(this);
     }
 
     handleChange(event) {
@@ -23,6 +25,11 @@ class NameForm extends React.Component {
     handleParentChange(event) {
         this.setState({ parents: event.target.value });
     }
+
+    handleBackendChange(event) {
+        this.setState({ backend: event.target.value });
+    }
+    
 
     handleAccessChange(event) {
         this.setState({ access_code: event.target.value });
@@ -39,7 +46,7 @@ class NameForm extends React.Component {
     }
 
 
-    async create(data) {
+    async create_game(data) {
         const gql = `
             mutation create($item: CreateGameInput!) {
             createGame(item: $item) {
@@ -47,8 +54,7 @@ class NameForm extends React.Component {
                 name
                 gender
                 parents
-                color_id
-                url
+                background
             }
         }`;
     
@@ -77,27 +83,26 @@ class NameForm extends React.Component {
         const babyName = this.state.value.toUpperCase()
         const gender = this.state.gender.slice(0,1)
         const parents = this.state.parents
+        const gameId = this.state.backend
+        const color = this.state.color
         var accessCode = document.getElementById('accessCode')
         // Encrypt gameId and replace special characters
-        var babyString = `${babyName}.${parents}.${gender}`;
-        var gameIdStr = CryptoJS.AES.encrypt(JSON.stringify(babyString), key).toString();
-        const gameId = gameIdStr.replace(/\+/g,'gobills').replace(/\//g,'joshallen').replace(/=/g,'babble');
+        //var babyString = `${babyName}.${parents}.${gender}`;
+        //var gameIdStr = CryptoJS.AES.encrypt(JSON.stringify(babyString), key).toString();
+        //const gameId = gameIdStr.replace(/\+/g,'gobills').replace(/\//g,'joshallen').replace(/=/g,'babble');
         var newGameLink = document.getElementById('newGameLink')
-        const data = {
-            id: this.generateRandomString(10),
+        const game_info = {
+            id: gameId,
             name: babyName,
             gender: gender,
             parents: parents,
-            color_id: '1',
-            url: 'test'
+            background: color
         }
-        this.create(data)
+        this.create_game(game_info)
 
         newGameLink.setAttribute("href", "/game/" + gameId)
         accessCode.innerHTML = "Link to the new game:"
         newGameLink.innerHTML = "https://www.babblepuzzle/game/" + gameId
-
-
     }
 
     async handleAccessSubmit(event) {
@@ -112,8 +117,12 @@ class NameForm extends React.Component {
         }
     }
 
-    onChangeRadio(event) {
+    onChangeGenderRadio(event) {
         this.setState({ gender: event.target.value });
+    }
+
+    onChangeColorRadio(event) {
+        this.setState({ color: event.target.value });
     }
 
     render() {
@@ -137,18 +146,35 @@ class NameForm extends React.Component {
                     <input type="text" value={this.state.value} onChange={this.handleChange} />
                     <br></br>
                     <br></br>
-                    <label className="spacing">
+                    <label>
                         Gender:  
                     </label>
-                    <div onChange={this.onChangeRadio}>
+                    <div onChange={this.onChangeGenderRadio}>
                         <input type="radio" value="Male" name="gender" /> Male
                         <input type="radio" value="Female" name="gender" /> Female
                     </div>
                     <br></br>
                     <label>
-                        Enter the parents' names<br></br> (eg. John and Jane Doe):  
+                        Enter the parents' names<br></br> (e.g. John and Jane Doe):  
                     </label>
                     <input type="text" value={this.state.parents} onChange={this.handleParentChange} />
+                    <br></br>
+                    <br></br>
+                    <label>
+                        Enter the backend of the url<br></br> (e.g. smith-baby-name):
+                    </label>
+                    <input type="text" value={this.state.backend} onChange={this.handleBackendChange} />
+                    <br></br>
+                    <br></br>
+                    <label>
+                        Background Color:  
+                    </label>
+                    <div onChange={this.onChangeColorRadio}>
+                        <input type="radio" value="Blue" name="color" /> Blue
+                        <input type="radio" value="Pink" name="color" /> Pink
+                        <input type="radio" value="Gray" name="color" /> Gray
+                    </div>
+
                     <input className="submit" type="submit" value="Submit" />
                 </form>
             );
