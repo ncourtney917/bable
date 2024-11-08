@@ -71,7 +71,8 @@ function Game() {
                     background
                 }
             }`;
-
+        console.log("TRYING THE ID HERE")
+        console.log(id)
         const query = {
             query: gql,
             variables: {
@@ -87,7 +88,7 @@ function Game() {
         });
         const result = await response.json();
         console.log(result.data);
-        return result;
+        return result.data;
     }
 
     // //Decrpyt gameId
