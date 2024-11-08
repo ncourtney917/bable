@@ -48,8 +48,8 @@ class NameForm extends React.Component {
 
     async create_game(data) {
         const gql = `
-            mutation create($input: GameInput!) {
-            createGame(input: $input) {
+            mutation create($item: CreateGameInput!) {
+            createGame(item: $item) {
                 id
                 name
                 gender
@@ -61,7 +61,7 @@ class NameForm extends React.Component {
         const query = {
             query: gql,
             variables: {
-            input: data
+            item: data
             } 
         };
         

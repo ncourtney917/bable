@@ -12,17 +12,5 @@ type Game @model {
 }
 
 type Query {
-  game(id: ID!): Game
-}
-
-input GameInput {
-  id: ID
-  name: String
-  gender: String
-  parents: String
-  background: String
-}
-
-type Mutation {
-  createGame(input: GameInput!): Game
+  game(id: ID): Game
 }
