@@ -79,7 +79,7 @@ class NameForm extends React.Component {
     async getGameDetailsById(id) {
         const gql = `
             query getById($id: ID!) {
-                gameDetails(id: $id) {
+                game(id: $id) {
                     id
                     name
                     gender
@@ -87,15 +87,12 @@ class NameForm extends React.Component {
                     background
                 }
             }`;
-        console.log("TRYING THE ID HERE")
         console.log(id)
         const query = {
             query: gql,
-            variables: {
-            id: id,
-            },
-        };
-
+            variables: {id},
+            }
+    
         const endpoint = "/data-api/graphql";
         const response = await fetch(endpoint, {
             method: "POST",

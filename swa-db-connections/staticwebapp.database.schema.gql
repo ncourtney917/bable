@@ -4,9 +4,15 @@ Add your CosmosDB NoSQL database schema in this file
 """
 
 type Game @model {
-  id: ID
-  name: String
+  id: ID!
+  name: String!
   gender: String
   parents: String
   background: String
+}
+
+# Define the root Query type with a single query called game
+type Query {
+  # This query allows fetching a Game by ID
+  game(id: ID!): Game
 }

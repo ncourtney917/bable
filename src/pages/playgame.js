@@ -63,7 +63,7 @@ function Game() {
     const getGameDetailsById = async(id) => {
         const gql = `
             query getById($id: ID!) {
-                gameDetails(id: $id) {
+                game(id: $id) {
                     id
                     name
                     gender
@@ -99,8 +99,8 @@ function Game() {
             console.log(data)
             if (data) {
                 try {
-                    var name = data.gameDetails.name;
-                    var parents = data.gameDetails.parents;
+                    var name = data.game.name;
+                    var parents = data.game.parents;
                     setWord(name);
                     setParents(parents);
                     setCount(name.length);
