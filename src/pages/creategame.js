@@ -65,7 +65,7 @@ class NameForm extends React.Component {
             } 
         };
         
-        const endpoint = "/data-api/graphql";
+        const endpoint = "data-api/graphql";
         const result = await fetch(endpoint, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
@@ -94,7 +94,7 @@ class NameForm extends React.Component {
             variables: {id }
         };
 
-        const endpoint = "/data-api/graphql";
+        const endpoint = "data-api/graphql";
         const response = await fetch(endpoint, {
             method: "POST",
             headers: { "Content-Type": "application/json" },

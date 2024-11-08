@@ -3,28 +3,26 @@
 Add your CosmosDB NoSQL database schema in this file
 """
 
-type games @model {
-  id: ID!
+type Game @model {
+  id: ID
   name: String
   gender: String
   parents: String
   background: String
 }
 
-# Define the root Query type with a single query called game
 type Query {
-  game(id: ID!): games
+  game(id: ID!): Game
 }
 
 input GameInput {
-  id: ID!
-  name: String!
+  id: ID
+  name: String
   gender: String
   parents: String
   background: String
 }
 
-# Extend the Mutation type to allow creating a new Game item with a GameInput object
 type Mutation {
-  createGame(input: GameInput!): games
+  createGame(input: GameInput!): Game
 }
