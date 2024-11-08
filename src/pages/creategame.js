@@ -65,7 +65,7 @@ class NameForm extends React.Component {
             } 
         };
         
-        const endpoint = "data-api/graphql";
+        const endpoint = "/data-api/graphql";
         const result = await fetch(endpoint, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
@@ -74,6 +74,38 @@ class NameForm extends React.Component {
 
         const response = await result.json();
         console.table(response.data.createGame);
+    }
+
+    async getGameDetailsById(id) {
+        const gql = `
+            query getById($id: ID!) {
+                gameDetails(id: $id) {
+                    id
+                    name
+                    gender
+                    parents
+                    background
+                }
+            }`;
+        console.log("TRYING THE ID HERE")
+        console.log(id)
+        const query = {
+            query: gql,
+            variables: {
+            id: id,
+            },
+        };
+
+        const endpoint = "/data-api/graphql";
+        const response = await fetch(endpoint, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(query),
+        });
+        console.log(response)
+        const result = await response.json();
+        console.log(result.data);
+        return result.data;
     }
 
     async handleSubmit(event) {
@@ -86,10 +118,6 @@ class NameForm extends React.Component {
         const gameId = this.state.backend
         const color = this.state.color
         var accessCode = document.getElementById('accessCode')
-        // Encrypt gameId and replace special characters
-        //var babyString = `${babyName}.${parents}.${gender}`;
-        //var gameIdStr = CryptoJS.AES.encrypt(JSON.stringify(babyString), key).toString();
-        //const gameId = gameIdStr.replace(/\+/g,'gobills').replace(/\//g,'joshallen').replace(/=/g,'babble');
         var newGameLink = document.getElementById('newGameLink')
         const game_info = {
             id: gameId,
@@ -99,6 +127,7 @@ class NameForm extends React.Component {
             background: color
         }
         this.create_game(game_info)
+        this.getGameDetailsById("baby-theo-test")
 
         newGameLink.setAttribute("href", "/game/" + gameId)
         accessCode.innerHTML = "Link to the new game:"

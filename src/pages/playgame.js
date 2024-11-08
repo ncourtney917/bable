@@ -86,6 +86,7 @@ function Game() {
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(query),
         });
+        console.log(response)
         const result = await response.json();
         console.log(result.data);
         return result.data;
