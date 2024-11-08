@@ -46,7 +46,7 @@ class NameForm extends React.Component {
     }
 
 
-    async create_game(data) {
+    async create(data) {
         const gql = `
             mutation create($item: CreateGameInput!) {
             createGame(item: $item) {
@@ -124,7 +124,7 @@ class NameForm extends React.Component {
             parents: parents,
             background: color
         }
-        this.create_game(game_info)
+        this.create(game_info)
         this.getGameDetailsById("baby-theo-test")
 
         newGameLink.setAttribute("href", "/game/" + gameId)

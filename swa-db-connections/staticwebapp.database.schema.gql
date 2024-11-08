@@ -10,7 +10,3 @@ type Game @model {
   parents: String
   background: String
 }
-
-type Query {
-  game(id: ID): Game
-}
