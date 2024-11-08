@@ -48,8 +48,8 @@ class NameForm extends React.Component {
 
     async create_game(data) {
         const gql = `
-            mutation create($item: CreateGameInput!) {
-            createGame(item: $item) {
+            mutation create($input: GameInput!) {
+            createGame(input: $input) {
                 id
                 name
                 gender
@@ -61,7 +61,7 @@ class NameForm extends React.Component {
         const query = {
             query: gql,
             variables: {
-            item: data
+            input: data
             } 
         };
         
@@ -87,12 +87,13 @@ class NameForm extends React.Component {
                     background
                 }
             }`;
+        console.log("TRYING THE ID HERE")
         console.log(id)
         const query = {
             query: gql,
-            variables: {id},
-            }
-    
+            variables: {id }
+        };
+
         const endpoint = "/data-api/graphql";
         const response = await fetch(endpoint, {
             method: "POST",
