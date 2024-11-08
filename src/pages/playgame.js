@@ -93,23 +93,25 @@ function Game() {
     // //Decrpyt gameId
     useEffect(()=>{
         console.log(gameId)
-        var gameDetails = getGameDetailsById(gameId)
-        console.log(gameDetails)
-        var originalGameId = gameId.replace(/gobills/g, '+' ).replace(/joshallen/g, '/').replace(/babble/g, '=');
-        var bytes = CryptoJS.AES.decrypt(originalGameId, key);
-        try {
-            var decodedName = JSON.parse(bytes.toString(CryptoJS.enc.Utf8));
-            var babyVars = decodedName.split(".")
-            var name = babyVars[0];
-            var parents = babyVars[1];
-            setWord(gameDetails.name);
-            setParents(gameDetails.parents);
-            setCount(gameDetails.name.length);
-            setLoading("success")
-        }catch(e) {
-            setLoading("failure")
-            console.log(e)
-        }
+        getGameDetailsById(gameId).then((data) => {
+            console.log(data)
+            if (data) {
+                try {
+                    var name = data.gameDetails.name;
+                    var parents = data.gameDetails.parents;
+                    setWord(name);
+                    setParents(parents);
+                    setCount(name.length);
+                    setLoading("success")
+                }catch(e) {
+                    setLoading("failure")
+                    console.log(e)
+                }
+            }
+            else {
+                console.log("Error in getting game details")
+            }
+        });       
     },[]);
  
     // Return loading screen until API response
