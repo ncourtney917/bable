@@ -18,7 +18,8 @@ function GameOver() {
         setPlayerName(event.target.value);
     }
 
-    const handleSaveName = async() => {
+    const handleSaveName = async(event) => {
+        event.preventDefault();
         var data = {
             GameId: gameId,
             Guesses: currAttempt.attempt,
