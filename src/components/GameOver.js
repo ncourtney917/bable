@@ -13,7 +13,6 @@ function GameOver() {
     const height = window.innerHeight + 150
     const width = window.innerWidth
     const [playerName, setPlayerName] = useState('')
-    this.handleNameChange = this.handleNameChange.bind(this);
 
     const handleNameChange = (event) => {
         setPlayerName(event.target.value);
