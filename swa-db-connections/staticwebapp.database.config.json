@@ -10,7 +10,7 @@
   },
   "runtime": {
     "rest": {
-      "enabled": false,
+      "enabled": true,
       "path": "/api",
       "request-body-strict": true
     },

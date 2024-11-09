@@ -76,24 +76,14 @@ class NameForm extends React.Component {
     }
 
     async getGameDetailsById(id) {
-        const gql = `
-            query getById($id: ID!) {
-                getGame(id: $id) {
-                    id
-                    name
-                    gender
-                    parents
-                    background
-                }
-            }`;
-        console.log("TRYING THE ID HERE")
-        console.log(id)
-        const query = {
-            query: gql,
-            variables: {id }
-        };
+        const endpoint = "api/Game";
 
-        const endpoint = "data-api/graphql";
+        const query = {
+          query: "SELECT * FROM Game g WHERE g.id = @id",
+          parameters: [{ name: "@id" }]
+        };
+      
+
         const response = await fetch(endpoint, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
