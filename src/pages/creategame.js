@@ -75,11 +75,29 @@ class NameForm extends React.Component {
         console.table(response.data.createGame);
     }
 
+    async getGameDetails(id) {
+        const endpoint = `/data-api/rest/Game/Id`;
+        const response = await fetch(`${endpoint}/${id}`);
+        const result = await response.json();
+        console.table(result.value);
+      }
+
+    async createGameDetails(data) {      
+        const endpoint = `/data-api/rest/Game/`;
+        const response = await fetch(endpoint, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(data)
+        });
+        const result = await response.json();
+        console.table(result.value);
+      }
+
     async getGameDetailsById(id) {
-        const endpoint = "api/Game";
+        const endpoint = "api/games";
 
         const query = {
-          query: "SELECT * FROM Game g WHERE g.id = @id",
+          query: "SELECT * FROM ganes g WHERE g.id = @id",
           parameters: [{ name: "@id" }]
         };
       
@@ -107,14 +125,14 @@ class NameForm extends React.Component {
         var accessCode = document.getElementById('accessCode')
         var newGameLink = document.getElementById('newGameLink')
         const game_info = {
-            id: gameId,
-            name: babyName,
-            gender: gender,
-            parents: parents,
-            background: color
+            Id: gameId,
+            Name: babyName,
+            Gender: gender,
+            Parents: parents,
+            Background: color
         }
-        this.create(game_info)
-        this.getGameDetailsById("baby-theo-test")
+        this.createGameDetails(game_info)
+        this.getGameDetails("test")
 
         newGameLink.setAttribute("href", "/game/" + gameId)
         accessCode.innerHTML = "Link to the new game:"
