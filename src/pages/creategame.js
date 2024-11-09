@@ -50,7 +50,7 @@ class NameForm extends React.Component {
         var formOutput = document.getElementById('formOutput')
         formOutput.innerHTML = "Game created for: " + this.state.value
         const babyName = this.state.value.toUpperCase()
-        const gender = this.state.gender.slice(0,1)
+        const gender = this.state.gender
         const parents = this.state.parents
         const gameId = this.state.backend
         const color = this.state.color
@@ -115,8 +115,8 @@ class NameForm extends React.Component {
                         Gender:  
                     </label>
                     <div onChange={this.onChangeGenderRadio}>
-                        <input type="radio" value="Male" name="gender" /> Male
-                        <input type="radio" value="Female" name="gender" /> Female
+                        <input type="radio" value="Male" name="gender" /> Boy
+                        <input type="radio" value="Female" name="gender" /> Girl
                     </div>
                     <br></br>
                     <label>

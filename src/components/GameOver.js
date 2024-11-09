@@ -8,7 +8,6 @@ import Popup from 'reactjs-popup';
 function GameOver() {
     const { gameOver, correctWord, currAttempt, gender } = useContext(AppContext);
     const { gameId } = useParams();
-    const [ genderText, setGenderText] = useState()
     const [color, setColor] = useState(['#f44336','#e91e63','#9c27b0','#673ab7','#3f51b5','#2196f3','#03a9f4','#FF5722','#795548']	)
     const height = window.innerHeight + 150
     const width = window.innerWidth
@@ -16,12 +15,10 @@ function GameOver() {
     // Get gender from url string and set confetti color
     useEffect(()=>{
         try {
-            if (gender === "M"){
+            if (gender === "Boy"){
                 setColor(['#89CFF0'])
-                setGenderText("Boy")
-            }else if (gender === "F"){
+            }else if (gender === "Girl"){
                 setColor(['#FF69B4'])
-                setGenderText("Girl")
             }
         }catch(e) {
             console.log(e)
@@ -34,7 +31,7 @@ function GameOver() {
             <div>
                 <Popup trigger={<button className="results-button submit">See results</button>} defaultOpen="true" position="top center" arrow="false" modal="true">
                     <div className="gameOver popup">
-                        <h1>It's a {genderText}!</h1>
+                        <h1>It's a {gender}!</h1>
                         <hr></hr>
                         <div className="popup-body">
                             <h3>The baby's name is:</h3>
