@@ -226,3 +226,8 @@ footer {
 #errorMessage {
   max-width: 300px;
 }
+
+.leaderboard-submit {
+  display: flex;
+  gap: 15px;
+}

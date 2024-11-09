@@ -1,8 +1,9 @@
 import React, { useContext, useEffect, useState } from 'react';
-import { AppContext, gender } from '../pages/playgame';
+import { AppContext } from '../pages/playgame';
 import Confetti from 'react-confetti';
 import {useParams} from 'react-router-dom';
 import Popup from 'reactjs-popup';
+import Leaderboard from './Leaderboard';
 
 
 function GameOver() {
@@ -11,8 +12,31 @@ function GameOver() {
     const [color, setColor] = useState(['#f44336','#e91e63','#9c27b0','#673ab7','#3f51b5','#2196f3','#03a9f4','#FF5722','#795548']	)
     const height = window.innerHeight + 150
     const width = window.innerWidth
+    const [playerName, setPlayerName] = useState('')
+    this.handleNameChange = this.handleNameChange.bind(this);
 
-    // Get gender from url string and set confetti color
+    const handleNameChange = (event) => {
+        setPlayerName(event.target.value);
+    }
+
+    const handleSaveName = async() => {
+        var data = {
+            GameId: gameId,
+            Guesses: currAttempt.attempt,
+            Won: gameOver.guessWord,
+            PlayerName: playerName
+        }
+        const endpoint = `/data-api/rest/GameLeaderboard/`;
+        const response = await fetch(endpoint, {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify(data)
+        });
+        const result = await response.json();
+        console.log(result)
+    }
+
+    // Set confetti color based on gender
     useEffect(()=>{
         try {
             if (gender === "Boy"){
@@ -37,7 +61,16 @@ function GameOver() {
                             <h3>The baby's name is:</h3>
                             <h1>{correctWord}</h1>
                             {gameOver.guessWord && (<h3 className="margin-top"> You guessed it correcly in {currAttempt.attempt} attempt{currAttempt.attempt !== 1 && "s"}</h3>)}
+                            <hr></hr>
+                            <label>
+                                Enter you name to save it to the leaderboard!  
+                            </label>
+                            <div className='leaderboard-submit'>
+                                <input type="text" value={playerName} onChange={handleNameChange} />
+                                <input className="submit" type="submit" value="Save" onSubmit={handleSaveName}/>
+                            </div>
                         </div>
+                        <Leaderboard></Leaderboard>
                         <p className="info-text">Created by Nick Courtney</p>
                     </div>
                 </Popup>
