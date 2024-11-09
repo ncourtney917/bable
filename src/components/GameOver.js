@@ -20,19 +20,30 @@ function GameOver() {
     // Get gender from url string and set confetti color
     useEffect(()=>{
         // Decrpyt gameId
-        var originalGameId = gameId.replace(/gobills/g, '+' ).replace(/joshallen/g, '/').replace(/babble/g, '=');
-        var bytes = CryptoJS.AES.decrypt(originalGameId, key);
+
+        const getGameDetails = async(id) => {
+            const endpoint = `/data-api/rest/Game/Id`;
+            const response = await fetch(`${endpoint}/${id}`);
+            const result = await response.json();
+            console.table(result.value);
+            return result.value;
+        }
         try {
-            var decodedName = JSON.parse(bytes.toString(CryptoJS.enc.Utf8));
-            var babyVars = decodedName.split(".")
-            var gender = babyVars[2];
-            if (gender === "M"){
-                setColor(['#89CFF0'])
-                setGender("Boy")
-            }else if (gender === "F"){
-                setColor(['#FF69B4'])
-                setGender("Girl")
-            }
+            getGameDetails(gameId).then((data) => {
+                console.log(data)
+                if (data) {
+                    var gender = data[0].Gender;
+                    if (gender === "M"){
+                        setColor(['#89CFF0'])
+                        setGender("Boy")
+                    }else if (gender === "F"){
+                        setColor(['#FF69B4'])
+                        setGender("Girl")
+                    }
+                }else {
+                    console.log("Could not load the game for this ID")
+                }
+            })
         }catch(e) {
             console.log(e)
         }

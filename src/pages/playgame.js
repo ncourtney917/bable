@@ -3,11 +3,8 @@ import Board from "../components/Board";
 import Keyboard from '../components/Keyboard';
 import GameOver from '../components/GameOver';
 import { createContext, useState, useEffect } from 'react';
-import {Words, generateNameList} from '../components/Words';
+import {Words} from '../components/Words';
 import {useParams} from 'react-router-dom';
-import {key} from "../App";
-
-var CryptoJS = require("crypto-js");
 
 // User input to enter the word to be guessed
 export const AppContext = createContext();
@@ -24,41 +21,8 @@ function Game() {
     const [almostLetters, setAlmostLetters] = useState([]);
     const [correctLetters, setCorrectLetters] = useState([]);
     const [gameOver, setGameOver] = useState({ gameOver: false, guessWord: false })
-    const [nameList, setNameList] = useState(new Set());
 
-    useEffect(() => {
-        generateNameList().then((names) => {
-            setNameList(names.nameSet);
-        });
-      }, []);
     
-    const checkName = (name) => {
-        // Capitalize name
-        const lower = name.toLowerCase();
-        const upper = name.charAt(0).toUpperCase();
-        const capitalizedName = upper + lower.slice(1);
-        const validName = nameList.has(capitalizedName);
-        return (validName);
-    }
-    // useEffect(()=>{
-    //     // Lookup the name that corresponds with the gameID passed in the URL
-    //     // gameId and names are stored in MongoDB, accessed from custom API
-    //     axios.get('/api/read',{params: {"gameId":gameId}}).then(response => {
-    //         console.log(response)
-    //         setLoading("success")
-    //         console.log("success")
-    //         setWord(response.name);
-    //         setCount(response.name.length);
-    //     })
-    //     .catch((e) => {
-    //         setLoading("failure")
-    //         console.log("failure")
-    //         axios.get('api/',{params: {"gameId":gameId}}).then(response => {
-    //             console.log('base api')
-    //             console.log(response)
-    //         })
-    //     });
-    // },[]);
     const getGameDetails = async(id) => {
         const endpoint = `/data-api/rest/Game/Id`;
         const response = await fetch(`${endpoint}/${id}`);
@@ -69,13 +33,12 @@ function Game() {
 
     // //Decrpyt gameId
     useEffect(()=>{
-        console.log(gameId)
         getGameDetails(gameId).then((data) => {
             console.log(data)
             if (data) {
                 try {
-                    var name = data.Name;
-                    var parents = data.Parents;
+                    var name = data[0].Name;
+                    var parents = data[0].Parents;
                     setWord(name);
                     setParents(parents);
                     setCount(name.length);
