@@ -60,15 +60,16 @@ function GameOver() {
                             <h3>The baby's name is:</h3>
                             <h1>{correctWord}</h1>
                             {gameOver.guessWord && (<h3 className="margin-top"> You guessed it correcly in {currAttempt.attempt} attempt{currAttempt.attempt !== 1 && "s"}</h3>)}
-                            <hr></hr>
+                            <hr style={{margin: '30px'}} ></hr>
                             <label>
-                                Enter you name to save it to the leaderboard!  
+                                Enter you name to save your score to the leaderboard!  
                             </label>
-                            <div className='leaderboard-submit'>
-                                <input type="text" value={playerName} onChange={handleNameChange} />
-                                <input className="submit" type="submit" value="Save" onSubmit={handleSaveName}/>
-                            </div>
+                            <form className='leaderboard-submit' onSubmit={handleSaveName}>
+                                <input style={{margin: '15px', width: '50%'}} type="text" value={playerName} onChange={handleNameChange} />
+                                <input className="submit" type="submit" value="Save"/>
+                            </form>
                         </div>
+                        <hr style={{margin: '30px'}} ></hr>
                         <Leaderboard></Leaderboard>
                         <p className="info-text">Created by Nick Courtney</p>
                     </div>
