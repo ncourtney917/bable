@@ -59,48 +59,23 @@ function Game() {
     //         })
     //     });
     // },[]);
-
-    const getGameDetailsById = async(id) => {
-        const gql = `
-            query getById($id: ID!) {
-                game(id: $id) {
-                    id
-                    name
-                    gender
-                    parents
-                    background
-                }
-            }`;
-        console.log("TRYING THE ID HERE")
-        console.log(id)
-        const query = {
-            query: gql,
-            variables: {
-            id: id,
-            },
-        };
-
-        const endpoint = "/data-api/graphql";
-        const response = await fetch(endpoint, {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(query),
-        });
-        console.log(response)
+    const getGameDetails = async(id) => {
+        const endpoint = `/data-api/rest/Game/Id`;
+        const response = await fetch(`${endpoint}/${id}`);
         const result = await response.json();
-        console.log(result.data);
-        return result.data;
+        console.table(result.value);
+        return result.value;
     }
 
     // //Decrpyt gameId
     useEffect(()=>{
         console.log(gameId)
-        getGameDetailsById(gameId).then((data) => {
+        getGameDetails(gameId).then((data) => {
             console.log(data)
             if (data) {
                 try {
-                    var name = data.game.name;
-                    var parents = data.game.parents;
+                    var name = data.Name;
+                    var parents = data.Parents;
                     setWord(name);
                     setParents(parents);
                     setCount(name.length);

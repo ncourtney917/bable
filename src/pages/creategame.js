@@ -44,44 +44,6 @@ class NameForm extends React.Component {
         return result;
     }
 
-
-    async create(data) {
-        const gql = `
-            mutation create($item: CreateGameInput!) {
-            createGame(item: $item) {
-                id
-                name
-                gender
-                parents
-                background
-            }
-        }`;
-    
-        const query = {
-            query: gql,
-            variables: {
-            item: data
-            } 
-        };
-        
-        const endpoint = "data-api/graphql";
-        const result = await fetch(endpoint, {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(query)
-        });
-
-        const response = await result.json();
-        console.table(response.data.createGame);
-    }
-
-    async getGameDetails(id) {
-        const endpoint = `/data-api/rest/Game/Id`;
-        const response = await fetch(`${endpoint}/${id}`);
-        const result = await response.json();
-        console.table(result.value);
-      }
-
     async createGameDetails(data) {      
         const endpoint = `/data-api/rest/Game/`;
         const response = await fetch(endpoint, {
@@ -91,26 +53,6 @@ class NameForm extends React.Component {
         });
         const result = await response.json();
         console.table(result.value);
-      }
-
-    async getGameDetailsById(id) {
-        const endpoint = "api/games";
-
-        const query = {
-          query: "SELECT * FROM ganes g WHERE g.id = @id",
-          parameters: [{ name: "@id" }]
-        };
-      
-
-        const response = await fetch(endpoint, {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(query),
-        });
-        console.log(response)
-        const result = await response.json();
-        console.log(result.data);
-        return result.data;
     }
 
     async handleSubmit(event) {
@@ -132,7 +74,6 @@ class NameForm extends React.Component {
             Background: color
         }
         this.createGameDetails(game_info)
-        this.getGameDetails("test")
 
         newGameLink.setAttribute("href", "/game/" + gameId)
         accessCode.innerHTML = "Link to the new game:"
