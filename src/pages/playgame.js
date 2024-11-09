@@ -15,6 +15,8 @@ function Game() {
     const [currAttempt, setCurrAttempt] = useState({ attempt: 0, letterPos: 0 });
     const [correctWord, setWord] = useState()
     const [parents, setParents] = useState()
+    const [gender, setGender] = useState()
+    const [background, setBackground] = useState()
     const [letterCount, setCount] = useState(0)
     const [board, setBoard] = useState(Words(5));
     const [disabledLetters, setDisabledLetters] = useState([]);
@@ -27,20 +29,22 @@ function Game() {
         const endpoint = `/data-api/rest/Game/Id`;
         const response = await fetch(`${endpoint}/${id}`);
         const result = await response.json();
-        console.table(result.value);
         return result.value;
     }
 
-    // //Decrpyt gameId
+    // Get game details based on the ID
     useEffect(()=>{
         getGameDetails(gameId).then((data) => {
-            console.log(data)
             if (data) {
                 try {
                     var name = data[0].Name;
                     var parents = data[0].Parents;
+                    var gender = data[0].Gender;
+                    var background = data[0].Background;
                     setWord(name);
                     setParents(parents);
+                    setGender(gender);
+                    setBackground(background);
                     setCount(name.length);
                     setLoading("success")
                 }catch(e) {

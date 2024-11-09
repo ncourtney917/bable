@@ -34,15 +34,6 @@ class NameForm extends React.Component {
         this.setState({ access_code: event.target.value });
     }
 
-    generateRandomString(length) {
-        const characters = 'ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789';
-        let result = '';
-        const charactersLength = characters.length;
-        for (let i = 0; i < length; i++) {
-          result += characters.charAt(Math.floor(Math.random() * charactersLength));
-        }
-        return result;
-    }
 
     async createGameDetails(data) {      
         const endpoint = `/data-api/rest/Game/`;
@@ -52,7 +43,6 @@ class NameForm extends React.Component {
           body: JSON.stringify(data)
         });
         const result = await response.json();
-        console.table(result.value);
     }
 
     async handleSubmit(event) {
