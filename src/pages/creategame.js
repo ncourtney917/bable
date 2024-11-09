@@ -1,7 +1,6 @@
 import React from "react";
 import {key} from "../App";
 
-var CryptoJS = require("crypto-js");
 
 class NameForm extends React.Component {
     constructor(props) {
@@ -79,7 +78,7 @@ class NameForm extends React.Component {
     async getGameDetailsById(id) {
         const gql = `
             query getById($id: ID!) {
-                game(id: $id) {
+                getGame(id: $id) {
                     id
                     name
                     gender

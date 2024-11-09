@@ -10,3 +10,8 @@ type Game @model {
   parents: String
   background: String
 }
+
+
+type Query {
+  getGame(id: ID!): Game
+}
