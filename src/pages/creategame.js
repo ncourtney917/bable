@@ -115,8 +115,8 @@ class NameForm extends React.Component {
                         Gender:  
                     </label>
                     <div onChange={this.onChangeGenderRadio}>
-                        <input type="radio" value="Male" name="gender" /> Boy
-                        <input type="radio" value="Female" name="gender" /> Girl
+                        <input type="radio" value="Boy" name="gender" /> Boy
+                        <input type="radio" value="Girl" name="gender" /> Girl
                     </div>
                     <br></br>
                     <label>
