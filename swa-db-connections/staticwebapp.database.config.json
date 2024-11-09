@@ -37,6 +37,15 @@
           "role": "anonymous"
         }
       ]
+    },
+    "GameLeaderboard": {
+      "source": "dbo.GameLeaderboard",
+      "permissions": [
+        {
+          "actions": ["*"],
+          "role": "anonymous"
+        }
+      ]
     }
   }
 }
