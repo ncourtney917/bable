@@ -33,6 +33,14 @@ function Game() {
         return result.value;
     }
 
+    const getLeaderboard = async(id) => {
+        const endpoint = `/data-api/rest/GameLeaderboard`;
+        const response = await fetch(`${endpoint}`);
+        const result = await response.json();
+        const filteredData = result.value.filter(score => score.GameId === id);
+        return filteredData.sort((a, b) => a.Guesses - b.Guesses);
+    }
+
     // Get game details based on the ID
     useEffect(()=>{
         getGameDetails(gameId).then((data) => {
@@ -59,6 +67,16 @@ function Game() {
         });       
     },[]);
  
+
+    useEffect(() => {
+        const fetchData = async () => {
+          const sortedData = await getLeaderboard(gameId);
+          setLeaderboard(sortedData);
+        };
+    
+        fetchData();
+      }, [gameId]);
+
     // Return loading screen until API response
     if (isLoading === "loading") {
         return <div className="App loading-text">Loading Babble game...</div>;
@@ -110,7 +128,7 @@ function Game() {
                 <img alt="baby" src={require('../images/baby_white.png')} />
                 <h1>Babble</h1>
             </nav>
-            <AppContext.Provider value={{ board, setBoard, currAttempt, setCurrAttempt, onDelete, onEnter, onSelectLetter, correctWord, disabledLetters, setDisabledLetters, correctLetters, setCorrectLetters, almostLetters, setAlmostLetters, gameOver, setGameOver, letterCount, gender, leaderboard, setLeaderboard }}>
+            <AppContext.Provider value={{ board, setBoard, currAttempt, setCurrAttempt, onDelete, onEnter, onSelectLetter, correctWord, disabledLetters, setDisabledLetters, correctLetters, setCorrectLetters, almostLetters, setAlmostLetters, gameOver, setGameOver, letterCount, gender, leaderboard, setLeaderboard, getLeaderboard }}>
                 <div className="game">
                     <h3>Proud Parents:<br></br> {parents}</h3>
                     <h3>Guess our baby's name!</h3>
