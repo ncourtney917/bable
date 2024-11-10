@@ -1,4 +1,4 @@
-import React, { useContext, useEffect, useState } from 'react';
+import React, { useContext, useEffect, useState, useRef } from 'react';
 import { AppContext } from '../pages/playgame';
 import Confetti from 'react-confetti';
 import {useParams} from 'react-router-dom';
