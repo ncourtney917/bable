@@ -13,6 +13,7 @@ function GameOver() {
     const height = window.innerHeight + 150
     const width = window.innerWidth
     const [playerName, setPlayerName] = useState('')
+    const submitButtonRef = useRef(null);
 
 
     const handleNameChange = (event) => {
@@ -50,6 +51,12 @@ function GameOver() {
 
         }
     }
+
+    useEffect(() => {
+      if (submitButtonRef.current) {
+        submitButtonRef.current.focus();
+      }
+    }, []);
 
     // Set confetti color based on gender
     useEffect(()=>{
@@ -90,7 +97,7 @@ function GameOver() {
                             </label>
                             <form className='leaderboard-submit' onSubmit={handleSaveName}>
                                 <input style={{margin: '15px', width: '50%'}} type="text" value={playerName} onChange={handleNameChange} />
-                                <input className="submit" type="submit" value="Save"/>
+                                <input ref={submitButtonRef} className="submit" type="submit" value="Save"/>
                             </form>
                         </div>
                         <Leaderboard></Leaderboard>
