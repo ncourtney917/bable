@@ -4,7 +4,7 @@ import {useParams} from 'react-router-dom';
 import { CompactTable } from '@table-library/react-table-library/compact';
 
 
-export const Leaderboard = () => {
+function Leaderboard () {
     const { gameId } = useParams();
     const [leaderboard, setLeaderboard] = useState([]);
     const columns = [
@@ -36,8 +36,4 @@ export const Leaderboard = () => {
 }
 
 
-
-
-
-
-
+export default Leaderboard;
