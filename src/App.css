@@ -236,6 +236,7 @@ footer {
   background-color: lightgray;
   color: black;
   padding: 1rem;
+  padding-top: 0.25rem;
   border-radius: 8px;
 }
 
@@ -261,6 +262,6 @@ footer {
 
 /* Set a fixed height and enable scrolling */
 .table-scroll {
-  max-height: calc(4 * 40px); /* Approximate row height */
+  max-height: 200px; /* Approximate row height */
   overflow-y: auto;
 }
