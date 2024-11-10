@@ -20,20 +20,21 @@ function GameOver() {
 
     const handleSaveName = async(event) => {
         event.preventDefault();
-        var data = {
-            GameId: gameId,
-            Guesses: currAttempt.attempt,
-            Won: gameOver.guessWord,
-            PlayerName: playerName
+        if (playerName !== ''){
+            var data = {
+                GameId: gameId,
+                Guesses: currAttempt.attempt,
+                Won: gameOver.guessWord,
+                PlayerName: playerName
+            }
+            const endpoint = `/data-api/rest/GameLeaderboard/`;
+            const response = await fetch(endpoint, {
+            method: "POST",
+            headers: { "Content-Type": "application/json" },
+            body: JSON.stringify(data)
+            });
+            const result = await response.json();
         }
-        const endpoint = `/data-api/rest/GameLeaderboard/`;
-        const response = await fetch(endpoint, {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify(data)
-        });
-        const result = await response.json();
-        console.log(result)
     }
 
     // Set confetti color based on gender
