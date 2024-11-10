@@ -1,23 +1,41 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { AppContext } from '../pages/playgame';
-import Confetti from 'react-confetti';
 import {useParams} from 'react-router-dom';
-import Popup from 'reactjs-popup';
+import { CompactTable } from '@table-library/react-table-library/compact';
 
 
-function Leaderboard() {
+export const Leaderboard = () => {
+    const { gameId } = useParams();
+    const [leaderboard, setLeaderboard] = useState([]);
+    const columns = [
+        { label: 'Name', renderCell: (item) => item.PlayerName },
+        { label: 'Guesses', renderCell: (item) => item.Guesses }
+    ]
 
+    const getLeaderboard = async(id) => {
+        const endpoint = `/data-api/rest/GameLeaderboard`;
+        const response = await fetch(`${endpoint}`);
+        const result = await response.json();
+        const filteredData = result.value.filter(score => score.GameId === id);
+        return filteredData.sort((a, b) => a.Guesses - b.Guesses);
+    }
 
-    // Create screen for winners and losers
+    useEffect(() => {
+        const fetchData = async () => {
+          const sortedData = await getLeaderboard(gameId);
+          setLeaderboard(sortedData);
+        };
+    
+        fetchData();
+      }, [gameId]);
+
+    // Create leaderboard
     return (
-        <div>
-            <h1>Leaderboard</h1>
-        </div>
+        <CompactTable title="Leaderboard" data={{ nodes: data }} columns={columns} />
     )
 }
 
 
-export default Leaderboard
 
 
 
