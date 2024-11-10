@@ -7,16 +7,26 @@ import Leaderboard from './Leaderboard';
 
 
 function GameOver() {
-    const { gameOver, correctWord, currAttempt, gender } = useContext(AppContext);
+    const { gameOver, correctWord, currAttempt, gender, leaderboard, setLeaderboard } = useContext(AppContext);
     const { gameId } = useParams();
     const [color, setColor] = useState(['#f44336','#e91e63','#9c27b0','#673ab7','#3f51b5','#2196f3','#03a9f4','#FF5722','#795548']	)
     const height = window.innerHeight + 150
     const width = window.innerWidth
     const [playerName, setPlayerName] = useState('')
 
+
     const handleNameChange = (event) => {
         setPlayerName(event.target.value);
     }
+
+    const getLeaderboard = async(id) => {
+        const endpoint = `/data-api/rest/GameLeaderboard`;
+        const response = await fetch(`${endpoint}`);
+        const result = await response.json();
+        const filteredData = result.value.filter(score => score.GameId === id);
+        return filteredData.sort((a, b) => a.Guesses - b.Guesses);
+    }
+ 
 
     const handleSaveName = async(event) => {
         event.preventDefault();
@@ -34,6 +44,10 @@ function GameOver() {
             body: JSON.stringify(data)
             });
             const result = await response.json();
+
+            const sortedData = await getLeaderboard(gameId);
+            setLeaderboard(sortedData);
+
         }
     }
 
@@ -49,6 +63,15 @@ function GameOver() {
             console.log(e)
         }
     },[]);
+
+    useEffect(() => {
+        const fetchData = async () => {
+          const sortedData = await getLeaderboard(gameId);
+          setLeaderboard(sortedData);
+        };
+    
+        fetchData();
+      }, [gameId]);
 
     // Create screen for winners and losers
     if (gameOver.guessWord) {
