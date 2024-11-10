@@ -14,7 +14,10 @@ function Leaderboard () {
     // Create leaderboard
     return (
         <div className="table-container">
-            <CompactTable title="Leaderboard" data={{ nodes: leaderboard }} columns={columns} />
+            <h2>Leaderboard</h2>
+            <div className="table-scroll">
+                <CompactTable data={{ nodes: leaderboard }} columns={columns} />
+            </div>
         </div>    
     )
 }

@@ -258,3 +258,9 @@ footer {
 .table-container th, .table-container td {
   border: 1px solid #ddd;
 }
+
+/* Set a fixed height and enable scrolling */
+.table-scroll {
+  max-height: calc(4 * 40px); /* Approximate row height */
+  overflow-y: auto;
+}
