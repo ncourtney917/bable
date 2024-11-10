@@ -31,7 +31,7 @@ function Leaderboard () {
 
     // Create leaderboard
     return (
-        <CompactTable title="Leaderboard" data={{ nodes: data }} columns={columns} />
+        <CompactTable title="Leaderboard" data={{ nodes: leaderboard }} columns={columns} />
     )
 }
 
