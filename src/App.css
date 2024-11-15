@@ -48,7 +48,7 @@ img {
   padding-top: 20px;
 }
 
-.popup-content {
+.threequarter-popup .popup-content {
   width: 75%;
   height: 75%;
 }
@@ -203,6 +203,14 @@ h3 {
 }
 
 .submit {
+  background-color: #00a2b2;
+  color: #ffffff;
+  margin: 20px;
+  padding: 10px 30px 10px 30px;
+  border-radius: 15px 15px 15px 15px;
+}
+
+.leaderboard-button {
   background-color: #00a2b2;
   color: #ffffff;
   margin: 20px;

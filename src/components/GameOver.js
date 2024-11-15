@@ -105,8 +105,8 @@ function GameOver() {
                     position="top center"
                     arrow="false"
                     modal="true"
-                    closeOnDocumentClick={false} // Prevent clicking outside to close
-                    closeOnEscape={false}
+                    closeOnDocumentClick="false" // Prevent clicking outside to close
+                    closeOnEscape="false"
                 >
                     {(close) => (
                         <div className="gameOver popup">
