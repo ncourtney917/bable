@@ -79,7 +79,13 @@ function GameOver() {
                                 Enter you name to save your score to the leaderboard!  
                             </label>
                             <form className='leaderboard-submit' onSubmit={handleSaveName}>
-                                <input style={{margin: '15px', width: '50%'}} type="text" value={playerName} onChange={handleNameChange} />
+                                <input 
+                                    style={{margin: '15px', width: '50%'}}
+                                    type="text" value={playerName}
+                                    onChange={handleNameChange}
+                                    autoComplete="off"
+                                    onFocus={(e) => e.target.blur()}
+                                />
                                 <input ref={submitButtonRef} className="submit" type="submit" value="Save"/>
                             </form>
                         </div>
