@@ -66,30 +66,43 @@ function GameOver() {
     if (gameOver.guessWord) {
         return (
             <div>
-                <Popup trigger={<button className="results-button submit">See results</button>} defaultOpen="true" position="top center" arrow="true" modal="true">
-                    <div className="gameOver popup">
-                        <h1>It's a {gender}!</h1>
-                        <hr></hr>
-                        <div className="popup-body">
-                            <h3>The baby's name is:</h3>
-                            <h1>{correctWord}</h1>
-                            {gameOver.guessWord && (<h3 className="margin-top"> You guessed it correcly in {currAttempt.attempt} attempt{currAttempt.attempt !== 1 && "s"}</h3>)}
+                <Popup 
+                    trigger={<button className="results-button submit">See results</button>}
+                    defaultOpen={true}
+                    position="top center"
+                    arrow={false}
+                    modal={true}
+                    closeOnDocumentClick={false}
+                    closeOnEscape={false}
+                >
+                    {(close) => (
+                        <div className="gameOver popup">
+                            <button onClick={close} className="close-button" >
+                                &times;
+                            </button>
+                            <h1>It's a {gender}!</h1>
                             <hr></hr>
-                            <label>
-                                Enter you name to save your score to the leaderboard!  
-                            </label>
-                            <form className='leaderboard-submit' onSubmit={handleSaveName}>
-                                <input 
-                                    style={{margin: '15px', width: '50%'}}
-                                    type="text" value={playerName}
-                                    onChange={handleNameChange}
-                                />
-                                <input ref={submitButtonRef} className="submit" type="submit" value="Save"/>
-                            </form>
+                            <div className="popup-body">
+                                <h3>The baby's name is:</h3>
+                                <h1>{correctWord}</h1>
+                                {gameOver.guessWord && (<h3 className="margin-top"> You guessed it correcly in {currAttempt.attempt} attempt{currAttempt.attempt !== 1 && "s"}</h3>)}
+                                <hr></hr>
+                                <label>
+                                    Enter you name to save your score to the leaderboard!  
+                                </label>
+                                <form className='leaderboard-submit' onSubmit={handleSaveName}>
+                                    <input 
+                                        style={{margin: '15px', width: '50%'}}
+                                        type="text" value={playerName}
+                                        onChange={handleNameChange}
+                                    />
+                                    <input ref={submitButtonRef} className="submit" type="submit" value="Save"/>
+                                </form>
+                                {gameOver.showLeaderboard ? <Leaderboard /> : <div/>} 
+                                <p className="info-text">Created by Nick Courtney</p>
+                            </div>
                         </div>
-                        {gameOver.showLeaderboard ? <Leaderboard /> : <div/>} 
-                        <p className="info-text">Created by Nick Courtney</p>
-                    </div>
+                    )}
                 </Popup>
                 <Confetti width={width} height={height} colors={color}/>
             </div>
