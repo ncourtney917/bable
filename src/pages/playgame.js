@@ -22,7 +22,7 @@ function Game() {
     const [disabledLetters, setDisabledLetters] = useState([]);
     const [almostLetters, setAlmostLetters] = useState([]);
     const [correctLetters, setCorrectLetters] = useState([]);
-    const [gameOver, setGameOver] = useState({ gameOver: false, guessWord: false })
+    const [gameOver, setGameOver] = useState({ gameOver: false, guessWord: false, showLeaderboard: false })
     const [leaderboard, setLeaderboard] = useState([]);
 
     

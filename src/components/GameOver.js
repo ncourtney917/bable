@@ -39,6 +39,7 @@ function GameOver() {
 
             const sortedData = await getLeaderboard(gameId);
             setLeaderboard(sortedData);
+            gameOver.showLeaderboard = true;
 
         }
     }
@@ -75,6 +76,7 @@ function GameOver() {
                             <h3>The baby's name is:</h3>
                             <h1>{correctWord}</h1>
                             {gameOver.guessWord && (<h3 className="margin-top"> You guessed it correcly in {currAttempt.attempt} attempt{currAttempt.attempt !== 1 && "s"}</h3>)}
+                            <hr></hr>
                             <label>
                                 Enter you name to save your score to the leaderboard!  
                             </label>
@@ -83,7 +85,7 @@ function GameOver() {
                                 <input ref={submitButtonRef} className="submit" type="submit" value="Save"/>
                             </form>
                         </div>
-                        <Leaderboard></Leaderboard>
+                        {gameOver.showLeaderboard ? <Leaderboard /> : <div/>} 
                         <p className="info-text">Created by Nick Courtney</p>
                     </div>
                 </Popup>

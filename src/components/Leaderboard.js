@@ -13,14 +13,19 @@ function Leaderboard () {
 
     // Create leaderboard
     return (
-        <div className="table-container">
-            <h2>Leaderboard</h2>
-            <div className="table-scroll">
-                <CompactTable data={{ nodes: leaderboard }} columns={columns} />
-            </div>
-        </div>    
+        <Popup trigger={<button className="results-button submit">See leaderboard</button>} defaultOpen="true" position="top center" arrow="false" modal="true">
+            <div className="table-container">
+                <h2>Leaderboard</h2>
+                <div className="table-scroll">
+                    <CompactTable data={{ nodes: leaderboard }} columns={columns} />
+                </div>
+            </div>    
+        </Popup>
     )
 }
+
+<div>
+                <Popup trigger={<button className="results-button submit">See results</button>} defaultOpen="true" position="top center" arrow="false" modal="true">
 
 
 export default Leaderboard;
