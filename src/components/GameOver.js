@@ -84,7 +84,6 @@ function GameOver() {
                                     type="text" value={playerName}
                                     onChange={handleNameChange}
                                     autoComplete="off"
-                                    onFocus={(e) => e.target.blur()}
                                 />
                                 <input ref={submitButtonRef} className="submit" type="submit" value="Save"/>
                             </form>

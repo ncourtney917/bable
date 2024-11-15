@@ -16,7 +16,7 @@ function Leaderboard () {
     return (
         <Popup trigger={<button className="results-button submit">See leaderboard</button>} defaultOpen="false" position="top center" arrow="false" modal="true">
             {(close) => (
-                <div className="gameOver popup">
+                <div className="gameOver popup-leaderboard">
                     <button onClick={close} className="close-button" >
                         &times;
                     </button>

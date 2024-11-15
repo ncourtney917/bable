@@ -35,6 +35,25 @@ img {
   border-radius: 15px;
 }
 
+.popup-leaderboard {
+  padding: 5px;
+  display: block;
+  text-align: center;
+  border-radius: 15px;
+  height: 100%;
+  width: 100%
+}
+
+.popup-body {
+  padding-top: 20px;
+}
+
+.popup-content {
+  width: 75%;
+  height: 75%;
+}
+
+
 .error {
   background-color: #EB4747;
   color: white;
@@ -199,10 +218,6 @@ h3 {
   margin: 0px 5px 10px 5px;
 }
 
-.popup-body {
-  padding-top: 20px;
-}
-
 .results-button {
   margin-bottom: 10px;
 }
@@ -238,6 +253,7 @@ footer {
   padding: 1rem;
   padding-top: 0.25rem;
   border-radius: 8px;
+  height: 90%;
 }
 
 .table-container table {
@@ -262,14 +278,14 @@ footer {
 
 /* Set a fixed height and enable scrolling */
 .table-scroll {
-  max-height: 200px; /* Approximate row height */
+  height: 90%; 
   overflow-y: auto;
 }
 
 .close-button {
   position: absolute;
-  top: 10px;
-  right: 10px;
+  top: 30px;
+  right: 30px;
   background: transparent;
   border: none;
   font-size: 20px;
