@@ -83,7 +83,6 @@ function GameOver() {
                                     style={{margin: '15px', width: '50%'}}
                                     type="text" value={playerName}
                                     onChange={handleNameChange}
-                                    autoComplete="off"
                                 />
                                 <input ref={submitButtonRef} className="submit" type="submit" value="Save"/>
                             </form>
@@ -101,18 +100,18 @@ function GameOver() {
             <div>
                 <Popup 
                     trigger={<button className="results-button submit">See results</button>}
-                    defaultOpen="true"
+                    defaultOpen={true}
                     position="top center"
-                    arrow="false"
-                    modal="true"
-                    closeOnDocumentClick="false" // Prevent clicking outside to close
-                    closeOnEscape="false"
+                    arrow={false}
+                    modal={true}
+                    closeOnDocumentClick={false}
+                    closeOnEscape={false}
                 >
                     {(close) => (
                         <div className="gameOver popup">
                             <button onClick={close} className="close-button" >
-                            &times;
-                        </button>
+                                &times;
+                            </button>
                             <h1>It's a {gender}!</h1>
                             <hr></hr>
                             <div className="popup-body">
