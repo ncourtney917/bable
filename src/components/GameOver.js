@@ -99,17 +99,30 @@ function GameOver() {
     else{
         return(
             <div>
-                <Popup trigger={<button className="results-button submit">See results</button>} defaultOpen="true" position="top center" arrow="false" modal="true">
-                    <div className="gameOver popup">
-                        <h1>It's a {gender}!</h1>
-                        <hr></hr>
-                        <div className="popup-body">
-                            <h3>The baby's name is:</h3>
-                            <h1>{correctWord}</h1>
-                            <h3 className="margin-top">Don't worry, we won't tell the baby you lost :)</h3>
+                <Popup 
+                    trigger={<button className="results-button submit">See results</button>}
+                    defaultOpen="true"
+                    position="top center"
+                    arrow="false"
+                    modal="true"
+                    closeOnDocumentClick={false} // Prevent clicking outside to close
+                    closeOnEscape={false}
+                >
+                    {(close) => (
+                        <div className="gameOver popup">
+                            <button onClick={close} className="close-button" >
+                            &times;
+                        </button>
+                            <h1>It's a {gender}!</h1>
+                            <hr></hr>
+                            <div className="popup-body">
+                                <h3>The baby's name is:</h3>
+                                <h1>{correctWord}</h1>
+                                <h3 className="margin-top">Don't worry, we won't tell the baby you lost :)</h3>
+                            </div>
+                            <p className="info-text">Created by Nick Courtney</p>
                         </div>
-                        <p className="info-text">Created by Nick Courtney</p>
-                    </div>
+                    )}
                 </Popup>
             </div>
         )
