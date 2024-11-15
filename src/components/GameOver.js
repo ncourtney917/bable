@@ -66,7 +66,7 @@ function GameOver() {
     if (gameOver.guessWord) {
         return (
             <div>
-                <Popup trigger={<button className="results-button submit">See results</button>} defaultOpen="true" position="top center" arrow="false" modal="true">
+                <Popup trigger={<button className="results-button submit">See results</button>} defaultOpen="true" position="top center" arrow="true" modal="true">
                     <div className="gameOver popup">
                         <h1>It's a {gender}!</h1>
                         <hr></hr>
