@@ -39,8 +39,6 @@ function GameOver() {
 
             const sortedData = await getLeaderboard(gameId);
             setLeaderboard(sortedData);
-            gameOver.showLeaderboard = true;
-
         }
     }
 

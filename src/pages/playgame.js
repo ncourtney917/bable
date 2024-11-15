@@ -111,12 +111,12 @@ function Game() {
         setCurrAttempt({ attempt: currAttempt.attempt + 1, letterPos: 0 })
 
         if (guess === correctWord) {
-            setGameOver({ gameOver: true, guessWord: true })
+            setGameOver({ gameOver: true, guessWord: true, showLeaderboard: true })
             return;
         }
 
         if (currAttempt.attempt === 5) {
-            setGameOver({ gameOver: true, guessWord: false })
+            setGameOver({ gameOver: true, guessWord: false, showLeaderboard: true })
             return;
         }
     };

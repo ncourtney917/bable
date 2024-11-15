@@ -1,6 +1,7 @@
 import React, { useContext, useEffect, useState } from 'react';
 import { AppContext } from '../pages/playgame';
 import {useParams} from 'react-router-dom';
+import Popup from 'reactjs-popup';
 import { CompactTable } from '@table-library/react-table-library/compact';
 
 
@@ -13,7 +14,7 @@ function Leaderboard () {
 
     // Create leaderboard
     return (
-        <Popup trigger={<button className="results-button submit">See leaderboard</button>} defaultOpen="true" position="top center" arrow="false" modal="true">
+        <Popup trigger={<button className="results-button submit">See leaderboard</button>} defaultOpen="false" position="top center" arrow="false" modal="true">
             <div className="table-container">
                 <h2>Leaderboard</h2>
                 <div className="table-scroll">
