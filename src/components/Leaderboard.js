@@ -24,8 +24,5 @@ function Leaderboard () {
     )
 }
 
-<div>
-                <Popup trigger={<button className="results-button submit">See results</button>} defaultOpen="true" position="top center" arrow="false" modal="true">
-
 
 export default Leaderboard;
