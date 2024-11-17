@@ -67,7 +67,8 @@ function GameOver() {
                 console.error("Network error or unexpected issue:", error);
                 alert("An unexpected error occured. Please try again later.");
             }
-    }
+       }
+    };
 
     const handleClose = () => {
         setIsOpen(false);
@@ -219,6 +220,7 @@ function GameOver() {
         )
     }
 }
+
 
 
 export default GameOver
