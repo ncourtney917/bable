@@ -16,6 +16,8 @@ function GameOver() {
     const submitButtonRef = useRef(null);
     var guesses = 0;
     const [isOpen, setIsOpen] = useState(true);
+    const [scoreSubmitted, setScoreSubmitted] = useState()
+
 
 
     const handleNameChange = (event) => {
@@ -44,9 +46,9 @@ function GameOver() {
             });
             const result = await response.json();
 
+            setScoreSubmitted("submitted");
             const sortedData = await getLeaderboard(gameId);
             setLeaderboard(sortedData);
-            setGameOver({ scoreSubmitted: "submitted"});
         }
     }
 
@@ -105,9 +107,9 @@ function GameOver() {
                                 <hr></hr>
                                 <div>
                                     {
-                                        gameOver.scoreSubmitted === "submitted" ? (
+                                        scoreSubmitted === "submitted" ? (
                                             <p>Score submitted. Thanks for playing!</p>
-                                        ) : gameOver.scoreSubmitted === "N/A" ? (
+                                        ) : scoreSubmitted === "N/A" ? (
                                             <p>Score previously submitted. You cannot submit multiple scores from this device.</p>
                                         ) : (                                    
                                                 <div>
@@ -133,11 +135,9 @@ function GameOver() {
                     )}
                 </Popup>
                 <Confetti width={width} height={height} colors={color}/>
-                {!isOpen && (
-                    <button onClick={handleOpen} className="results-button submit">
-                        See results
-                    </button>
-                )}
+                <button onClick={handleOpen} className="results-button submit">
+                    See results
+                </button>
             </div>
         )
     }
@@ -167,7 +167,7 @@ function GameOver() {
                             </div>
                             <hr></hr>
                             <div>
-                                {gameOver.scoreSubmitted === "pending"  ? (
+                                {scoreSubmitted === "pending"  ? (
                                     <div>
                                         <label>
                                             Enter you name to save your score to the leaderboard!  
@@ -181,9 +181,9 @@ function GameOver() {
                                             <input ref={submitButtonRef} className="submit" type="submit" value="Save"/>
                                         </form>
                                     </div>
-                                ) : gameOver.scoreSubmitted === "submitted" ? (
+                                ) : scoreSubmitted === "submitted" ? (
                                     <p>Score submitted. Thanks for playing!</p>
-                                ) : gameOver.scoreSubmitted === "N/A" ? (
+                                ) : scoreSubmitted === "N/A" ? (
                                     <p>Score previously submitted. You cannot submit multiple scores from this device.</p>
                                 ) : (
                                     <p>Thanks for playing!</p>
