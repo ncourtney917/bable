@@ -10,6 +10,14 @@ function Keyboard() {
     const keys3 = ["Z", "X", "C", "V", "B", "N", "M"];
 
     const handleKeyboard = useCallback((event) => {
+        // if focus is on an input area, don't log keystrokes (for typing name for submitting score)
+        if (
+            event.target.tagName === "INPUT" || 
+            event.target.isContentEditable
+        ) {
+            return;
+        }
+
         if (event.key === "Enter") {
             onEnter(letterCount);
         } else if (event.key === "Backspace") {
