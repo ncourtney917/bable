@@ -95,27 +95,27 @@ function GameOver() {
                                 {gameOver.guessWord && (<h3 className="margin-top"> You guessed it correcly in {currAttempt.attempt} attempt{currAttempt.attempt !== 1 && "s"}</h3>)}
                                 <hr></hr>
                                 <div>
-                                    {gameOver.scoreSubmitted === "not yet"  ? (
-                                        <div>
-                                            <label>
-                                                Enter you name to save your score to the leaderboard!  
-                                            </label>
-                                            <form className='leaderboard-submit' onSubmit={handleSaveName}>
-                                                <input 
-                                                    style={{margin: '15px', width: '50%'}}
-                                                    type="text" value={playerName}
-                                                    onChange={handleNameChange}
-                                                />
-                                                <input ref={submitButtonRef} className="submit" type="submit" value="Save"/>
-                                            </form>
-                                        </div>
-                                    ) : gameOver.scoreSubmitted === "submitted" ? (
-                                        <p>Score submitted. Thanks for playing!</p>
-                                    ) : gameOver.scoreSubmitted === "N/A" ? (
-                                        <p>Score previously submitted. You cannot submit multiple scores from this device.</p>
-                                    ) : (
-                                        <p>Thanks for playing!</p>
-                                    )}
+                                    {
+                                        gameOver.scoreSubmitted === "submitted" ? (
+                                            <p>Score submitted. Thanks for playing!</p>
+                                        ) : gameOver.scoreSubmitted === "N/A" ? (
+                                            <p>Score previously submitted. You cannot submit multiple scores from this device.</p>
+                                        ) : (                                    
+                                                <div>
+                                                    <label>
+                                                        Enter you name to save your score to the leaderboard!  
+                                                    </label>
+                                                    <form className='leaderboard-submit' onSubmit={handleSaveName}>
+                                                        <input 
+                                                            style={{margin: '15px', width: '50%'}}
+                                                            type="text" value={playerName}
+                                                            onChange={handleNameChange}
+                                                        />
+                                                        <input ref={submitButtonRef} className="submit" type="submit" value="Save"/>
+                                                    </form>
+                                                </div>
+                                        ) 
+                                    }
                                 </div>
                                 <Leaderboard />
                                 <p className="info-text">Created by Nick Courtney</p>
