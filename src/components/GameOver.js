@@ -14,6 +14,7 @@ function GameOver() {
     const width = window.innerWidth
     const [playerName, setPlayerName] = useState('')
     const submitButtonRef = useRef(null);
+    var guesses = 0;
 
 
     const handleNameChange = (event) => {
@@ -23,9 +24,14 @@ function GameOver() {
     const handleSaveName = async(event) => {
         event.preventDefault();
         if (playerName !== ''){
+            if (gameOver.guessWord === false){
+                guesses = "X"
+            } else {
+                guesses = currAttempt.attempt
+            }
             var data = {
                 GameId: gameId,
-                Guesses: currAttempt.attempt,
+                Guesses: guesses,
                 Won: gameOver.guessWord,
                 PlayerName: playerName
             }
@@ -69,7 +75,7 @@ function GameOver() {
             <div>
                 <Popup 
                     trigger={<button className="results-button submit">See results</button>}
-                    open={true}
+                    defaultOpen={true}
                     position="top center"
                     arrow={false}
                     modal={true}
@@ -122,11 +128,11 @@ function GameOver() {
         )
     }
     else{
-        return(
+        return (
             <div>
                 <Popup 
                     trigger={<button className="results-button submit">See results</button>}
-                    defaultOpen={true}
+                    open={true}
                     position="top center"
                     arrow={false}
                     modal={true}
@@ -135,7 +141,7 @@ function GameOver() {
                 >
                     {(close) => (
                         <div className="gameOver popup">
-                            <button onClick={close} className="close-button" >
+                            <button onClick={close} className="close-button" style={{color: "#ffffff"}}>
                                 &times;
                             </button>
                             <h1>It's a {gender}!</h1>
@@ -145,13 +151,40 @@ function GameOver() {
                                 <h1>{correctWord}</h1>
                                 <h3 className="margin-top">Don't worry, we won't tell the baby you lost :)</h3>
                             </div>
+                            <hr></hr>
+                            <div>
+                                {gameOver.scoreSubmitted === "pending"  ? (
+                                    <div>
+                                        <label>
+                                            Enter you name to save your score to the leaderboard!  
+                                        </label>
+                                        <form className='leaderboard-submit' onSubmit={handleSaveName}>
+                                            <input 
+                                                style={{margin: '15px', width: '50%'}}
+                                                type="text" value={playerName}
+                                                onChange={handleNameChange}
+                                            />
+                                            <input ref={submitButtonRef} className="submit" type="submit" value="Save"/>
+                                        </form>
+                                    </div>
+                                ) : gameOver.scoreSubmitted === "submitted" ? (
+                                    <p>Score submitted. Thanks for playing!</p>
+                                ) : gameOver.scoreSubmitted === "N/A" ? (
+                                    <p>Score previously submitted. You cannot submit multiple scores from this device.</p>
+                                ) : (
+                                    <p>Thanks for playing!</p>
+                                )}
+                            </div>
+                            <Leaderboard />
                             <p className="info-text">Created by Nick Courtney</p>
                         </div>
                     )}
                 </Popup>
+                <Confetti width={width} height={height} colors={color}/>
             </div>
         )
     }
 }
+
 
 export default GameOver

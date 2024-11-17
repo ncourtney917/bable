@@ -295,9 +295,9 @@ footer {
   position: absolute;
   display: block;
   padding: 2px 5px;
-  right: -10px;
-  top: -10px;
+  right: 5px;
+  top: 5px;
   font-size: 24px;
-  border-radius: 18px;
+  border: none;
   background: transparent;
 }
