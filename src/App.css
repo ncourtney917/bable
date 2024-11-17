@@ -48,11 +48,6 @@ img {
   padding-top: 20px;
 }
 
-.threequarter-popup-content {
-  width: 90%;
-  height: 90%;
-}
-
 
 .error {
   background-color: #EB4747;
@@ -296,7 +291,7 @@ footer {
   position: absolute;
   display: block;
   padding: 2px 5px;
-  right: 5px;
+  right: 15px;
   top: 5px;
   font-size: 24px;
   border: none;
@@ -305,4 +300,27 @@ footer {
 
 .no-zoom {
   font-size: 16px;
+}
+
+.leaderboard-overlay {
+  background: rgba(0, 0, 0, 0.7);
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  z-index: 999;
+}
+
+.leaderboard-overlay-content {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 95vw;
+  height: 95vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1000;
 }
