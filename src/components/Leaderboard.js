@@ -16,7 +16,7 @@ function Leaderboard () {
     return (
         <Popup 
             className="threequarter-popup"
-            trigger={<button className="results-button submit">See leaderboard</button>}
+            trigger={<button className="leaderboard-button submit">View leaderboard</button>}
             defaultOpen={false}
             position="top center"
             arrow={false}

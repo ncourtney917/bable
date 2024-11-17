@@ -7,7 +7,7 @@ import Leaderboard from './Leaderboard';
 
 
 function GameOver() {
-    const { gameOver, correctWord, currAttempt, gender, leaderboard, setLeaderboard, getLeaderboard } = useContext(AppContext);
+    const { gameOver, setGameOver, correctWord, currAttempt, gender, leaderboard, setLeaderboard, getLeaderboard } = useContext(AppContext);
     const { gameId } = useParams();
     const [color, setColor] = useState(['#f44336','#e91e63','#9c27b0','#673ab7','#3f51b5','#2196f3','#03a9f4','#FF5722','#795548']	)
     const height = window.innerHeight + 150
@@ -39,6 +39,7 @@ function GameOver() {
 
             const sortedData = await getLeaderboard(gameId);
             setLeaderboard(sortedData);
+            setGameOver({ scoreSubmitted: "submitted"});
         }
     }
 
@@ -68,7 +69,7 @@ function GameOver() {
             <div>
                 <Popup 
                     trigger={<button className="results-button submit">See results</button>}
-                    defaultOpen={true}
+                    open={true}
                     position="top center"
                     arrow={false}
                     modal={true}
@@ -77,7 +78,7 @@ function GameOver() {
                 >
                     {(close) => (
                         <div className="gameOver popup">
-                            <button onClick={close} className="close-button" >
+                            <button onClick={close} className="close-button" style={{color: "#ffffff"}}>
                                 &times;
                             </button>
                             <h1>It's a {gender}!</h1>
@@ -87,18 +88,30 @@ function GameOver() {
                                 <h1>{correctWord}</h1>
                                 {gameOver.guessWord && (<h3 className="margin-top"> You guessed it correcly in {currAttempt.attempt} attempt{currAttempt.attempt !== 1 && "s"}</h3>)}
                                 <hr></hr>
-                                <label>
-                                    Enter you name to save your score to the leaderboard!  
-                                </label>
-                                <form className='leaderboard-submit' onSubmit={handleSaveName}>
-                                    <input 
-                                        style={{margin: '15px', width: '50%'}}
-                                        type="text" value={playerName}
-                                        onChange={handleNameChange}
-                                    />
-                                    <input ref={submitButtonRef} className="submit" type="submit" value="Save"/>
-                                </form>
-                                {gameOver.showLeaderboard ? <Leaderboard /> : <div/>} 
+                                <div>
+                                    {gameOver.scoreSubmitted === "not yet"  ? (
+                                        <div>
+                                            <label>
+                                                Enter you name to save your score to the leaderboard!  
+                                            </label>
+                                            <form className='leaderboard-submit' onSubmit={handleSaveName}>
+                                                <input 
+                                                    style={{margin: '15px', width: '50%'}}
+                                                    type="text" value={playerName}
+                                                    onChange={handleNameChange}
+                                                />
+                                                <input ref={submitButtonRef} className="submit" type="submit" value="Save"/>
+                                            </form>
+                                        </div>
+                                    ) : gameOver.scoreSubmitted === "submitted" ? (
+                                        <p>Score submitted. Thanks for playing!</p>
+                                    ) : gameOver.scoreSubmitted === "N/A" ? (
+                                        <p>Score previously submitted. You cannot submit multiple scores from this device.</p>
+                                    ) : (
+                                        <p>Thanks for playing!</p>
+                                    )}
+                                </div>
+                                <Leaderboard />
                                 <p className="info-text">Created by Nick Courtney</p>
                             </div>
                         </div>
