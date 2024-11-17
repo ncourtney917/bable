@@ -15,6 +15,7 @@ function GameOver() {
     const [playerName, setPlayerName] = useState('')
     const submitButtonRef = useRef(null);
     var guesses = 0;
+    const [isOpen, setIsOpen] = useState(true);
 
 
     const handleNameChange = (event) => {
@@ -49,6 +50,14 @@ function GameOver() {
         }
     }
 
+    const handleClose = () => {
+        setIsOpen(false);
+    };
+
+    const handleOpen = () => {
+        setIsOpen(true);
+    };
+
     useEffect(() => {
       if (submitButtonRef.current) {
         submitButtonRef.current.focus();
@@ -74,13 +83,13 @@ function GameOver() {
         return (
             <div>
                 <Popup 
-                    trigger={<button className="results-button submit">See results</button>}
-                    defaultOpen={true}
+                    open={isOpen}
                     position="top center"
                     arrow={false}
                     modal={true}
                     closeOnDocumentClick={false}
                     closeOnEscape={false}
+                    onClose={handleClose}
                 >
                     {(close) => (
                         <div className="gameOver popup">
@@ -124,6 +133,11 @@ function GameOver() {
                     )}
                 </Popup>
                 <Confetti width={width} height={height} colors={color}/>
+                {!isOpen && (
+                    <button onClick={handleOpen} className="results-button submit">
+                        See results
+                    </button>
+                )}
             </div>
         )
     }
@@ -132,7 +146,7 @@ function GameOver() {
             <div>
                 <Popup 
                     trigger={<button className="results-button submit">See results</button>}
-                    open={true}
+                    defaultOpen={true}
                     position="top center"
                     arrow={false}
                     modal={true}
