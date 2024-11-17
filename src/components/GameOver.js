@@ -12,11 +12,12 @@ function GameOver() {
     const [color, setColor] = useState(['#f44336','#e91e63','#9c27b0','#673ab7','#3f51b5','#2196f3','#03a9f4','#FF5722','#795548']	)
     const height = window.innerHeight + 150
     const width = window.innerWidth
-    const [playerName, setPlayerName] = useState('')
+    const [playerName, setPlayerName] = useState('');
     const submitButtonRef = useRef(null);
     var guesses = 0;
     const [isOpen, setIsOpen] = useState(true);
-    const [scoreSubmitted, setScoreSubmitted] = useState()
+    const [scoreSubmitted, setScoreSubmitted] = useState();
+    const [isSubmitting, setIsSubmitting] = useState(false);
 
 
 
@@ -27,6 +28,7 @@ function GameOver() {
     const handleSaveName = async(event) => {
         event.preventDefault();
         if (playerName !== ''){
+            setIsSubmitting(true); // Start spinner
             if (gameOver.guessWord === false){
                 guesses = 0
             } else {
@@ -66,6 +68,8 @@ function GameOver() {
                 // Handle network or other unexpected errors
                 console.error("Network error or unexpected issue:", error);
                 alert("An unexpected error occured. Please try again later.");
+            }finally {
+                setIsSubmitting(false); // Stop spinner
             }
        }
     };
@@ -140,8 +144,21 @@ function GameOver() {
                                                             style={{margin: '15px', width: '50%'}}
                                                             type="text" value={playerName}
                                                             onChange={handleNameChange}
+                                                            disabled={isSubmitting} // Disable input while submitting
                                                         />
-                                                        <input ref={submitButtonRef} className="submit" type="submit" value="Submit"/>
+                                                        <button
+                                                            ref={submitButtonRef}
+                                                            className="submit"
+                                                            type="submit"
+                                                            disabled={isSubmitting} // Disable button while submitting
+                                                            style={{ position: 'relative', minWidth: '100px' }} // For spinner alignment
+                                                        >
+                                                            {isSubmitting ? (
+                                                            <span className="spinner" />
+                                                            ) : (
+                                                            'Submit'
+                                                            )}
+                                                        </button>
                                                     </form>
                                                 </div>
                                         ) 
@@ -204,8 +221,21 @@ function GameOver() {
                                                             style={{margin: '15px', width: '50%'}}
                                                             type="text" value={playerName}
                                                             onChange={handleNameChange}
+                                                            disabled={isSubmitting} // Disable input while submitting
                                                         />
-                                                        <input ref={submitButtonRef} className="submit" type="submit" value="Submit"/>
+                                                        <button
+                                                            ref={submitButtonRef}
+                                                            className="submit"
+                                                            type="submit"
+                                                            disabled={isSubmitting} // Disable button while submitting
+                                                            style={{ position: 'relative', minWidth: '100px' }} // For spinner alignment
+                                                        >
+                                                            {isSubmitting ? (
+                                                            <span className="spinner" />
+                                                            ) : (
+                                                            'Submit'
+                                                            )}
+                                                        </button>
                                                     </form>
                                                 </div>
                                         ) 

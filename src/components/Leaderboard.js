@@ -22,7 +22,11 @@ function Leaderboard () {
             modal={true}
             closeOnDocumentClick={false}
             closeOnEscape={false}
-            className="leaderboard-overlay"            
+            className="leaderboard-overlay"    
+            overlayStyle={{
+                position: 'absolute',
+                marginTop: '10px'
+            }}
         >
             {(close) => (
                 <div className="gameOver popup-leaderboard">

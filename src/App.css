@@ -324,3 +324,23 @@ footer {
   justify-content: center;
   z-index: 1000;
 }
+
+.spinner {
+  border: 3px solid rgba(0, 0, 0, 0.1); /* Light border */
+  border-top: 3px solid #3498db; /* Blue border */
+  border-radius: 50%;
+  width: 16px;
+  height: 16px;
+  animation: spin 1s linear infinite;
+  display: inline-block;
+}
+
+/* Spinner animation */
+@keyframes spin {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
