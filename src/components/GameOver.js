@@ -140,7 +140,7 @@ function GameOver() {
                                                             type="text" value={playerName}
                                                             onChange={handleNameChange}
                                                         />
-                                                        <input ref={submitButtonRef} className="submit" type="submit" value="Save"/>
+                                                        <input ref={submitButtonRef} className="submit" type="submit" value="Submit"/>
                                                     </form>
                                                 </div>
                                         ) 
@@ -203,7 +203,7 @@ function GameOver() {
                                                             type="text" value={playerName}
                                                             onChange={handleNameChange}
                                                         />
-                                                        <input ref={submitButtonRef} className="submit" type="submit" value="Save"/>
+                                                        <input ref={submitButtonRef} className="submit" type="submit" value="Submit"/>
                                                     </form>
                                                 </div>
                                         ) 

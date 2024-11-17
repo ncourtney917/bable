@@ -49,7 +49,7 @@ function Game() {
             return updatedScore;
         });
 
-        return updatedData.sort((a, b) => a.Guesses - b.Guesses);
+        return updatedData.sort((a, b) => a.Guesses.localeCompare(b.Guesses));
     }
 
     // Get game details based on the ID
@@ -141,8 +141,7 @@ function Game() {
             </nav>
             <AppContext.Provider value={{ board, setBoard, currAttempt, setCurrAttempt, onDelete, onEnter, onSelectLetter, correctWord, disabledLetters, setDisabledLetters, correctLetters, setCorrectLetters, almostLetters, setAlmostLetters, gameOver, setGameOver, letterCount, gender, leaderboard, setLeaderboard, getLeaderboard }}>
                 <div className="game">
-                    <h3>Proud Parents:<br></br> {parents}</h3>
-                    <h3>Guess our baby's name!</h3>
+                    <h3>Guess our baby's name!<br></br> - {parents}</h3>
                     <Board />
                     <Keyboard />
                     {gameOver.gameOver ? <GameOver /> : <div/>} 
