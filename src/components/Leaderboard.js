@@ -23,7 +23,7 @@ function Leaderboard () {
             closeOnDocumentClick={false}
             closeOnEscape={false}
             className="leaderboard-overlay"    
-            overlayStyle={{
+            contentStyle={{
                 position: 'absolute',
                 marginTop: '10px'
             }}

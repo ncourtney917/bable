@@ -326,8 +326,8 @@ footer {
 }
 
 .spinner {
-  border: 3px solid rgba(0, 0, 0, 0.1); /* Light border */
-  border-top: 3px solid #3498db; /* Blue border */
+  border: 3px solid rgba(255, 255, 255, 0.3);
+  border-top: 3px solid #ffffff;
   border-radius: 50%;
   width: 16px;
   height: 16px;
