@@ -60,11 +60,11 @@ function Keyboard() {
                 })}
             </div>
             <div className="keyboard-line">
-                <Key keyVal={"ENTER"} bigKey />
+                <Key keyVal={"DEL"} bigKey />
                 {keys3.map((key) => {
                     return <Key keyVal={key} disabled={disabledLetters.includes(key)} correct={correctLetters.includes(key)} almost ={almostLetters.includes(key)} />;
                 })}
-                <Key keyVal={"DEL"} bigKey />
+                <Key keyVal={"ENTER"} bigKey />
             </div>
         </div>
     )
