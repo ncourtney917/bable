@@ -49,8 +49,8 @@ img {
 }
 
 .threequarter-popup-content {
-  width: 75%;
-  height: 75%;
+  width: 90%;
+  height: 90%;
 }
 
 
@@ -270,7 +270,8 @@ footer {
 }
 
 .table-container th {
-  font-weight: bold;
+  font-weight: bolder;
+  background-color: #fffcc3;
   text-align: center;
   padding: 10px;
 }

@@ -153,9 +153,11 @@ function GameOver() {
                     )}
                 </Popup>
                 <Confetti width={width} height={height} colors={color}/>
-                <button onClick={handleOpen} className="results-button submit">
-                    See results
-                </button>
+                {!isOpen && (
+                    <button onClick={handleOpen} className="results-button submit">
+                        See results
+                    </button>
+                )}
             </div>
         )
     }
@@ -213,9 +215,11 @@ function GameOver() {
                     )}
                 </Popup>
                 <Confetti width={width} height={height} colors={color}/>
-                <button onClick={handleOpen} className="results-button submit">
-                    See results
-                </button>
+                {!isOpen && (
+                    <button onClick={handleOpen} className="results-button submit">
+                        See results
+                    </button>
+                )}
             </div>
         )
     }
