@@ -302,3 +302,7 @@ footer {
   border: none;
   background: transparent;
 }
+
+.no-zoom {
+  font-size: 16px;
+}
