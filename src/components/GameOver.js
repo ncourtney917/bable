@@ -39,17 +39,34 @@ function GameOver() {
                 PlayerName: playerName
             }
             const endpoint = `/data-api/rest/GameLeaderboard/`;
-            const response = await fetch(endpoint, {
-            method: "POST",
-            headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(data)
-            });
-            const result = await response.json();
+            try {
+                const response = await fetch(endpoint, {
+                method: "POST",
+                headers: { "Content-Type": "application/json" },
+                body: JSON.stringify(data)
+                });
 
-            setScoreSubmitted("submitted");
-            const sortedData = await getLeaderboard(gameId);
-            setLeaderboard(sortedData);
-        }
+                if (response.ok) {
+                    const result = await response.json();
+                    setScoreSubmitted("submitted");
+                    const sortedData = await getLeaderboard(gameId);
+                    setLeaderboard(sortedData);
+                } else if (response.status === 409) {
+                    // Handle 409 Conflict specifically
+                    console.error("Conflict: A score has already been submitted for this name on the leaderboard.");
+                    alert("Error: A score has already been submitted for this name on the leaderboard. Please modify the name to make it unique.");
+
+                }else {
+                    // Handle other errors
+                    console.error(`Error: ${response.status} - ${response.statusText}`);
+                    alert("An unexpected error occured. Please try again later.");
+                }
+            
+            }catch (error) {
+                // Handle network or other unexpected errors
+                console.error("Network error or unexpected issue:", error);
+                alert("An unexpected error occured. Please try again later.");
+            }
     }
 
     const handleClose = () => {
