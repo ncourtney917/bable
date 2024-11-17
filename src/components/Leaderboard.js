@@ -15,7 +15,6 @@ function Leaderboard () {
     // Create leaderboard
     return (
         <Popup 
-            className="threequarter-popup"
             trigger={<button className="leaderboard-button submit">View leaderboard</button>}
             defaultOpen={false}
             position="top center"
@@ -23,6 +22,30 @@ function Leaderboard () {
             modal={true}
             closeOnDocumentClick={false}
             closeOnEscape={false}
+            overlayStyle={{
+                background: 'rgba(0, 0, 0, 0.7)', // Optional, to make the overlay darkened
+                position: 'fixed',
+                top: 0,
+                left: 0,
+                right: 0,
+                bottom: 0,
+              }}
+              contentStyle={{
+                position: 'absolute',
+                top: 0,
+                left: 0,
+                right: 0,
+                bottom: 0,
+                width: '100vw',
+                height: '100vh',
+                padding: '0', // Remove any default padding
+                margin: '0', // Remove any default margin
+                display: 'flex',
+                alignItems: 'center',
+                justifyContent: 'center',
+                backgroundColor: '#fff',
+                zIndex: 1000,
+              }}
         >
             {(close) => (
                 <div className="gameOver popup-leaderboard">

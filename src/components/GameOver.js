@@ -136,6 +136,7 @@ function GameOver() {
                                                     </label>
                                                     <form className='leaderboard-submit' onSubmit={handleSaveName}>
                                                         <input 
+                                                            className="no-zoom"
                                                             style={{margin: '15px', width: '50%'}}
                                                             type="text" value={playerName}
                                                             onChange={handleNameChange}
@@ -199,6 +200,7 @@ function GameOver() {
                                                     </label>
                                                     <form className='leaderboard-submit' onSubmit={handleSaveName}>
                                                         <input 
+                                                            className="no-zoom"
                                                             style={{margin: '15px', width: '50%'}}
                                                             type="text" value={playerName}
                                                             onChange={handleNameChange}
