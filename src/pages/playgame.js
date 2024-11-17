@@ -38,7 +38,22 @@ function Game() {
         const response = await fetch(`${endpoint}`);
         const result = await response.json();
         const filteredData = result.value.filter(score => score.GameId === id);
-        return filteredData.sort((a, b) => a.Guesses - b.Guesses);
+
+        // Replace all 0s with 'x' in the filtered data
+        const updatedData = filteredData.map(score => {
+            const updatedScore = { ...score }; // Create a shallow copy to avoid mutation
+
+            // Replace 0s in all string fields
+            for (let key in updatedScore) {
+                if (typeof updatedScore[key] === "string") {
+                    updatedScore[key] = updatedScore[key].replaceAll("0", "X");
+                }
+            }
+
+            return updatedScore;
+        });
+
+        return updatedData.sort((a, b) => a.Guesses - b.Guesses);
     }
 
     // Get game details based on the ID

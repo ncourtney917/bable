@@ -28,7 +28,7 @@ function GameOver() {
         event.preventDefault();
         if (playerName !== ''){
             if (gameOver.guessWord === false){
-                guesses = "X"
+                guesses = 0
             } else {
                 guesses = currAttempt.attempt
             }
@@ -54,7 +54,7 @@ function GameOver() {
                 } else if (response.status === 409) {
                     // Handle 409 Conflict specifically
                     console.error("Conflict: A score has already been submitted for this name on the leaderboard.");
-                    alert("Error: A score has already been submitted for this name on the leaderboard. Please modify the name to make it unique.");
+                    alert("Error: This name already appears on the leaderboard. Please modify the name and save again!");
 
                 }else {
                     // Handle other errors
