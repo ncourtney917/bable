@@ -162,13 +162,13 @@ function GameOver() {
         return (
             <div>
                 <Popup 
-                    trigger={<button className="results-button submit">See results</button>}
-                    defaultOpen={true}
+                    open={isOpen}
                     position="top center"
                     arrow={false}
                     modal={true}
                     closeOnDocumentClick={false}
                     closeOnEscape={false}
+                    onClose={handleClose}
                 >
                     {(close) => (
                         <div className="gameOver popup">
@@ -184,34 +184,37 @@ function GameOver() {
                             </div>
                             <hr></hr>
                             <div>
-                                {scoreSubmitted === "pending"  ? (
-                                    <div>
-                                        <label>
-                                            Enter you name to save your score to the leaderboard!  
-                                        </label>
-                                        <form className='leaderboard-submit' onSubmit={handleSaveName}>
-                                            <input 
-                                                style={{margin: '15px', width: '50%'}}
-                                                type="text" value={playerName}
-                                                onChange={handleNameChange}
-                                            />
-                                            <input ref={submitButtonRef} className="submit" type="submit" value="Save"/>
-                                        </form>
-                                    </div>
-                                ) : scoreSubmitted === "submitted" ? (
-                                    <p>Score submitted. Thanks for playing!</p>
-                                ) : scoreSubmitted === "N/A" ? (
-                                    <p>Score previously submitted. You cannot submit multiple scores from this device.</p>
-                                ) : (
-                                    <p>Thanks for playing!</p>
-                                )}
-                            </div>
+                                    {
+                                        scoreSubmitted === "submitted" ? (
+                                            <p>Score submitted. Thanks for playing!</p>
+                                        ) : scoreSubmitted === "N/A" ? (
+                                            <p>Score previously submitted. You cannot submit multiple scores from this device.</p>
+                                        ) : (                                    
+                                                <div>
+                                                    <label>
+                                                        Enter you name to save your score to the leaderboard!  
+                                                    </label>
+                                                    <form className='leaderboard-submit' onSubmit={handleSaveName}>
+                                                        <input 
+                                                            style={{margin: '15px', width: '50%'}}
+                                                            type="text" value={playerName}
+                                                            onChange={handleNameChange}
+                                                        />
+                                                        <input ref={submitButtonRef} className="submit" type="submit" value="Save"/>
+                                                    </form>
+                                                </div>
+                                        ) 
+                                    }
+                                </div>
                             <Leaderboard />
                             <p className="info-text">Created by Nick Courtney</p>
                         </div>
                     )}
                 </Popup>
                 <Confetti width={width} height={height} colors={color}/>
+                <button onClick={handleOpen} className="results-button submit">
+                    See results
+                </button>
             </div>
         )
     }
