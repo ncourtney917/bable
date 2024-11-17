@@ -42,13 +42,9 @@ function Game() {
         // Replace all 0s with 'x' in the filtered data
         const updatedData = filteredData.map(score => {
             const updatedScore = { ...score }; // Create a shallow copy to avoid mutation
-
-            // Replace 0s in all string fields
-            for (let key in updatedScore) {
-                if (typeof updatedScore[key] === "string") {
-                    updatedScore[key] = updatedScore[key].replaceAll("0", "X");
-                }
-            }
+            
+            // Replace 0s with Xs
+            updatedScore.Guesses = updatedScore.Guesses.toString().replaceAll("0", "X");
 
             return updatedScore;
         });
