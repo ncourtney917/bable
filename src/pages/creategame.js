@@ -93,7 +93,7 @@ class NameForm extends React.Component {
     render() {
         if (this.state.access === false) {
             return (
-                <form className="form" onSubmit={this.handleAccessSubmit}>
+                <form className="form" style={{backgroundColor: '#b0c4de'}} onSubmit={this.handleAccessSubmit}>
                     <h3>Please enter your access code to create a new game</h3>
                     <input type="text" value={this.state.access_code} onChange={this.handleAccessChange} />
                     <input className="submit" type="submit" value="Submit" />
@@ -102,7 +102,7 @@ class NameForm extends React.Component {
             )}
         else{
             return (
-                <form className="form" onSubmit={this.handleSubmit}>
+                <form className="form" style={{backgroundColor: '#b0c4de'}} onSubmit={this.handleSubmit}>
                     <h2>Mommy Mode</h2>
                     <h3>Create a name for your friends to guess</h3>
                     <label>

@@ -57,16 +57,18 @@ function Game() {
             '--primary-color': '#cce7ff',
             '--secondary-color': '#0067ac',
             '--tertiary-color': '#6dc2fb',
+            '--background-text-color': '#0067ac',
+            '--board-color': '#6dc2fb',
             '--popup-text-color': '#ffffff',
             '--button-alt-background': '#b8c7c9',
-            '--leaderboard-color': '#b8c7c9',
-            '--leaderboard-header-color': '#fffcc3',
             '--border-color': '#ffffff'
         },
         pink: {
             '--primary-color': '#ffe4e9',
             '--secondary-color': '#ee6490',
             '--tertiary-color': '#f7a6c1',
+            '--background-text-color': '#ee6490',
+            '--board-color': '#f7a6c1',
             '--popup-text-color': '#ffffff',
             '--button-alt-background': '#f1cbd9',
             '--border-color': '#ffffff'
@@ -75,6 +77,8 @@ function Game() {
             '--primary-color': '#393E46',
             '--secondary-color': '#808080',
             '--tertiary-color': '#222831',
+            '--background-text-color': '#ffffff',
+            '--board-color': '#9fa5af',
             '--popup-text-color': '#ffffff',
             '--button-alt-background': '#444444',
             '--border-color': '#ffffff'
@@ -83,6 +87,8 @@ function Game() {
             '--primary-color': '#fafafa',
             '--secondary-color': '#808080',
             '--tertiary-color': '#b8dbc7',
+            '--background-text-color': '#ffffff',
+            '--board-color': '#acbdb3',
             '--popup-text-color': '#000000',
             '--button-alt-background': '#4c7b39',
             '--border-color': '#ffffff'

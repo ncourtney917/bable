@@ -77,7 +77,7 @@ img {
 nav {
   width: 100%;
   margin: 0px;
-  border-bottom: 2px solid var(--secondary-color);
+  border-bottom: 2px solid var(--background-text-color);
   display: grid;
   grid-template-columns: 1fr 1fr 1fr;
   height: var(--header-height)
@@ -85,7 +85,7 @@ nav {
 
 nav h1 {
   margin: 10px 0px 0px 0px;
-  color: var(--secondary-color);
+  color: var(--background-text-color);
   place-items: center;
 
 }
@@ -116,7 +116,7 @@ h3 {
   align-items: center;
   padding-top: 20px;
   flex-direction: column;
-  color: var(--secondary-color)
+  color: var(--background-text-color)
 }
 
 .board {
@@ -148,7 +148,7 @@ h3 {
   font-size: 30px;
   font-weight: bolder;
   color: white;
-  background-color: var(--tertiary-color);
+  background-color: var(--board-color);
   font-family: Arial, Helvetica, sans-serif;
 }
 
