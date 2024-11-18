@@ -152,11 +152,10 @@ class NameForm extends React.Component {
 const CreateGame = () => {
     return (
         <div className="App">
-            <img
-                src={theme === 'dark' ? require('../images/baby_white.png') : require('../images/baby_transparent.png')}
-                alt="baby"
-            />
-            <h1>Babble</h1>
+            <nav>
+                <img alt="baby" src={require('../images/baby_transparent.png')} />
+                <h1>Babble</h1>
+            </nav>
             <NameForm />
             <h3 id="formOutput"></h3>
             <h3 id="accessCode"></h3>
