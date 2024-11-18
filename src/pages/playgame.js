@@ -87,7 +87,7 @@ function Game() {
             '--primary-color': '#fafafa',
             '--secondary-color': '#808080',
             '--tertiary-color': '#b8dbc7',
-            '--background-text-color': '#ffffff',
+            '--background-text-color': '#000000',
             '--board-color': '#acbdb3',
             '--popup-text-color': '#000000',
             '--button-alt-background': '#4c7b39',

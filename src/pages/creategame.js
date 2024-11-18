@@ -96,7 +96,7 @@ class NameForm extends React.Component {
                 <form className="form" style={{backgroundColor: '#b0c4de'}} onSubmit={this.handleAccessSubmit}>
                     <h3>Please enter your access code to create a new game</h3>
                     <input type="text" value={this.state.access_code} onChange={this.handleAccessChange} />
-                    <input className="submit" type="submit" value="Submit" />
+                    <input className="submit" style={{backgroundColor: "#4682b4"}} type="submit" value="Submit" />
 
                 </form>
             )}
@@ -141,7 +141,7 @@ class NameForm extends React.Component {
                         <input type="radio" value="light" name="color" /> Light
                     </div>
 
-                    <input className="submit" type="submit" value="Submit" />
+                    <input className="submit" style={{backgroundColor: "#4682b4"}} type="submit" value="Submit" />
                 </form>
             );
         }
