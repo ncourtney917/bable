@@ -135,9 +135,10 @@ class NameForm extends React.Component {
                         Background Color:  
                     </label>
                     <div onChange={this.onChangeColorRadio}>
-                        <input type="radio" value="Blue" name="color" /> Blue
-                        <input type="radio" value="Pink" name="color" /> Pink
-                        <input type="radio" value="Gray" name="color" /> Gray
+                        <input type="radio" value="blue" name="color" /> Blue
+                        <input type="radio" value="pink" name="color" /> Pink
+                        <input type="radio" value="dark" name="color" /> Dark
+                        <input type="radio" value="light" name="color" /> Light
                     </div>
 
                     <input className="submit" type="submit" value="Submit" />

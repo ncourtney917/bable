@@ -16,7 +16,6 @@ function Game() {
     const [correctWord, setWord] = useState()
     const [parents, setParents] = useState()
     const [gender, setGender] = useState()
-    const [background, setBackground] = useState()
     const [letterCount, setCount] = useState(0)
     const [board, setBoard] = useState(Words(5));
     const [disabledLetters, setDisabledLetters] = useState([]);
@@ -24,6 +23,7 @@ function Game() {
     const [correctLetters, setCorrectLetters] = useState([]);
     const [gameOver, setGameOver] = useState({ gameOver: false, guessWord: false, showLeaderboard: false })
     const [leaderboard, setLeaderboard] = useState([]);
+    const [theme, setTheme] = useState(['light']);
 
     
     const getGameDetails = async(id) => {
@@ -60,13 +60,12 @@ function Game() {
                     var name = data[0].Name;
                     var parents = data[0].Parents;
                     var gender = data[0].Gender;
-                    var background = data[0].Background;
                     setWord(name);
                     setParents(parents);
                     setGender(gender);
-                    setBackground(background);
+                    setTheme(data[0].Background);
                     setCount(name.length);
-                    setLoading("success")
+                    setLoading("success");
                 }catch(e) {
                     setLoading("failure")
                     console.log(e)
@@ -134,7 +133,7 @@ function Game() {
 
 
     return (
-        <div className="App">
+        <div className={`App ${theme}`}>
             <nav>
                 <img alt="baby" src={require('../images/baby_white.png')} />
                 <h1>Babble</h1>

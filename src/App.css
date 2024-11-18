@@ -9,13 +9,33 @@
 
 .App {
   text-align: center;
-  color: white;
 }
+
+.App.blue {
+  background-color: #39a3f9;
+  color: #ffffff;
+}
+
+.App.pink {
+  background-color: #f76ed5;
+  color: #ffffff;
+}
+
+.App.dark {
+  background-color: #393E46;
+  color: #ffffff;
+}
+
+.App.light {
+  background-color: #ffffff;
+  color: #000000;
+}
+
 
 body {
   padding: 0%;
   margin: 0;
-  background-color: var(--primary-color);
+  /* background-color: var(--primary-color); */
   font-family: 'Montserrat', sans-serif;
 }
 
