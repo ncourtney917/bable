@@ -9,43 +9,6 @@
   text-align: center;
 }
 
-.App.blue {
-  background-color: #CCE7FF;
-  color: #0067ac;
-  --primary-color: #cce7ff;
-  --secondary-color: #0067ac;
-  --popup-background: #6dc2fb;
-  --popup-text-color: #ffffff;
-  /* --button-background: #0067ac; */
-  --button-alt-background: #b8c7c9;
-  /*--key-color: #0067ac; */
-  --board-color: #8dd1ff;
-  --leaderboard-color: #b8c7c9;
-  --leaderboard-header-color: #fffcc3;
-}
-
-.App.pink {
-  background-color: #f76ed5;
-  color: #ffffff;
-  --primary-color: #;
-  --secondary-color: #;
-}
-
-.App.dark {
-  background-color: #393E46;
-  color: #ffffff;
-  --primary-color: #393E46;
-  --secondary-color: #222831;
-}
-
-.App.light {
-  background-color: #ffffff;
-  color: #000000;
-  --primary-color: #393E46;
-  --secondary-color: #222831;
-}
-
-
 body {
   padding: 0%;
   margin: 0;
@@ -61,7 +24,7 @@ img {
 
 
 .popup {
-  background-color: var(--popup-background);
+  background-color: var(--tertiary-color);
   color: var(--popup-text-color);
   padding: 20px 20px 3px 20px;
   display: block;
@@ -105,7 +68,7 @@ img {
   width: 250px;
   justify-content: center;
   padding: 20px;
-  background-color: var(--popup-background);
+  background-color: var(--tertiary-color);
   border-radius: 15px;
 }
 
@@ -120,7 +83,7 @@ nav {
 
 nav h1 {
   margin: 10px 0px 0px 0px;
-  color: white;
+  color: var(--secondary-color);
   place-items: center;
 
 }
@@ -182,7 +145,7 @@ h3 {
   font-size: 30px;
   font-weight: bolder;
   color: white;
-  background-color: var(--board-color);
+  background-color: var(--tertiary-color);
   font-family: Arial, Helvetica, sans-serif;
 }
 

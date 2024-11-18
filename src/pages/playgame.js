@@ -52,6 +52,54 @@ function Game() {
         return updatedData.sort((a, b) => a.Guesses.localeCompare(b.Guesses));
     }
 
+    const themes = {
+        blue: {
+            '--primary-color': '#cce7ff',
+            '--secondary-color': '#0067ac',
+            '--tertiary-color': '#6dc2fb',
+            '--popup-text-color': '#ffffff',
+            '--button-alt-background': '#b8c7c9',
+            '--leaderboard-color': '#b8c7c9',
+            '--leaderboard-header-color': '#fffcc3'
+        },
+        pink: {
+            '--primary-color': '#cce7ff',
+            '--secondary-color': '#0067ac',
+            '--tertiary-color': '#6dc2fb',
+            '--popup-text-color': '#ffffff',
+            '--button-alt-background': '#b8c7c9',
+            '--leaderboard-color': '#b8c7c9',
+            '--leaderboard-header-color': '#fffcc3'
+        },
+        dark: {
+            '--primary-color': '#cce7ff',
+            '--secondary-color': '#0067ac',
+            '--tertiary-color': '#6dc2fb',
+            '--popup-text-color': '#ffffff',
+            '--button-alt-background': '#b8c7c9',
+            '--leaderboard-color': '#b8c7c9',
+            '--leaderboard-header-color': '#fffcc3'
+        },
+        light: {
+            '--primary-color': '#cce7ff',
+            '--secondary-color': '#0067ac',
+            '--tertiary-color': '#6dc2fb',
+            '--popup-text-color': '#ffffff',
+            '--button-alt-background': '#b8c7c9',
+            '--leaderboard-color': '#b8c7c9',
+            '--leaderboard-header-color': '#fffcc3'
+        }
+      };
+
+    const applyTheme = (themeName) => {
+        const theme = themes[themeName];
+        if (theme) {
+          Object.entries(theme).forEach(([key, value]) => {
+            document.documentElement.style.setProperty(key, value);
+          });
+        }
+      };
+
     // Get game details based on the ID
     useEffect(()=>{
         getGameDetails(gameId).then((data) => {
@@ -64,6 +112,7 @@ function Game() {
                     setParents(parents);
                     setGender(gender);
                     setTheme(data[0].Background);
+                    applyTheme(data[0].Background)
                     setCount(name.length);
                     setLoading("success");
                 }catch(e) {
@@ -133,12 +182,12 @@ function Game() {
 
 
     return (
-        <div className={`App ${theme}`}>
+        <div className='App'>
             <nav>
                 <img alt="baby" src={require('../images/baby_white.png')} />
                 <h1>Babble</h1>
             </nav>
-            <AppContext.Provider value={{ board, setBoard, currAttempt, setCurrAttempt, onDelete, onEnter, onSelectLetter, correctWord, disabledLetters, setDisabledLetters, correctLetters, setCorrectLetters, almostLetters, setAlmostLetters, gameOver, setGameOver, letterCount, gender, leaderboard, setLeaderboard, getLeaderboard }}>
+            <AppContext.Provider value={{ board, setBoard, currAttempt, setCurrAttempt, onDelete, onEnter, onSelectLetter, correctWord, disabledLetters, setDisabledLetters, correctLetters, setCorrectLetters, almostLetters, setAlmostLetters, gameOver, setGameOver, letterCount, gender, leaderboard, setLeaderboard, getLeaderboard, theme }}>
                 <div className="game">
                     <h3>Guess our baby's name!<br></br> - {parents}</h3>
                     <Board />
