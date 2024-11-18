@@ -3,6 +3,8 @@
   --keyboard-height: 500px;
   --keyboard-width: 350px;
   --header-height: 65px;
+  --leaderboard-color: #b8c7c9;
+  --leaderboard-header-color: #fffcc3;
 }
 
 .App {
@@ -114,6 +116,7 @@ h3 {
   align-items: center;
   padding-top: 20px;
   flex-direction: column;
+  color: var(--secondary-color)
 }
 
 .board {
@@ -198,6 +201,7 @@ h3 {
 .submit {
   background-color: var(--secondary-color);
   color: #ffffff;
+  border-color: var(--border-color);
   margin: 20px;
   padding: 10px 30px 10px 30px;
   border-radius: 15px 15px 15px 15px;

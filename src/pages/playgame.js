@@ -60,34 +60,32 @@ function Game() {
             '--popup-text-color': '#ffffff',
             '--button-alt-background': '#b8c7c9',
             '--leaderboard-color': '#b8c7c9',
-            '--leaderboard-header-color': '#fffcc3'
+            '--leaderboard-header-color': '#fffcc3',
+            '--border-color': '#ffffff'
         },
         pink: {
-            '--primary-color': '#cce7ff',
-            '--secondary-color': '#0067ac',
-            '--tertiary-color': '#6dc2fb',
+            '--primary-color': '#ffe4e9',
+            '--secondary-color': '#ee6490',
+            '--tertiary-color': '#f7a6c1',
             '--popup-text-color': '#ffffff',
-            '--button-alt-background': '#b8c7c9',
-            '--leaderboard-color': '#b8c7c9',
-            '--leaderboard-header-color': '#fffcc3'
+            '--button-alt-background': '#f1cbd9',
+            '--border-color': '#ffffff'
         },
         dark: {
-            '--primary-color': '#cce7ff',
-            '--secondary-color': '#0067ac',
-            '--tertiary-color': '#6dc2fb',
+            '--primary-color': '#393E46',
+            '--secondary-color': '#808080',
+            '--tertiary-color': '#222831',
             '--popup-text-color': '#ffffff',
-            '--button-alt-background': '#b8c7c9',
-            '--leaderboard-color': '#b8c7c9',
-            '--leaderboard-header-color': '#fffcc3'
+            '--button-alt-background': '#444444',
+            '--border-color': '#ffffff'
         },
         light: {
-            '--primary-color': '#cce7ff',
-            '--secondary-color': '#0067ac',
-            '--tertiary-color': '#6dc2fb',
-            '--popup-text-color': '#ffffff',
-            '--button-alt-background': '#b8c7c9',
-            '--leaderboard-color': '#b8c7c9',
-            '--leaderboard-header-color': '#fffcc3'
+            '--primary-color': '#fafafa',
+            '--secondary-color': '#808080',
+            '--tertiary-color': '#b8dbc7',
+            '--popup-text-color': '#000000',
+            '--button-alt-background': '#4c7b39',
+            '--border-color': '#ffffff'
         }
       };
 
@@ -184,7 +182,10 @@ function Game() {
     return (
         <div className='App'>
             <nav>
-                <img alt="baby" src={require('../images/baby_white.png')} />
+                <img
+                    src={theme === 'dark' ? require('../images/baby_white.png') : require('../images/baby_transparent.png')}
+                    alt="baby"
+                />
                 <h1>Babble</h1>
             </nav>
             <AppContext.Provider value={{ board, setBoard, currAttempt, setCurrAttempt, onDelete, onEnter, onSelectLetter, correctWord, disabledLetters, setDisabledLetters, correctLetters, setCorrectLetters, almostLetters, setAlmostLetters, gameOver, setGameOver, letterCount, gender, leaderboard, setLeaderboard, getLeaderboard, theme }}>
