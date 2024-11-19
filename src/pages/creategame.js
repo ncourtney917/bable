@@ -140,6 +140,7 @@ class NameForm extends React.Component {
                     <label>
                         Enter custom header text<br></br> (If empty, default will be: "Guess our baby's name!"):
                     </label>
+                    <br></br>
                     <input type="text" value={this.state.freetext} onChange={this.handleFreeTextChange} />
                     <br></br>
                     <br></br>
