@@ -3,8 +3,8 @@
   --keyboard-height: 500px;
   --keyboard-width: 350px;
   --header-height: 65px;
-  --leaderboard-color: #b8c7c9;
-  --leaderboard-header-color: #fffcc3;
+  --leaderboard-color: #f3ebc5;
+  --leaderboard-header-color: #cccccc;
 }
 
 .App {
@@ -253,7 +253,7 @@ footer {
 }
 
 .table-container {
-  background-color: lightgray;
+  background-color: var(--leaderboard-color);
   color: black;
   padding: 1rem;
   padding-top: 0.25rem;
