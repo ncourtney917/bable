@@ -57,11 +57,11 @@ function Game() {
         blue: {
             '--primary-color': '#cce7ff',
             '--secondary-color': '#0067ac',
-            '--tertiary-color': '#6dc2fb',
+            '--tertiary-color': '#5dbbfa',
             '--background-text-color': '#0067ac',
             '--board-color': '#6dc2fb',
             '--popup-text-color': '#ffffff',
-            '--button-alt-background': '#b8c7c9',
+            '--button-alt-background': '#8b9293',
             '--border-color': '#ffffff'
         },
         pink: {
