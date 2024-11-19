@@ -37,7 +37,6 @@ function GameOver() {
             var data = {
                 GameId: gameId,
                 Guesses: guesses,
-                Won: gameOver.guessWord,
                 PlayerName: playerName
             }
             const endpoint = `/data-api/rest/GameLeaderboard/`;

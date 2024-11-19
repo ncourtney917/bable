@@ -5,7 +5,7 @@ import {key} from "../App";
 class NameForm extends React.Component {
     constructor(props) {
         super(props);
-        this.state = { value: '' , gender: '', access_code:'', access:false, parents:''};
+        this.state = { value: '' , gender: '', access_code:'', access:false, parents:'', freetext: ''};
 
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -14,6 +14,7 @@ class NameForm extends React.Component {
         this.handleAccessSubmit = this.handleAccessSubmit.bind(this);
         this.handleParentChange = this.handleParentChange.bind(this);
         this.handleBackendChange = this.handleBackendChange.bind(this);
+        this.handleFreeTextChange = this.handleFreeTextChange.bind(this);
         this.onChangeColorRadio = this.onChangeColorRadio.bind(this);
     }
 
@@ -29,6 +30,9 @@ class NameForm extends React.Component {
         this.setState({ backend: event.target.value });
     }
     
+    handleFreeTextChange(event) {
+        this.setState({ freetext: event.target.value });
+    }
 
     handleAccessChange(event) {
         this.setState({ access_code: event.target.value });
@@ -54,6 +58,7 @@ class NameForm extends React.Component {
         const parents = this.state.parents
         const gameId = this.state.backend
         const color = this.state.color
+        const freetext = this.state.freetext
         var accessCode = document.getElementById('accessCode')
         var newGameLink = document.getElementById('newGameLink')
         const game_info = {
@@ -61,7 +66,8 @@ class NameForm extends React.Component {
             Name: babyName,
             Gender: gender,
             Parents: parents,
-            Background: color
+            Background: color,
+            FreeText: freetext
         }
         this.createGameDetails(game_info)
 
@@ -129,6 +135,12 @@ class NameForm extends React.Component {
                         Enter the backend of the url<br></br> (e.g. smith-baby-name):
                     </label>
                     <input type="text" value={this.state.backend} onChange={this.handleBackendChange} />
+                    <br></br>
+                    <br></br>
+                    <label>
+                        Enter custom header text<br></br> (If empty, default will be: "Guess our baby's name!"):
+                    </label>
+                    <input type="text" value={this.state.freetext} onChange={this.handleFreeTextChange} />
                     <br></br>
                     <br></br>
                     <label>

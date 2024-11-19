@@ -16,6 +16,7 @@ function Game() {
     const [correctWord, setWord] = useState()
     const [parents, setParents] = useState()
     const [gender, setGender] = useState()
+    const [freetext, setFreeText] = useState("Guess our baby's name!")
     const [letterCount, setCount] = useState(0)
     const [board, setBoard] = useState(Words(5));
     const [disabledLetters, setDisabledLetters] = useState([]);
@@ -112,12 +113,16 @@ function Game() {
                     var name = data[0].Name;
                     var parents = data[0].Parents;
                     var gender = data[0].Gender;
+                    var freetext = data[0].FreeText;
                     setWord(name);
                     setParents(parents);
                     setGender(gender);
                     setTheme(data[0].Background);
                     applyTheme(data[0].Background)
                     setCount(name.length);
+                    if (freetext !== ''){
+                        setFreeText(freetext);
+                    }
                     setLoading("success");
                 }catch(e) {
                     setLoading("failure")
@@ -196,7 +201,9 @@ function Game() {
             </nav>
             <AppContext.Provider value={{ board, setBoard, currAttempt, setCurrAttempt, onDelete, onEnter, onSelectLetter, correctWord, disabledLetters, setDisabledLetters, correctLetters, setCorrectLetters, almostLetters, setAlmostLetters, gameOver, setGameOver, letterCount, gender, leaderboard, setLeaderboard, getLeaderboard, theme }}>
                 <div className="game">
-                    <h3>Guess our baby's name!<br></br> - {parents}</h3>
+                    <h3>{freetext}
+                        <br></br> - {parents}
+                    </h3>
                     <Board />
                     <Keyboard />
                     {gameOver.gameOver ? <GameOver /> : <div/>} 
