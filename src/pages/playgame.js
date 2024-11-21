@@ -16,7 +16,7 @@ function Game() {
     const [correctWord, setWord] = useState()
     const [parents, setParents] = useState()
     const [gender, setGender] = useState()
-    const [freetext, setFreeText] = useState("Guess our baby's name!")
+    const [header, setHeader] = useState("Guess our baby's name!")
     const [letterCount, setCount] = useState(0)
     const [board, setBoard] = useState(Words(5));
     const [disabledLetters, setDisabledLetters] = useState([]);
@@ -113,15 +113,15 @@ function Game() {
                     var name = data[0].Name;
                     var parents = data[0].Parents;
                     var gender = data[0].Gender;
-                    var freetext = data[0].FreeText;
+                    var header = data[0].Header;
                     setWord(name);
                     setParents(parents);
                     setGender(gender);
                     setTheme(data[0].Background);
                     applyTheme(data[0].Background)
                     setCount(name.length);
-                    if (freetext !== ''){
-                        setFreeText(freetext);
+                    if (header !== ''){
+                        setHeader(header);
                     }
                     setLoading("success");
                 }catch(e) {
@@ -201,7 +201,7 @@ function Game() {
             </nav>
             <AppContext.Provider value={{ board, setBoard, currAttempt, setCurrAttempt, onDelete, onEnter, onSelectLetter, correctWord, disabledLetters, setDisabledLetters, correctLetters, setCorrectLetters, almostLetters, setAlmostLetters, gameOver, setGameOver, letterCount, gender, leaderboard, setLeaderboard, getLeaderboard, theme }}>
                 <div className="game">
-                    <h3>{freetext}
+                    <h3>{header}
                         <br></br> - {parents}
                     </h3>
                     <Board />

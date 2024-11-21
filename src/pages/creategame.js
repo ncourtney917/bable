@@ -5,7 +5,7 @@ import {key} from "../App";
 class NameForm extends React.Component {
     constructor(props) {
         super(props);
-        this.state = { value: '' , gender: '', access_code:'', access:false, parents:'', freetext: ''};
+        this.state = { value: '' , gender: '', access_code:'', access:false, parents:'', header: ''};
 
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -14,7 +14,7 @@ class NameForm extends React.Component {
         this.handleAccessSubmit = this.handleAccessSubmit.bind(this);
         this.handleParentChange = this.handleParentChange.bind(this);
         this.handleBackendChange = this.handleBackendChange.bind(this);
-        this.handleFreeTextChange = this.handleFreeTextChange.bind(this);
+        this.handleHeaderChange = this.handleHeaderChange.bind(this);
         this.onChangeColorRadio = this.onChangeColorRadio.bind(this);
     }
 
@@ -30,8 +30,8 @@ class NameForm extends React.Component {
         this.setState({ backend: event.target.value });
     }
     
-    handleFreeTextChange(event) {
-        this.setState({ freetext: event.target.value });
+    handleHeaderChange(event) {
+        this.setState({ header: event.target.value });
     }
 
     handleAccessChange(event) {
@@ -58,7 +58,7 @@ class NameForm extends React.Component {
         const parents = this.state.parents
         const gameId = this.state.backend
         const color = this.state.color
-        const freetext = this.state.freetext
+        const header = this.state.header
         var accessCode = document.getElementById('accessCode')
         var newGameLink = document.getElementById('newGameLink')
         const game_info = {
@@ -67,7 +67,7 @@ class NameForm extends React.Component {
             Gender: gender,
             Parents: parents,
             Background: color,
-            FreeText: freetext
+            Header: header
         }
         this.createGameDetails(game_info)
 
@@ -141,7 +141,7 @@ class NameForm extends React.Component {
                         Enter custom header text<br></br> (If empty, default will be: "Guess our baby's name!"):
                     </label>
                     <br></br>
-                    <input type="text" value={this.state.freetext} onChange={this.handleFreeTextChange} />
+                    <input type="text" value={this.state.header} onChange={this.handleHeaderChange} />
                     <br></br>
                     <br></br>
                     <label>
