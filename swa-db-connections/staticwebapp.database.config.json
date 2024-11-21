@@ -33,7 +33,7 @@
       "source": "dbo.GameDetails",
       "permissions": [
         {
-          "actions": ["*"],
+          "actions": ["POST", "GET"],
           "role": "anonymous"
         }
       ]
@@ -42,7 +42,7 @@
       "source": "dbo.GameLeaderboard",
       "permissions": [
         {
-          "actions": ["*"],
+          "actions": ["POST", "GET"],
           "role": "anonymous"
         }
       ]
