@@ -58,9 +58,9 @@ function Keyboard() {
                 {keys2.map((key) => {
                     return <Key keyVal={key} disabled={disabledLetters.includes(key)} correct={correctLetters.includes(key)} almost ={almostLetters.includes(key)} />;
                 })}
+                <Key keyVal={"DEL"} bigKey />
             </div>
             <div className="keyboard-line">
-                <Key keyVal={"DEL"} bigKey />
                 {keys3.map((key) => {
                     return <Key keyVal={key} disabled={disabledLetters.includes(key)} correct={correctLetters.includes(key)} almost ={almostLetters.includes(key)} />;
                 })}
