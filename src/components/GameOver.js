@@ -164,7 +164,7 @@ function GameOver() {
                                     }
                                 </div>
                                 <Leaderboard />
-                                <p className="info-text">Created by Nick Courtney</p>
+                                <p className="info-text">Created by BabblePuzzles on Etsy</p>
                             </div>
                         </div>
                     )}
