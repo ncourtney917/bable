@@ -3,8 +3,8 @@
   --keyboard-height: 500px;
   --keyboard-width: 350px;
   --header-height: 65px;
-  --leaderboard-color: #f3ebc5;
-  --leaderboard-header-color: #cccccc;
+  --leaderboard-color: #c9d5d5;
+  --leaderboard-header-color: #5a756c;
 }
 
 .App {
@@ -252,6 +252,10 @@ footer {
   gap: 15px;
 }
 
+.leaderboard-title {
+  color: var(--leaderboard-header-color)
+}
+
 .table-container {
   background-color: var(--leaderboard-color);
   color: black;
@@ -268,6 +272,7 @@ footer {
 
 .table-container th {
   font-weight: bolder;
+  color: #ffffff;
   background-color: var(--leaderboard-header-color);
   text-align: center;
   padding: 10px;

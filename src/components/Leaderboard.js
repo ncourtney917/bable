@@ -34,7 +34,7 @@ function Leaderboard () {
                         &times;
                     </button>
                     <div className="table-container">
-                        <h2>Leaderboard</h2>
+                        <h2 className="leaderboard-title">Leaderboard</h2>
                         <div className="table-scroll">
                             <CompactTable data={{ nodes: leaderboard }} columns={columns} />
                         </div>
