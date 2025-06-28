@@ -91,7 +91,7 @@ function GameOver() {
     useEffect(() => {
         const timer = setTimeout(() => {
             setIsOpen(true);
-        }, 1000);
+        }, 1500);
 
         return () => clearTimeout(timer);
     }, []);
@@ -253,7 +253,6 @@ function GameOver() {
                         </div>
                     )}
                 </Popup>
-                <Confetti width={width} height={height} colors={color}/>
                 {!isOpen && (
                     <button onClick={handleOpen} className="results-button submit">
                         See results
