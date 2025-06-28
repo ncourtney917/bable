@@ -28,10 +28,20 @@ function Game() {
 
     
     const getGameDetails = async(id) => {
-        const endpoint = `/data-api/rest/Game/Id`;
-        const response = await fetch(`${endpoint}/${id}`);
-        const result = await response.json();
-        return result.value;
+        try {
+            const endpoint = `/data-api/rest/Game/Id`;
+            const response = await fetch(`${endpoint}/${id}`);
+            
+            if (!response.ok) {
+                throw new Error(`HTTP error! status: ${response.status}`);
+            }
+            
+            const result = await response.json();
+            return result.value;
+        } catch (error) {
+            console.error('Error fetching game details:', error);
+            throw error; // Re-throw to be handled by the calling function
+        }
     }
 
     const getLeaderboard = async(id) => {
@@ -129,9 +139,9 @@ function Game() {
                     console.log(e)
                 }
             }
-            else {
-                console.log("Error in getting game details")
-            }
+        }).catch((error) => {
+            console.error('Error in getGameDetails:', error);
+            setLoading("failure");
         });       
     },[]);
  
@@ -149,7 +159,7 @@ function Game() {
     if (isLoading === "loading") {
         return <div className="App loading-text">Loading Babble game...</div>;
     } else if (isLoading === "failure") {
-        return <div className="App loading-text">This game link is not valid. Please check the URL and try again.</div>;
+        return <div className="App loading-text">There was an error loading your game. Try re-loading the page. If the error persists, please contact the game creator at nick@nickelcitytech.io</div>;
     }
 
     const onSelectLetter = (keyVal, letterCount) => {
