@@ -406,17 +406,9 @@ footer {
 
 .example-explanation {
   font-size: 0.9em;
-  color: #666;
   margin: 10px 0;
 }
 
-.help-tip {
-  background-color: #f0f8ff;
-  padding: 15px;
-  border-radius: 8px;
-  border-left: 4px solid #0067ac;
-  margin-top: 20px;
-}
 
 /* Question Mark Icon */
 .help-icon {
