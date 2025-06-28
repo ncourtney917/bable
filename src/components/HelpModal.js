@@ -51,7 +51,7 @@ function HelpModal({ isOpen, onClose }) {
                                 </div>
                                 
                                 <div className="example-row">
-                                    <div className="letter-example" style={{backgroundColor: 'var(--board-color)'}}>C</div>
+                                    <div className="letter-example" id="error">C</div>
                                     <span className="example-text">
                                         <strong>Gray</strong> - The letter C is not in the name at all
                                     </span>
@@ -63,14 +63,14 @@ function HelpModal({ isOpen, onClose }) {
                             <div className="example-guess">
                                 <div className="letter-example" id="correct">T</div>
                                 <div className="letter-example" id="almost">O</div>
-                                <div className="letter-example" style={{backgroundColor: 'var(--board-color)'}}>N</div>
-                                <div className="letter-example" style={{backgroundColor: 'var(--board-color)'}}>Y</div>
+                                <div className="letter-example" id="error">N</div>
+                                <div className="letter-example" id="error">Y</div>
                             </div>
                             <p className="example-explanation">
                                 • T is green (correct letter in correct position)<br/>
                                 • O is yellow (in the name but wrong position)<br/>
                                 • N is gray (not in the name)<br/>
-                                • Y is green (not in the name)
+                                • Y is gray (not in the name)
                             </p>
                         </div>
                     </div>

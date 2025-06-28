@@ -217,6 +217,7 @@ function Game() {
                 className="help-icon" 
                 onClick={() => setIsHelpOpen(true)}
                 aria-label="Help"
+                title="View instructions"
             >
                 ?
             </button>
