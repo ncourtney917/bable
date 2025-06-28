@@ -2,6 +2,7 @@ import '../App.css';
 import Board from "../components/Board";
 import Keyboard from '../components/Keyboard';
 import GameOver from '../components/GameOver';
+import HelpModal from '../components/HelpModal';
 import { createContext, useState, useEffect } from 'react';
 import {Words} from '../components/Words';
 import {useParams} from 'react-router-dom';
@@ -25,6 +26,7 @@ function Game() {
     const [gameOver, setGameOver] = useState({ gameOver: false, guessWord: false, showLeaderboard: false })
     const [leaderboard, setLeaderboard] = useState([]);
     const [theme, setTheme] = useState(['light']);
+    const [isHelpOpen, setIsHelpOpen] = useState(false);
 
     
     const getGameDetails = async(id) => {
@@ -209,6 +211,16 @@ function Game() {
                 />
                 <h1>Babble</h1>
             </nav>
+            
+            {/* Help Icon */}
+            <button 
+                className="help-icon" 
+                onClick={() => setIsHelpOpen(true)}
+                aria-label="Help"
+            >
+                ?
+            </button>
+            
             <AppContext.Provider value={{ board, setBoard, currAttempt, setCurrAttempt, onDelete, onEnter, onSelectLetter, correctWord, disabledLetters, setDisabledLetters, correctLetters, setCorrectLetters, almostLetters, setAlmostLetters, gameOver, setGameOver, letterCount, gender, leaderboard, setLeaderboard, getLeaderboard, theme }}>
                 <div className="game">
                     <h3>{header}
@@ -219,6 +231,12 @@ function Game() {
                     {gameOver.gameOver ? <GameOver /> : <div/>} 
                 </div>
             </AppContext.Provider>
+            
+            {/* Help Modal */}
+            <HelpModal 
+                isOpen={isHelpOpen} 
+                onClose={() => setIsHelpOpen(false)} 
+            />
         </div>
     );
 }
