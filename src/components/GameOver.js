@@ -15,7 +15,7 @@ function GameOver() {
     const [playerName, setPlayerName] = useState('');
     const submitButtonRef = useRef(null);
     var guesses = 0;
-    const [isOpen, setIsOpen] = useState(true);
+    const [isOpen, setIsOpen] = useState(false);
     const [scoreSubmitted, setScoreSubmitted] = useState();
     const [isSubmitting, setIsSubmitting] = useState(false);
 
@@ -85,6 +85,15 @@ function GameOver() {
       if (submitButtonRef.current) {
         submitButtonRef.current.focus();
       }
+    }, []);
+
+    // Add 1-second delay before showing the popup
+    useEffect(() => {
+        const timer = setTimeout(() => {
+            setIsOpen(true);
+        }, 1000);
+
+        return () => clearTimeout(timer);
     }, []);
 
     // Set confetti color based on gender
@@ -198,9 +207,8 @@ function GameOver() {
                             <h1>It's a {gender}!</h1>
                             <hr></hr>
                             <div className="popup-body">
-                                <h3>The baby's name is:</h3>
-                                <h1>{correctWord}</h1>
                                 <h3 className="margin-top">Don't worry, we won't tell the baby you lost :)</h3>
+                                <h3>Better luck next time!</h3>
                             </div>
                             <hr></hr>
                             <div>
