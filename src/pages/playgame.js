@@ -48,7 +48,7 @@ function Game() {
 
     const getLeaderboard = async(id) => {
         const endpoint = `/data-api/rest/GameLeaderboard`;
-        const response = await fetch(`${endpoint}?$filter=GameId eq ${id}`);
+        const response = await fetch(`${endpoint}?$filter=GameId eq '${id}'`);
         const result = await response.json();
 
         // Replace all 0s with 'x' in the filtered data
