@@ -45,7 +45,11 @@
           "actions": ["create", "read"],
           "role": "anonymous"
         }
-      ]
+      ],
+      "rest": {
+        "methods": ["get", "post"],
+        "path": "/GameLeaderboard"
+      }
     }
   }
 }

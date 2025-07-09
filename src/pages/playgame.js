@@ -48,12 +48,11 @@ function Game() {
 
     const getLeaderboard = async(id) => {
         const endpoint = `/data-api/rest/GameLeaderboard`;
-        const response = await fetch(`${endpoint}`);
+        const response = await fetch(`${endpoint}?$filter=GameId eq ${id}`);
         const result = await response.json();
-        const filteredData = result.value.filter(score => score.GameId === id);
 
         // Replace all 0s with 'x' in the filtered data
-        const updatedData = filteredData.map(score => {
+        const updatedData = result.value.map(score => {
             const updatedScore = { ...score }; // Create a shallow copy to avoid mutation
             
             // Replace 0s with Xs
