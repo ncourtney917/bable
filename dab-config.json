@@ -1,0 +1,59 @@
+{
+  "$schema": "https://github.com/Azure/data-api-builder/releases/latest/download/dab.draft.schema.json",
+  "data-source": {
+    "database-type": "mssql",
+    "options": {
+      "set-session-context": false 
+    },
+    "connection-string": "@env('DATABASE_CONNECTION_STRING')"
+  },
+  "runtime": {
+    "rest": {
+      "enabled": true,
+      "path": "/rest"
+    },
+    "graphql": {
+      "allow-introspection": true,
+      "enabled": true,
+      "path": "/graphql"
+    },
+    "host": {
+      "mode": "production",
+      "cors": {
+        "origins": [
+          "http://localhost:3000",
+          "https://jolly-bush-033bf300f.5.azurestaticapps.net",
+          "https://babblepuzzle.com/"
+        ],
+        "allow-credentials": false
+      },
+      "authentication": {
+        "provider": "StaticWebApps"
+      }
+    }
+  },
+  "entities": {
+    "Game": {
+      "source": "dbo.GameDetails",
+      "permissions": [
+        {
+          "actions": ["create", "read"],
+          "role": "anonymous"
+        }
+      ]
+    },
+    "GameLeaderboard": {
+      "source": "dbo.GameLeaderboard",
+      "permissions": [
+        {
+          "actions": ["create", "read"],
+          "role": "anonymous"
+        }
+      ],
+      "rest": {
+        "methods": ["get", "post"],
+        "path": "/GameLeaderboard"
+      }
+    }
+  }
+}

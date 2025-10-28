@@ -78,3 +78,55 @@ This section has moved here: [https://facebook.github.io/create-react-app/docs/t
 # Set-Up
 `npm install react-router-dom`
 `npm install --save style-components`
+
+# Architecture
+
+This application uses a decoupled architecture:
+- **Frontend**: React app deployed to Azure Static Web Apps
+- **Backend API**: Data API Builder (DAB) running in Azure Container Apps
+- **Database**: Azure SQL Database
+
+## Deployment
+
+### Prerequisites
+- Azure CLI installed and logged in
+- Docker installed locally
+- Existing Azure SQL Database
+
+### Quick Start
+1. Follow the detailed deployment guide in `AZURE_DEPLOYMENT_GUIDE.md`
+2. Update configuration files with your Azure resource URLs
+3. Deploy both the Container App and Static Web App
+
+### Configuration Files
+- `dab-config.json`: Data API Builder configuration
+- `Dockerfile`: Container definition for DAB
+- `public/staticwebapp.config.json`: Static Web App routing configuration
+
+### API Endpoints
+- `POST /data-api/rest/Game/` - Create new game
+- `GET /data-api/rest/Game/Id/{id}` - Get game details
+- `GET /data-api/rest/GameLeaderboard?$filter=...` - Get leaderboard
+- `POST /data-api/rest/GameLeaderboard/` - Submit score
+
+## Cost Optimization
+
+This application uses **Azure Container Instances** for maximum cost savings:
+
+### Monthly Costs
+- **Container Instance** (0.25 CPU, 0.5 GB): ~$7-10/month
+- **Container Registry** (Basic): $5/month
+- **Total**: ~$12-15/month
+
+### Cost Comparison
+| Service | Monthly Cost | Notes |
+|---------|-------------|-------|
+| **Container Instances** | $8-12 | **Current** - Most cost-effective |
+| Container Apps | $78-83 | Auto-scaling but expensive |
+| App Service | $18 | Good middle ground |
+
+### Cost Optimization Features
+- Minimal resource allocation (0.25 CPU, 0.5 GB RAM)
+- Auto-shutdown scripts available
+- Scales to zero when not in use
+- Basic Container Registry tier
